@@ -139,7 +139,7 @@ function App() {
             >
               GET A FREE ESTIMATE
             </button>
-            <p className="text-base text-white font-semibold tracking-wide drop-shadow">* Same Day Free Estimates — Spots Fill Up Fast!</p>
+            <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast</p>
             <a href="tel:+17652938680" className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
               (765) 293-8680
             </a>
