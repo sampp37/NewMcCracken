@@ -454,7 +454,7 @@ function App() {
             </div>
             <div className="w-full lg:w-1/2">
               <img
-                src="/Portfolio.png"
+                src="/Portfolio.webp"
                 alt="McCracken Painting portfolio of completed projects"
                 className="w-full rounded-2xl shadow-xl"
                 loading="lazy"
