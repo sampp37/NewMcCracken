@@ -347,40 +347,17 @@ function App() {
         </div>
       </section>
 
-      {/* Detailed Content Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold text-gray-900">
-                Transform Your Space with Professional Painting
-              </h2>
-              <p className="text-lg text-gray-600">
-                At McCracken Painting, we understand that a fresh coat of paint can completely transform your space.
-              </p>
-              <p className="text-lg text-gray-600">
-                25+ years of experience gives you an expert team that delivers a locally trusted service.
-              </p>
-              <p className="text-lg text-gray-600">
-                Whether you're refreshing a single room or renovating an entire property, we handle every detail from surface preparation to final touches and cleaning.
-              </p>
-              <button
-                onClick={openModal}
-                className="inline-flex items-center bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
-              >
-                Schedule Free Consultation
-              </button>
-            </div>
-            <div>
-              <img
-                src="/McCracken_Safe_Painting.jpg"
-                alt="McCracken Painting team working on professional staircase project"
-                className="rounded-2xl shadow-2xl w-full"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Areas Served Section */}
+      <section
+        className="w-full"
+        style={{
+          minHeight: '300px',
+          backgroundImage: 'url("/areas-served.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
       </section>
 
       {/* CTA Section */}
