@@ -459,15 +459,18 @@ function App() {
                 className="w-full"
                 loading="lazy"
               />
-              <button
-                onClick={openModal}
-                className="mt-8 inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-bold hover:scale-105 transform border-4 border-gray-900 uppercase tracking-wide"
-              >
-                SAME DAY FREE QUOTE
-              </button>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Section 8 - Background Image */}
+      <section className="relative w-full" style={{ minHeight: '60vh' }}>
+        <img
+          src="/MC-S3 copy copy.jpg"
+          alt=""
+          className="w-full h-full object-cover absolute inset-0"
+        />
       </section>
 
       {/* Contact Section */}
