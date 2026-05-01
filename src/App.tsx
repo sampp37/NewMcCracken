@@ -299,52 +299,19 @@ function App() {
         </div>
       </section>
 
-      {/* Excellence Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Family Legacy Section */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="order-2 lg:order-1">
-              <img
-                src="/3_Generations_Owned.webp"
-                alt="McCracken Painting family team"
-                className="rounded-2xl shadow-2xl w-full"
-                loading="lazy"
-              />
-            </div>
-            <div className="order-1 lg:order-2 space-y-6">
-              <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-2">
-                Family-Owned Since 3 Generations
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900">
-                A Legacy of Craftsmanship Passed Down Through Generations
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                For three generations, the McCracken family has been perfecting the art of painting in Tippecanoe County. What started as a small local business has grown into a trusted name, with skills, values, and dedication to quality passed from father to son.
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Our family's commitment to excellence isn't just a business philosophy—it's our heritage. Every project we take on carries the weight of our family name and the pride of generations who have served this community.
-              </p>
-              <div className="flex items-center gap-4 pt-4">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">3</div>
-                  <div className="text-sm text-gray-600">Generations</div>
-                </div>
-                <div className="h-12 w-px bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">25+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
-                </div>
-                <div className="h-12 w-px bg-gray-300"></div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-blue-600">1000+</div>
-                  <div className="text-sm text-gray-600">Happy Homes</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      {/* Section 4 */}
+      <section
+        id="about"
+        className="w-full relative"
+        style={{
+          minHeight: '100vh',
+          backgroundImage: 'url("/MC-S3.jpg")',
+          backgroundSize: '100% 100%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#060f1e',
+        }}
+      >
       </section>
 
       {/* Detailed Content Section */}
