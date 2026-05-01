@@ -228,7 +228,7 @@ function App() {
           backgroundColor: '#ffffff',
         }}
       >
-        <div className="max-w-6xl mx-auto px-6 lg:px-12 py-14" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="py-14" style={{ position: 'relative', zIndex: 1, paddingLeft: '40px', paddingRight: '40px' }}>
           {/* Title */}
           <h2
             className="text-gray-900 font-bold text-center mb-10"
@@ -240,7 +240,7 @@ function App() {
           {/* Two-column layout */}
           <div style={{ display: 'flex', alignItems: 'stretch', gap: '40px' }}>
             {/* Left column - text */}
-            <div className="space-y-6" style={{ flex: '1 1 0', paddingLeft: '20px' }}>
+            <div className="space-y-6" style={{ flex: '1 1 0' }}>
               {[
                 {
                   num: '01.',
