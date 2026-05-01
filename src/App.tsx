@@ -456,7 +456,7 @@ function App() {
               <img
                 src="/Portfolio.webp"
                 alt="McCracken Painting portfolio of completed projects"
-                className="w-full rounded-2xl shadow-xl"
+                className="w-full"
                 loading="lazy"
               />
               <button
