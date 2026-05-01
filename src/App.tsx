@@ -464,13 +464,40 @@ function App() {
         </div>
       </section>
 
-      {/* Section 8 - Background Image */}
-      <section className="w-full">
-        <img
-          src="/MC-S3.webp"
-          alt=""
-          className="w-full block"
-        />
+      {/* Section 8 - Color Studio */}
+      <section className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="w-full lg:w-1/2">
+              <img
+                src="/Color_consultation.png"
+                alt="Color consultation paint buckets"
+                className="w-full rounded-lg"
+                loading="lazy"
+              />
+            </div>
+            <div className="w-full lg:w-1/2 space-y-6">
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 uppercase tracking-wide">
+                Color Studio
+              </h2>
+              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.8' }}>
+                When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
+              </p>
+              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.8' }}>
+                Our professionals are always on hand to answer any questions or offer expert color suggestions. More than that, our premium paints come in a wide range, from classically timeless to up to the minute trends.
+              </p>
+              <div className="flex flex-col items-start gap-2">
+                <button
+                  onClick={openModal}
+                  className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-bold hover:scale-105 transform border-4 border-gray-900 uppercase tracking-wide"
+                >
+                  SAME DAY FREE QUOTE NOW
+                </button>
+                <span className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Same Day Spots Are Filling Up Fast!</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Contact Section */}
