@@ -482,7 +482,7 @@ function App() {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
               <img
-                src="/Color_consultation.png"
+                src="/color-consultation.png"
                 alt="Color consultation paint buckets"
                 className="w-full rounded-lg"
                 loading="lazy"
@@ -492,10 +492,10 @@ function App() {
               <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide">
                 Color Studio
               </h2>
-              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.8' }}>
+              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
                 When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
               </p>
-              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.8' }}>
+              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
                 Our professionals are always on hand to answer any questions or offer expert color suggestions. More than that, our premium paints come in a wide range, from classically timeless to up to the minute trends.
               </p>
               <div className="flex flex-col items-start gap-2">
