@@ -238,7 +238,7 @@ function App() {
           </h2>
 
           {/* Two-column layout */}
-          <div style={{ display: 'flex', alignItems: 'stretch', gap: '40px' }}>
+          <div className="flex flex-col lg:flex-row" style={{ gap: '40px' }}>
             {/* Left column - text */}
             <div className="space-y-6" style={{ flex: '1 1 0' }}>
               {[
@@ -281,7 +281,7 @@ function App() {
             </div>
 
             {/* Right column - images */}
-            <div style={{ maxWidth: '420px', width: '420px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className="w-full lg:w-[420px] lg:max-w-[420px] flex-shrink-0 flex flex-col gap-4">
               <img
                 src="/McCracken-van.jpg"
                 alt="McCracken Painting van"
