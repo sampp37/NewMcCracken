@@ -228,7 +228,7 @@ function App() {
           backgroundColor: '#ffffff',
         }}
       >
-        <div className="max-w-5xl mx-auto px-6 lg:px-12 py-14" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="max-w-6xl mx-auto px-6 lg:px-12 py-14" style={{ position: 'relative', zIndex: 1 }}>
           {/* Title */}
           <h2
             className="text-gray-900 font-bold text-center mb-10"
@@ -237,45 +237,64 @@ function App() {
             WHY CHOOSE US
           </h2>
 
-          {/* Items */}
-          <div className="space-y-6" style={{ maxWidth: '700px', marginLeft: '0', paddingLeft: '80px' }}>
-            {[
-              {
-                num: '01.',
-                title: 'Respect Time & Communication',
-                body: 'We do everything from start to finish on time while communicating with you throughout the entire project. If the details or scope of work change, we always communicate how and when things will get done.',
-              },
-              {
-                num: '02.',
-                title: 'Stress Free & Mess-Free Service',
-                body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should. We start with proper prep and end with thorough cleanup.",
-              },
-              {
-                num: '03.',
-                title: 'Your Kids and Pets, Our Priority.',
-                body: 'Maintaining a kids and pet friendly atmosphere and being respectful of the home environment are non negotiable core values.',
-              },
-              {
-                num: '04.',
-                title: 'Value Based Pricing',
-                body: 'We offer upfront and honest pricing without any hidden fees. Rest assured, you will get what you pay for. Above all else, we prioritize giving you the most kind and cautious high quality service.',
-              },
-            ].map(({ num, title, body }) => (
-              <div key={num} className="text-left">
-                <h3
-                  className="font-bold text-gray-900 mb-1"
-                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
-                >
-                  {num} {title}
-                </h3>
-                <p
-                  className="text-gray-700"
-                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '17px', lineHeight: '1.6' }}
-                >
-                  {body}
-                </p>
-              </div>
-            ))}
+          {/* Two-column layout */}
+          <div style={{ display: 'flex', alignItems: 'stretch', gap: '40px' }}>
+            {/* Left column - text */}
+            <div className="space-y-6" style={{ flex: '1 1 0', paddingLeft: '20px' }}>
+              {[
+                {
+                  num: '01.',
+                  title: 'Respect Time & Communication',
+                  body: 'We do everything from start to finish on time while communicating with you throughout the entire project. If the details or scope of work change, we always communicate how and when things will get done.',
+                },
+                {
+                  num: '02.',
+                  title: 'Stress Free & Mess-Free Service',
+                  body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should. We start with proper prep and end with thorough cleanup.",
+                },
+                {
+                  num: '03.',
+                  title: 'Your Kids and Pets, Our Priority.',
+                  body: 'Maintaining a kids and pet friendly atmosphere and being respectful of the home environment are non negotiable core values.',
+                },
+                {
+                  num: '04.',
+                  title: 'Value Based Pricing',
+                  body: 'We offer upfront and honest pricing without any hidden fees. Rest assured, you will get what you pay for. Above all else, we prioritize giving you the most kind and cautious high quality service.',
+                },
+              ].map(({ num, title, body }) => (
+                <div key={num} className="text-left">
+                  <h3
+                    className="font-bold text-gray-900 mb-1"
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
+                  >
+                    {num} {title}
+                  </h3>
+                  <p
+                    className="text-gray-700"
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '17px', lineHeight: '1.6' }}
+                  >
+                    {body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right column - images */}
+            <div style={{ maxWidth: '420px', width: '420px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <img
+                src="/McCracken-van.jpg"
+                alt="McCracken Painting van"
+                style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }}
+                loading="lazy"
+              />
+              <img
+                src="/painting-s3.png"
+                alt="Painter at work"
+                style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }}
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>
