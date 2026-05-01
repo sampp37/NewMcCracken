@@ -266,13 +266,13 @@ function App() {
                 <div key={num} className="text-left">
                   <h3
                     className="font-bold text-gray-900 mb-1"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '23px' }}
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '25px' }}
                   >
                     {num} {title}
                   </h3>
                   <p
                     className="text-gray-700"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '17px', lineHeight: '1.6' }}
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '22px', lineHeight: '1.6' }}
                   >
                     {body}
                   </p>
