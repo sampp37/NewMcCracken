@@ -305,11 +305,11 @@ function App() {
         className="w-full relative"
         style={{
           minHeight: '100vh',
-          backgroundImage: 'url("/MC-S3.jpg")',
-          backgroundSize: '100% 100%',
+          backgroundImage: 'url("/sec4.png")',
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundColor: '#060f1e',
+          backgroundColor: '#061a2e',
         }}
       >
       </section>
