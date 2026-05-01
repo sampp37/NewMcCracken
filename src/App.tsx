@@ -238,7 +238,7 @@ function App() {
           </h2>
 
           {/* Items */}
-          <div className="space-y-6" style={{ maxWidth: '560px', marginLeft: '40px' }}>
+          <div className="space-y-6" style={{ maxWidth: '780px', marginLeft: '40px' }}>
             {[
               {
                 num: '1.',
@@ -264,13 +264,13 @@ function App() {
               <div key={num} className="text-left">
                 <h3
                   className="font-bold text-gray-900 mb-1"
-                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
+                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '23px' }}
                 >
                   {num} {title}
                 </h3>
                 <p
                   className="text-gray-700"
-                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '17px', lineHeight: '1.6' }}
+                  style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19px', lineHeight: '1.6' }}
                 >
                   {body}
                 </p>
