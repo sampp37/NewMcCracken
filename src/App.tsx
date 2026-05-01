@@ -467,7 +467,7 @@ function App() {
       {/* Section 8 - Background Image */}
       <section className="relative w-full" style={{ minHeight: '60vh' }}>
         <img
-          src="/MC-S3 copy copy.jpg"
+          src="/MC-S3.webp"
           alt=""
           className="w-full h-full object-cover absolute inset-0"
         />
