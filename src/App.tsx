@@ -361,10 +361,10 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
             <div>
-              <h2 className="text-3xl font-bold text-white uppercase tracking-wide mb-4">
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wide mb-4">
                 Areas We Serve
               </h2>
-              <p className="text-gray-300 mb-8 max-w-2xl">
+              <p className="text-gray-300 mb-8 max-w-2xl text-xl">
                 McCracken is proud to offer top-quality painting services tailored to your neighborhood in and around Austin. Our painters serve the following areas with dedication and care:
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
@@ -379,7 +379,7 @@ function App() {
                 ].map((area) => (
                   <div key={area} className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-cyan-400 flex-shrink-0" />
-                    <span className="text-white text-sm">{area}</span>
+                    <span className="text-white text-lg">{area}</span>
                   </div>
                 ))}
               </div>
