@@ -348,17 +348,16 @@ function App() {
       </section>
 
       {/* Community Sponsors Banner */}
-      <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-4">
-        <div className="flex items-center justify-center gap-6 px-4 flex-wrap lg:flex-nowrap">
-          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
-          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
-          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
-          <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 uppercase tracking-wide whitespace-nowrap px-4">
-            Proudly Supporting Our Community
+      <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-6">
+        <div className="flex items-center justify-center px-6 lg:px-12 flex-wrap lg:flex-nowrap">
+          <div className="flex items-center gap-10 mr-auto">
+            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" />
+            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" />
+            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-20 w-auto object-contain" />
+          </div>
+          <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 uppercase tracking-wide whitespace-nowrap">
+            PROUDLY SPONSORING
           </h3>
-          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
-          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
-          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
         </div>
       </div>
 
