@@ -349,7 +349,7 @@ function App() {
 
       {/* Community Sponsors Banner */}
       <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-6">
-        <div className="relative flex items-center px-6 lg:px-12 flex-wrap lg:flex-nowrap">
+        <div className="relative flex items-center justify-between px-6 lg:px-12 flex-wrap lg:flex-nowrap">
           <div className="flex items-center gap-10">
             <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" />
             <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" />
@@ -358,6 +358,11 @@ function App() {
           <h3 className="absolute left-1/2 -translate-x-1/2 text-xl sm:text-2xl font-extrabold text-gray-900 uppercase tracking-wide whitespace-nowrap">
             PROUDLY SPONSORING
           </h3>
+          <div className="flex items-center gap-10">
+            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" />
+            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" />
+            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-20 w-auto object-contain" />
+          </div>
         </div>
       </div>
 
