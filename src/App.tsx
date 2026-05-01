@@ -321,7 +321,7 @@ function App() {
           </h2>
 
           <img
-            src="/3_Generations_Family.webp"
+            src="/family-photo.jpg"
             alt="McCracken Painting family team"
             className="rounded-2xl shadow-2xl w-full max-w-2xl mb-10"
             loading="lazy"
