@@ -323,7 +323,7 @@ function App() {
           <img
             src="/family-photo.jpg"
             alt="McCracken Painting family team"
-            className="rounded-2xl shadow-2xl w-full max-w-2xl mb-10"
+            className="rounded-2xl shadow-2xl w-full max-w-sm mb-10"
             loading="lazy"
           />
 
