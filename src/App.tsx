@@ -312,6 +312,39 @@ function App() {
           backgroundColor: '#061a2e',
         }}
       >
+        <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-12 py-20">
+          <h2
+            className="text-white font-bold uppercase mb-10"
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '40px' }}
+          >
+            WE'RE LOCALLY TRUSTED
+          </h2>
+
+          <img
+            src="/3_Generations_Family.webp"
+            alt="McCracken Painting family team"
+            className="rounded-2xl shadow-2xl w-full max-w-2xl mb-10"
+            loading="lazy"
+          />
+
+          <div
+            className="text-gray-200 max-w-3xl space-y-6"
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.75' }}
+          >
+            <p>
+              Let us bring your old house back to life with fresh, modern tools and techniques. So much so your only "problem" will be handling all the compliments from neighbors wondering how great it looks now.
+            </p>
+            <p>
+              Proudly family owned and serving the Lafayette area for 25+ years, we're committed to delivering exceptional results one house at the time.
+            </p>
+            <p>
+              Our commitment goes beyond the brush, we promise to be your best guests, treating your place with the utmost care and leaving it even more pristine than when we arrived.
+            </p>
+            <p>
+              If you envision a painting project, reach out for a free quote today.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Detailed Content Section */}
