@@ -410,39 +410,16 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section id="FreeEstimate" className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-4xl font-bold">
-                Revitalize Your Property with a Stunning New Look
-              </h2>
-              <p className="text-xl text-blue-100">
-                Let McCracken Painting bring your vision to life with expert craftsmanship and superior results. Our main goal is to exceed expectations with quality and timeliness.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-blue-50 transition text-lg font-semibold"
-                >
-                  Get Free Estimate
-                </button>
-                <a id="revitalize-call-now-button" href="tel:+17652938680" className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white/10 transition text-lg font-semibold">
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call Now
-                </a>
-              </div>
-            </div>
-            <div>
-              <img
-                src="/McCracken_about_to_paint.webp"
-                alt="McCracken painter preparing to paint a room"
-                className="rounded-2xl shadow-2xl w-full"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
+      <section
+        id="FreeEstimate"
+        className="relative py-20"
+        style={{
+          backgroundImage: 'url("/MC-6.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
       </section>
 
       {/* Contact Section */}
