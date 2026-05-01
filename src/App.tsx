@@ -421,28 +421,28 @@ function App() {
         }}
       >
         <div className="absolute inset-0 bg-[#0a1e2e]/75"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-4">
             That Experienced Painter You Need? We're the One
           </h2>
-          <p className="text-gray-300 mb-6 max-w-3xl">
+          <p className="text-gray-300 mb-6 max-w-3xl mx-auto text-lg">
             We understand that painting isn't just a project; it's an integral part of your home! To ensure your total satisfaction and peace of mind, your local residential painting services in Lafayette will always:
           </p>
-          <ul className="space-y-3 mb-8 max-w-3xl">
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-white">Run background checks on all team members.</span>
+          <ul className="space-y-3 mb-8 max-w-3xl mx-auto">
+            <li className="flex items-center justify-center gap-3">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0"></span>
+              <span className="text-white text-lg">Run background checks on all team members.</span>
             </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-white">Communicate with you, so we can fully understand all your priorities and concerns.</span>
+            <li className="flex items-center justify-center gap-3">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0"></span>
+              <span className="text-white text-lg">Communicate with you, so we can fully understand all your priorities and concerns.</span>
             </li>
-            <li className="flex items-start gap-3">
-              <span className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></span>
-              <span className="text-white">Take extra precautions when prepping and cleaning to make sure your property stays as beautiful and livable as possible.</span>
+            <li className="flex items-center justify-center gap-3">
+              <span className="w-2 h-2 bg-cyan-400 rounded-full flex-shrink-0"></span>
+              <span className="text-white text-lg">Take extra precautions when prepping and cleaning to make sure your property stays as beautiful and livable as possible.</span>
             </li>
           </ul>
-          <p className="text-gray-300 max-w-3xl">
+          <p className="text-gray-300 max-w-3xl mx-auto text-lg">
             <span className="text-cyan-400 font-bold">PLUS:</span> You can rest assured McCracken Painting Lafayette is 100% locally owned and operated, meaning all our painting services are uniquely tailored to the needs and requirements of your neighborhood residential community in Lafayette.
           </p>
         </div>
