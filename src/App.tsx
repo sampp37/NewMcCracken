@@ -238,25 +238,25 @@ function App() {
           </h2>
 
           {/* Items */}
-          <div className="space-y-6" style={{ maxWidth: '700px', marginLeft: '0' }}>
+          <div className="space-y-6" style={{ maxWidth: '700px', marginLeft: '0', paddingLeft: '80px' }}>
             {[
               {
-                num: '1.',
+                num: '01.',
                 title: 'Respect Time & Communication',
                 body: 'We do everything from start to finish on time while communicating with you throughout the entire project. If the details or scope of work change, we always communicate how and when things will get done.',
               },
               {
-                num: '2.',
+                num: '02.',
                 title: 'Stress Free & Mess-Free Service',
                 body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should. We start with proper prep and end with thorough cleanup.",
               },
               {
-                num: '3.',
+                num: '03.',
                 title: 'Your Kids and Pets, Our Priority.',
                 body: 'Maintaining a kids and pet friendly atmosphere and being respectful of the home environment are non negotiable core values.',
               },
               {
-                num: '4.',
+                num: '04.',
                 title: 'Value Based Pricing',
                 body: 'We offer upfront and honest pricing without any hidden fees. Rest assured, you will get what you pay for. Above all else, we prioritize giving you the most kind and cautious high quality service.',
               },
