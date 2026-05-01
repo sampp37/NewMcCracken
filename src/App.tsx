@@ -232,7 +232,7 @@ function App() {
           {/* Title */}
           <h2
             className="text-gray-900 font-bold text-center mb-10"
-            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '36px' }}
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '38px' }}
           >
             WHY CHOOSE US
           </h2>
@@ -266,7 +266,7 @@ function App() {
                 <div key={num} className="text-left">
                   <h3
                     className="font-bold text-gray-900 mb-1"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '23px' }}
                   >
                     {num} {title}
                   </h3>
