@@ -317,7 +317,7 @@ function App() {
             className="text-white font-bold uppercase mb-10"
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '40px' }}
           >
-            WE'RE LOCALLY TRUSTED
+            THREE GENERATIONS OF LOCAL EXPERTISE
           </h2>
 
           <img
@@ -346,6 +346,21 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* Community Sponsors Banner */}
+      <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-4">
+        <div className="flex items-center justify-center gap-6 px-4 flex-wrap lg:flex-nowrap">
+          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
+          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
+          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
+          <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 uppercase tracking-wide whitespace-nowrap px-4">
+            Proudly Supporting Our Community
+          </h3>
+          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
+          <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
+          <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
+        </div>
+      </div>
 
       {/* Areas Served Section */}
       <section
@@ -477,7 +492,6 @@ function App() {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <div className="absolute inset-0 bg-[#060f1e]/80"></div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
