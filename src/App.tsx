@@ -425,28 +425,14 @@ function App() {
           <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-6">
             That Experienced Painter You Need? We're the One
           </h2>
-          <div className="space-y-2 text-white text-lg leading-relaxed">
-            <p className="max-w-5xl mx-auto">
-              We understand that painting isn't just a project; it's an integral part of your home! To ensure your total satisfaction and peace of mind, your local residential
-            </p>
-            <p className="max-w-xl mx-auto">
-              painting services in Lafayette will always:
-            </p>
-            <p className="max-w-sm mx-auto">
-              Run background checks on all team members.
-            </p>
-            <p className="max-w-lg mx-auto">
-              Communicate with you, so we can fully understand all your priorities and concerns.
-            </p>
-            <p className="max-w-2xl mx-auto">
-              Take extra precautions when prepping and cleaning to make sure your property stays as beautiful and livable as possible.
-            </p>
-            <p className="max-w-4xl mx-auto pt-4">
-              PLUS: You can rest assured McCracken Painting Lafayette is 100% locally owned and operated, meaning all our painting
-            </p>
-            <p className="max-w-2xl mx-auto">
-              services are uniquely tailored to the needs and requirements of your neighborhood residential community in Lafayette.
-            </p>
+          <div className="text-white text-lg leading-loose whitespace-pre-line">
+            <p>We understand that painting isn't just a project; it's an integral part of your home! To ensure your total satisfaction and peace of mind, your local</p>
+            <p>residential painting services in Lafayette will always:</p>
+            <p>Run background checks on all team members.</p>
+            <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
+            <p>Take extra precautions when prepping and cleaning to make sure your property stays as beautiful and livable as possible.</p>
+            <p className="mt-4"><span className="font-bold text-xl">PLUS:</span> You can rest assured McCracken Painting Lafayette is 100% locally owned and operated, meaning all our painting services are uniquely tailored</p>
+            <p>to the needs and requirements of your neighborhood residential community in Lafayette.</p>
           </div>
         </div>
       </section>
