@@ -500,7 +500,7 @@ function App() {
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
               <img
-                src="/color-consultation.png"
+                src="/Color_consultation.png"
                 alt="Color consultation paint buckets"
                 className="w-full rounded-lg"
                 loading="lazy"
