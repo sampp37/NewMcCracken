@@ -1,4 +1,4 @@
-import { Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X, MapPin } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import ContactForm from './ContactForm';
@@ -349,15 +349,64 @@ function App() {
 
       {/* Areas Served Section */}
       <section
-        className="w-full"
+        className="relative py-14 overflow-hidden"
         style={{
-          minHeight: '300px',
           backgroundImage: 'url("/areas-served.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
         }}
       >
+        <div className="absolute inset-0 bg-[#0a2a4a]/80"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
+            <div>
+              <h2 className="text-3xl font-bold text-white uppercase tracking-wide mb-4">
+                Areas We Serve
+              </h2>
+              <p className="text-gray-300 mb-8 max-w-2xl">
+                McCracken is proud to offer top-quality painting services tailored to your neighborhood in and around Austin. Our painters serve the following areas with dedication and care:
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
+                {[
+                  'Lafayette', 'Otterbein', 'Delphi',
+                  'Frankfort', 'Monticello', 'Crawfordsville',
+                  'Attica', 'Brookston', 'Lebanon',
+                  'Rensselaer', 'Fowler', 'Thorntown',
+                  'West Lafayette', 'Battle Ground', 'Shadeland',
+                  'Dayton', 'Clarks Hill', 'Stockwell',
+                  'Montmorenci'
+                ].map((area) => (
+                  <div key={area} className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-cyan-400 flex-shrink-0" />
+                    <span className="text-white text-sm">{area}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm min-w-[280px]">
+              <h3 className="text-xl font-bold text-white uppercase tracking-wide mb-5">
+                Contact Info:
+              </h3>
+              <div className="space-y-4 mb-6">
+                <a href="tel:+17654302200" className="flex items-center gap-3 text-white hover:text-cyan-300 transition">
+                  <Phone className="h-5 w-5 text-cyan-400" />
+                  <span className="text-lg font-medium">(765) 430-2200</span>
+                </a>
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-white">104 Pineview Ln<br />Lafayette, IN 47905</span>
+                </div>
+              </div>
+              <button
+                onClick={openModal}
+                className="w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition uppercase tracking-wide text-sm"
+              >
+                Get a Free Quote
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}
