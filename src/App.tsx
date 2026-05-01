@@ -465,11 +465,11 @@ function App() {
       </section>
 
       {/* Section 8 - Background Image */}
-      <section className="relative w-full" style={{ minHeight: '60vh' }}>
+      <section className="w-full">
         <img
           src="/MC-S3.webp"
           alt=""
-          className="w-full h-full object-cover absolute inset-0"
+          className="w-full block"
         />
       </section>
 
