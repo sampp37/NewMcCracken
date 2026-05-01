@@ -454,11 +454,17 @@ function App() {
             </div>
             <div className="w-full lg:w-1/2">
               <img
-                src="/portfolio-collage.png"
+                src="/Portfolio.png"
                 alt="McCracken Painting portfolio of completed projects"
                 className="w-full rounded-2xl shadow-xl"
                 loading="lazy"
               />
+              <button
+                onClick={openModal}
+                className="mt-8 inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-bold hover:scale-105 transform border-4 border-gray-900 uppercase tracking-wide"
+              >
+                SAME DAY FREE QUOTE
+              </button>
             </div>
           </div>
         </div>
