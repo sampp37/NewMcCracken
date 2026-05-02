@@ -467,7 +467,7 @@ function App() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
+      <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <h2 className="text-4xl sm:text-5xl font-bold text-black text-center mb-12 uppercase tracking-wide">
             Portfolio
