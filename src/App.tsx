@@ -125,7 +125,7 @@ function App() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 0%' }}
         />
-        <div className="absolute inset-0 bg-black/[0.35]" />
+        <div className="absolute inset-0 bg-black/[0.45]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative">
           <div className="flex flex-col items-center text-center space-y-8">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight whitespace-nowrap">
