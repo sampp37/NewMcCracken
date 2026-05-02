@@ -217,7 +217,7 @@ function App() {
 
       {/* Services Section */}
       <section
-        id="services"
+        id="about"
         style={{
           minHeight: '90vh',
           backgroundImage: 'url(/background-s3.png)',
