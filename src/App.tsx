@@ -165,7 +165,6 @@ function App() {
 
       {/* Section 2 */}
       <section
-        id="reviews"
         className="w-full relative"
         style={{
           minHeight: '100vh',
@@ -609,7 +608,7 @@ function App() {
         const totalPages = Math.ceil(allReviews.length / 3);
         const visible = allReviews.slice(reviewPage * 3, reviewPage * 3 + 3);
         return (
-          <section className="py-20 bg-[#0a1628]">
+          <section id="reviews" className="py-20 bg-[#0a1628]">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
               <div className="text-center mb-14">
                 <p className="text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
