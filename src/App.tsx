@@ -88,7 +88,7 @@ function App() {
 
             {/* Right links */}
             <div className="hidden md:flex flex-1 items-center justify-around">
-              <a href="#AreasWeServe" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Areas Served</a>
+              <a href="#areasweserve" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Areas Served</a>
               <a href="#contact" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Contact</a>
             </div>
 
@@ -107,7 +107,7 @@ function App() {
             <div className="px-4 py-4 space-y-3">
               <a href="#reviews" className="block text-gray-700 hover:text-blue-600">Reviews</a>
               <a href="#colors" className="block text-gray-700 hover:text-blue-600">Colors</a>
-              <a href="#AreasWeServe" className="block text-gray-700 hover:text-blue-600">Areas Served</a>
+              <a href="#areasweserve" className="block text-gray-700 hover:text-blue-600">Areas Served</a>
               <a href="#contact" className="block text-gray-700 hover:text-blue-600">Contact</a>
             </div>
           </div>
@@ -377,6 +377,7 @@ function App() {
 
       {/* Areas Served Section */}
       <section
+        id="areasweserve"
         className="relative py-14 overflow-hidden"
         style={{
           backgroundImage: 'url("/areas-served.jpg")',
@@ -653,8 +654,6 @@ function App() {
         );
       })()}
 
-      {/* Areas We Serve anchor */}
-      <div id="AreasWeServe" />
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
