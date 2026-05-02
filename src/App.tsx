@@ -231,7 +231,7 @@ function App() {
           {/* Title */}
           <h2
             className="text-gray-900 font-bold text-center mb-10"
-            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '38px' }}
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '32px' }}
           >
             WHY CHOOSE US
           </h2>
@@ -242,22 +242,22 @@ function App() {
             <div className="space-y-6" style={{ flex: '1 1 0' }}>
               {[
                 {
-                  num: '01.',
+                  num: '1.',
                   title: 'Respect Time & Communication',
                   body: 'We do everything from start to finish on time while communicating with you throughout the entire project. If the details or scope of work change, we always communicate how and when things will get done.',
                 },
                 {
-                  num: '02.',
+                  num: '2.',
                   title: 'Stress Free & Mess-Free Service',
                   body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should. We start with proper prep and end with thorough cleanup.",
                 },
                 {
-                  num: '03.',
+                  num: '3.',
                   title: 'Your Kids and Pets, Our Priority.',
                   body: 'Maintaining a kids and pet friendly atmosphere and being respectful of the home environment are non negotiable core values.',
                 },
                 {
-                  num: '04.',
+                  num: '4.',
                   title: 'Value Based Pricing',
                   body: 'We offer upfront and honest pricing without any hidden fees. Rest assured, you will get what you pay for. Above all else, we prioritize giving you the most kind and cautious high quality service.',
                 },
@@ -265,13 +265,13 @@ function App() {
                 <div key={num} className="text-left">
                   <h3
                     className="font-bold text-gray-900 mb-1"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '25px' }}
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
                   >
                     {num} {title}
                   </h3>
                   <p
                     className="text-gray-700"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '22px', lineHeight: '1.6' }}
+                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.6' }}
                   >
                     {body}
                   </p>
