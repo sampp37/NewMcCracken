@@ -88,7 +88,6 @@ function App() {
 
             {/* Right links */}
             <div className="hidden md:flex flex-1 items-center justify-around">
-              <a href="#AreasWeServe" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Areas We Serve</a>
               <a href="#contact" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Contact</a>
             </div>
 
@@ -107,7 +106,6 @@ function App() {
             <div className="px-4 py-4 space-y-3">
               <a href="#reviews" className="block text-gray-700 hover:text-blue-600">Reviews</a>
               <a href="#services" className="block text-gray-700 hover:text-blue-600">Services</a>
-              <a href="#AreasWeServe" className="block text-gray-700 hover:text-blue-600">Areas We Serve</a>
               <a href="#contact" className="block text-gray-700 hover:text-blue-600">Contact</a>
             </div>
           </div>
@@ -563,6 +561,36 @@ function App() {
             body: <>They do a great job painting and have <strong className="text-white">very kind employees</strong>!</>,
             name: 'William Powell',
           },
+          {
+            title: '10 Years of Large Scale Projects Done Right',
+            body: <>I've been working with McCracken Painting for over <strong className="text-white">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-white">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-white">the job done right and on time</strong>.</>,
+            name: 'Caitlin Wright',
+          },
+          {
+            title: 'Always Exceeds Expectations, Every Single Time!',
+            body: <>We have used McCracken as a painting vendor for <strong className="text-white">several years</strong> and they always do a <strong className="text-white">great job</strong>. They always exceed expectations with quality and <strong className="text-white">timeliness</strong>. They're friendly and easy to communicate with!</>,
+            name: 'Caroline Baker',
+          },
+          {
+            title: 'Amazing Work and Excellent Communication — 10/10!',
+            body: <>McCracken painting <strong className="text-white">has always done amazing work</strong>. Very well ran and <strong className="text-white">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
+            name: 'Casey Frier',
+          },
+          {
+            title: 'Fast, Quality Work — Hiring Again for Sure!',
+            body: <>Great job. They painted my apartment and everything looks great. <strong className="text-white">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
+            name: 'Stephen Morrow',
+          },
+          {
+            title: 'A Friendly Family Team You Can Actually Talk To!',
+            body: <>Great group of family painters that are <strong className="text-white">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
+            name: 'Drew Powell',
+          },
+          {
+            title: 'Great Work and Kind Employees!',
+            body: <>They do a great job painting and have <strong className="text-white">very kind employees</strong>!</>,
+            name: 'William Powell',
+          },
         ];
         const [reviewPage, setReviewPage] = useState(0);
         const totalPages = Math.ceil(allReviews.length / 3);
@@ -649,57 +677,6 @@ function App() {
 
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl">
               <ContactForm fieldPrefix="contact" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Areas We Serve Section */}
-      <section id="AreasWeServe" className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Areas We Serve</h2>
-                <p className="text-2xl text-gray-700 font-semibold">
-                  Proudly Serving Tippecanoe County & Surrounding Areas
-                </p>
-              </div>
-
-              <p className="text-lg text-gray-600 leading-relaxed">
-                From historic neighborhoods in Lafayette to newer developments in West Lafayette, McCracken Painting brings quality craftsmanship to homeowners across the entire county. Wherever you are in Tippecanoe County, we come to you.
-              </p>
-
-              <div>
-                <div className="flex flex-wrap gap-3">
-                  {['Lafayette', 'West Lafayette', 'Battle Ground', 'Shadeland', 'Dayton', 'Clarks Hill', 'Stockwell', 'Montmorenci'].map((city) => (
-                    <span key={city} className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                      {city}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <p className="text-gray-600 text-lg">
-                  Don't see your city? Call us. We likely cover your area.
-                </p>
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition text-lg font-semibold"
-                >
-                  Book Your Free Quote
-                </button>
-              </div>
-            </div>
-
-            <div>
-              <img
-                src="/Battle_of_Tippecanoe.webp"
-                alt="Battle of Tippecanoe Monument"
-                className="rounded-2xl shadow-2xl w-full"
-                loading="lazy"
-              />
             </div>
           </div>
         </div>
