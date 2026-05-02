@@ -88,6 +88,7 @@ function App() {
 
             {/* Right links */}
             <div className="hidden md:flex flex-1 items-center justify-around">
+              <a href="#AreasWeServe" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Areas Served</a>
               <a href="#contact" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Contact</a>
             </div>
 
@@ -106,6 +107,7 @@ function App() {
             <div className="px-4 py-4 space-y-3">
               <a href="#reviews" className="block text-gray-700 hover:text-blue-600">Reviews</a>
               <a href="#services" className="block text-gray-700 hover:text-blue-600">Services</a>
+              <a href="#AreasWeServe" className="block text-gray-700 hover:text-blue-600">Areas Served</a>
               <a href="#contact" className="block text-gray-700 hover:text-blue-600">Contact</a>
             </div>
           </div>
@@ -137,7 +139,7 @@ function App() {
             >
               GET A FREE ESTIMATE
             </button>
-            <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast</p>
+            <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast!</p>
             <a href="tel:+17652938680" className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
               (765) 293-8680
             </a>
@@ -641,6 +643,9 @@ function App() {
         );
       })()}
 
+      {/* Areas We Serve anchor */}
+      <div id="AreasWeServe" />
+
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -651,33 +656,17 @@ function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Phone</h3>
-                <a href="tel:+17652938680" className="text-blue-600 hover:text-blue-700 text-lg">
-                  (765) 293-8680
-                </a>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Location</h3>
-                <p className="text-gray-600">
-                  104 Pineview Ln, Lafayette, IN 47905<br />
-                  Serving all around Indianapolis
-                </p>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Hours</h3>
-                <p className="text-gray-600">
-                  Monday - Friday: 8:00 AM - 5:00 PM<br />
-                  Weekends: Closed
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl">
-              <ContactForm fieldPrefix="contact" />
-            </div>
+          <div className="rounded-2xl overflow-hidden bg-[#1a3a9e] px-8 py-10 flex flex-col items-center gap-6 shadow-2xl">
+            <p className="text-white text-2xl sm:text-3xl font-extrabold uppercase tracking-wide text-center">
+              GET A FREE ESTIMATE IN 24 HRS
+            </p>
+            <button
+              onClick={openModal}
+              className="px-12 py-4 rounded-lg border-2 border-[#2cc4c4] text-white font-extrabold text-lg uppercase tracking-widest hover:bg-[#2cc4c4]/20 transition"
+            >
+              GET A FREE ESTIMATE TODAY
+            </button>
+            <p className="text-white/80 text-sm font-semibold tracking-wide">*Same Day Spots Filling Fast!</p>
           </div>
         </div>
       </section>
