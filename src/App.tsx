@@ -439,7 +439,6 @@ function App() {
 
       {/* CTA Section */}
       <section
-        id="FreeEstimate"
         className="relative py-14 overflow-hidden"
         style={{
           backgroundImage: 'url("/MC-6.jpg")',
