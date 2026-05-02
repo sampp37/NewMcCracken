@@ -122,8 +122,7 @@ function App() {
           aria-hidden="true"
           fetchPriority="high"
           loading="eager"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '50% 0%' }}
+          className="absolute inset-0 w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-black/[0.45]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative">
