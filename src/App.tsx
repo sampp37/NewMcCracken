@@ -78,7 +78,7 @@ function App() {
             {/* Left links */}
             <div className="hidden md:flex flex-1 items-center justify-around">
               <a href="#reviews" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Reviews</a>
-              <a href="#services" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Services</a>
+              <a href="#colors" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Colors</a>
             </div>
 
             {/* Logo — center column, fixed width */}
@@ -106,7 +106,7 @@ function App() {
           <div className="md:hidden bg-white border-t">
             <div className="px-4 py-4 space-y-3">
               <a href="#reviews" className="block text-gray-700 hover:text-blue-600">Reviews</a>
-              <a href="#services" className="block text-gray-700 hover:text-blue-600">Services</a>
+              <a href="#colors" className="block text-gray-700 hover:text-blue-600">Colors</a>
               <a href="#AreasWeServe" className="block text-gray-700 hover:text-blue-600">Areas Served</a>
               <a href="#contact" className="block text-gray-700 hover:text-blue-600">Contact</a>
             </div>
@@ -494,6 +494,7 @@ function App() {
 
       {/* Section 8 - Color Studio */}
       <section
+        id="colors"
         className="relative py-16"
         style={{
           minHeight: '85vh',
