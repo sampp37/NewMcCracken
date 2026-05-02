@@ -115,18 +115,19 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 relative overflow-hidden" style={{ minHeight: '75vh' }}>
+      <section className="pt-24 relative overflow-hidden" style={{ minHeight: 'clamp(420px, 60vh, 75vh)' }}>
         <img
           src="/Lafayette_Downtown_esquina.jpeg"
           alt=""
           aria-hidden="true"
           fetchPriority="high"
           loading="eager"
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '50% 15%' }}
         />
         <div className="absolute inset-0 bg-black/[0.45]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative">
-          <div className="flex flex-col items-center text-center space-y-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-32 relative">
+          <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight whitespace-nowrap">
               ON TIME &amp; ON BUDGET<br />
               HOME PAINTERS<br />
