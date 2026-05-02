@@ -348,8 +348,18 @@ function App() {
       </section>
 
       {/* Community Sponsors Banner */}
-      <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-6">
-        <div className="relative flex items-center justify-between px-6 lg:px-12 flex-wrap lg:flex-nowrap">
+      <div className="bg-white border-y border-gray-200 shadow-sm py-6">
+        {/* Mobile: title above, 3 logos below */}
+        <div className="flex flex-col items-center gap-4 px-6 md:hidden">
+          <h3 className="text-lg font-extrabold text-gray-900 uppercase tracking-wide">PROUDLY SPONSORING</h3>
+          <div className="flex items-center justify-center gap-8">
+            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" />
+            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-16 w-auto object-contain" />
+            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
+          </div>
+        </div>
+        {/* Desktop: logos — title — logos */}
+        <div className="hidden md:flex relative items-center justify-between px-6 lg:px-12">
           <div className="flex items-center gap-10">
             <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" />
             <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" />
