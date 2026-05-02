@@ -316,7 +316,7 @@ function App() {
             className="text-white font-bold uppercase mb-10"
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '40px' }}
           >
-            THREE GENERATIONS OF LOCAL EXPERTISE
+            GENERATIONAL EXPERTISE
           </h2>
 
           <img
