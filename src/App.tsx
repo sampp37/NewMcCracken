@@ -1,4 +1,4 @@
-import { Phone, Menu, X, MapPin } from 'lucide-react';
+import { Phone, Menu, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import ContactForm from './ContactForm';
@@ -531,63 +531,87 @@ function App() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-20 bg-[#0a1628]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-14">
-            <p className="text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wide">
-              See Why These Hoosiers Wouldn't Go Anywhere Else
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Review 1 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      {(() => {
+        const allReviews = [
+          {
+            title: '10 Years of Large Scale Projects Done Right',
+            body: <>I've been working with McCracken Painting for over <strong className="text-white">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-white">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-white">the job done right and on time</strong>.</>,
+            name: 'Caitlin Wright',
+          },
+          {
+            title: 'Always Exceeds Expectations, Every Single Time!',
+            body: <>We have used McCracken as a painting vendor for <strong className="text-white">several years</strong> and they always do a <strong className="text-white">great job</strong>. They always exceed expectations with quality and <strong className="text-white">timeliness</strong>. They're friendly and easy to communicate with!</>,
+            name: 'Caroline Baker',
+          },
+          {
+            title: 'Amazing Work and Excellent Communication — 10/10!',
+            body: <>McCracken painting <strong className="text-white">has always done amazing work</strong>. Very well ran and <strong className="text-white">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
+            name: 'Casey Frier',
+          },
+          {
+            title: 'Fast, Quality Work — Hiring Again for Sure!',
+            body: <>Great job. They painted my apartment and everything looks great. <strong className="text-white">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
+            name: 'Stephen Morrow',
+          },
+          {
+            title: 'A Friendly Family Team You Can Actually Talk To!',
+            body: <>Great group of family painters that are <strong className="text-white">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
+            name: 'Drew Powell',
+          },
+          {
+            title: 'Great Work and Kind Employees!',
+            body: <>They do a great job painting and have <strong className="text-white">very kind employees</strong>!</>,
+            name: 'William Powell',
+          },
+        ];
+        const [reviewPage, setReviewPage] = useState(0);
+        const totalPages = Math.ceil(allReviews.length / 3);
+        const visible = allReviews.slice(reviewPage * 3, reviewPage * 3 + 3);
+        return (
+          <section className="py-20 bg-[#0a1628]">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12">
+              <div className="text-center mb-14">
+                <p className="text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wide">
+                  See Why These Hoosiers Wouldn't Go Anywhere Else
+                </h2>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                {visible.map((review, i) => (
+                  <div key={reviewPage * 3 + i} className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
+                    <h3 className="text-white font-bold text-xl leading-snug">{review.title}</h3>
+                    <p className="text-gray-300 text-lg leading-relaxed">"{review.body}"</p>
+                    <div className="mt-auto pt-4 border-t border-white/10">
+                      <p className="text-white font-bold text-lg">{review.name}</p>
+                    </div>
+                  </div>
                 ))}
               </div>
-              <h3 className="text-white font-bold text-lg leading-snug">10 Years of Large Scale Projects Done Right</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                "I've been working with McCracken Painting for over <strong className="text-white">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-white">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-white">the job done right and on time</strong>."
-              </p>
-              <div className="mt-auto pt-4 border-t border-white/10">
-                <p className="text-white font-bold">Caitlin Wright</p>
-              </div>
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-4 mt-10">
+                  <button
+                    onClick={() => setReviewPage(p => Math.max(0, p - 1))}
+                    disabled={reviewPage === 0}
+                    className="p-3 rounded-full border border-white/20 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition"
+                    aria-label="Previous reviews"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <span className="text-gray-400 text-sm">{reviewPage + 1} / {totalPages}</span>
+                  <button
+                    onClick={() => setReviewPage(p => Math.min(totalPages - 1, p + 1))}
+                    disabled={reviewPage === totalPages - 1}
+                    className="p-3 rounded-full border border-white/20 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition"
+                    aria-label="Next reviews"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </div>
+              )}
             </div>
-            {/* Review 2 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ))}
-              </div>
-              <h3 className="text-white font-bold text-lg leading-snug">Always Exceeds Expectations, Every Single Time!</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                "We have used McCracken as a painting vendor for <strong className="text-white">several years</strong> and they always do a <strong className="text-white">great job</strong>. They always exceed expectations with quality and <strong className="text-white">timeliness</strong>. They're friendly and easy to communicate with!"
-              </p>
-              <div className="mt-auto pt-4 border-t border-white/10">
-                <p className="text-white font-bold">Caroline Baker</p>
-              </div>
-            </div>
-            {/* Review 3 */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ))}
-              </div>
-              <h3 className="text-white font-bold text-lg leading-snug">Amazing Work and Excellent Communication — 10/10!</h3>
-              <p className="text-gray-300 text-base leading-relaxed">
-                "McCracken painting <strong className="text-white">has always done amazing work</strong>. Very well ran and <strong className="text-white">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10."
-              </p>
-              <div className="mt-auto pt-4 border-t border-white/10">
-                <p className="text-white font-bold">Casey Frier</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        );
+      })()}
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
