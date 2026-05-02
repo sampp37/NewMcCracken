@@ -115,15 +115,14 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 relative overflow-hidden" style={{ minHeight: 'clamp(420px, 60vh, 75vh)' }}>
+      <section className="pt-24 relative overflow-hidden" style={{ minHeight: '75vh' }}>
         <img
           src="/Lafayette_Downtown_esquina.jpeg"
           alt=""
           aria-hidden="true"
           fetchPriority="high"
           loading="eager"
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition: '50% 15%' }}
+          className="hero-bg-img absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/[0.45]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-32 relative">

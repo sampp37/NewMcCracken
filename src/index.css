@@ -10,3 +10,17 @@
 .animate-marquee {
   animation: marquee 45s linear infinite;
 }
+
+/* Hero background: on mobile zoom into top portion (buildings, not street) */
+.hero-bg-img {
+  object-position: 50% 0%;
+}
+
+@media (max-width: 767px) {
+  .hero-bg-img {
+    /* Scale the image up so the top 50% fills the viewport — hides street level */
+    transform: scale(2);
+    transform-origin: top center;
+    object-position: 50% 0%;
+  }
+}
