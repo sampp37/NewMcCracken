@@ -125,7 +125,7 @@ function App() {
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: '50% 0%' }}
         />
-        <div className="absolute inset-0 bg-black/[0.25]" />
+        <div className="absolute inset-0 bg-black/[0.35]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative">
           <div className="flex flex-col items-center text-center space-y-8">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight whitespace-nowrap">
@@ -524,6 +524,73 @@ function App() {
                   SAME DAY FREE QUOTE NOW
                 </button>
                 <span className="text-gray-300 font-semibold text-sm uppercase tracking-wide">Same Day Spots Are Filling Up Fast!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section
+        className="relative py-20"
+        style={{
+          backgroundImage: 'url("/backgroundReviews.webp")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-14">
+            <p className="text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide">
+              Reviews
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Review 1 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4 backdrop-blur-sm">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <p className="text-gray-200 text-base leading-relaxed">
+                "McCracken Painting did an outstanding job on our home exterior. The crew was punctual, professional, and left the property spotless. Highly recommend to anyone in the Lafayette area!"
+              </p>
+              <div className="mt-auto pt-4 border-t border-white/10">
+                <p className="text-white font-bold">Sarah M.</p>
+                <p className="text-gray-400 text-sm">West Lafayette, IN</p>
+              </div>
+            </div>
+            {/* Review 2 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4 backdrop-blur-sm">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <p className="text-gray-200 text-base leading-relaxed">
+                "Three generations of quality — you can feel it in every brushstroke. Our interior has never looked better. They finished on time and within budget, exactly as promised."
+              </p>
+              <div className="mt-auto pt-4 border-t border-white/10">
+                <p className="text-white font-bold">James R.</p>
+                <p className="text-gray-400 text-sm">Lafayette, IN</p>
+              </div>
+            </div>
+            {/* Review 3 */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4 backdrop-blur-sm">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                ))}
+              </div>
+              <p className="text-gray-200 text-base leading-relaxed">
+                "Incredible attention to detail. They protected every piece of furniture and returned everything exactly where it was. The color consultation was a huge help — love the final result."
+              </p>
+              <div className="mt-auto pt-4 border-t border-white/10">
+                <p className="text-white font-bold">Linda K.</p>
+                <p className="text-gray-400 text-sm">Tippecanoe County, IN</p>
               </div>
             </div>
           </div>
