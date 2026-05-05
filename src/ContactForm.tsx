@@ -10,18 +10,93 @@ const supabase = createClient(
 
 const TIME_OPTIONS = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
-const STEPS = [
-  { key: 'name', label: 'What is your name?', type: 'text', placeholder: 'Your full name' },
-  { key: 'email', label: 'What is your email?', type: 'email', placeholder: 'your@email.com' },
-  { key: 'phone', label: 'What is your phone number?', type: 'tel', placeholder: '(765) 430-2200' },
-  { key: 'service', label: 'Select a service', type: 'select', options: ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'] },
-  { key: 'best_day_to_call', label: 'Best day to call', type: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] },
-  { key: 'best_time_to_reach', label: 'Best time to reach you', type: 'select', options: TIME_OPTIONS },
-  { key: 'message', label: 'Simple project description', type: 'textarea', placeholder: 'Tell us about your project...' },
-] as const;
+type FieldDef = {
+  key: string;
+  label: string;
+  type: 'text' | 'email' | 'tel' | 'select' | 'textarea';
+  placeholder?: string;
+  options?: string[];
+  required?: boolean;
+};
+
+const STEPS: FieldDef[][] = [
+  [
+    { key: 'name', label: 'What is your name?', type: 'text', placeholder: 'Your full name', required: true },
+    { key: 'email', label: 'What is your email?', type: 'email', placeholder: 'your@email.com', required: true },
+  ],
+  [
+    { key: 'phone', label: 'What is your phone number?', type: 'tel', placeholder: '(765) 430-2200' },
+    { key: 'service', label: 'Select a service', type: 'select', options: ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'], required: true },
+  ],
+  [
+    { key: 'best_day_to_call', label: 'Best day to call', type: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], required: true },
+    { key: 'best_time_to_reach', label: 'Best time to reach you', type: 'select', options: TIME_OPTIONS, required: true },
+  ],
+  [
+    { key: 'message', label: 'Simple project description', type: 'textarea', placeholder: 'Tell us about your project...', required: true },
+  ],
+];
 
 interface ContactFormProps {
   onClose: () => void;
+}
+
+function FieldInput({
+  field,
+  value,
+  onChange,
+  inputRef,
+  onKeyDown,
+}: {
+  field: FieldDef;
+  value: string;
+  onChange: (val: string) => void;
+  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
+  onKeyDown?: (e: React.KeyboardEvent) => void;
+}) {
+  const base = 'w-full px-4 py-3 border-2 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 border-gray-200';
+
+  if (field.type === 'select') {
+    return (
+      <select
+        ref={inputRef as React.RefObject<HTMLSelectElement>}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onKeyDown={onKeyDown}
+        className={base}
+      >
+        <option value="">Select an option</option>
+        {field.options!.map((opt) => (
+          <option key={opt} value={opt}>{opt}</option>
+        ))}
+      </select>
+    );
+  }
+
+  if (field.type === 'textarea') {
+    return (
+      <textarea
+        ref={inputRef as React.RefObject<HTMLTextAreaElement>}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={field.placeholder}
+        rows={3}
+        className={`${base} resize-none`}
+      />
+    );
+  }
+
+  return (
+    <input
+      ref={inputRef as React.RefObject<HTMLInputElement>}
+      type={field.type}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      onKeyDown={onKeyDown}
+      placeholder={field.placeholder}
+      className={base}
+    />
+  );
 }
 
 export default function ContactForm({ onClose }: ContactFormProps) {
@@ -30,28 +105,30 @@ export default function ContactForm({ onClose }: ContactFormProps) {
   const [values, setValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(null);
+  const firstInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(null);
 
-  const current = STEPS[step];
-  const currentValue = values[current.key] || '';
-  const canAdvance = currentValue.trim().length > 0;
+  const currentFields = STEPS[step];
   const isLastStep = step === STEPS.length - 1;
 
+  const canAdvance = currentFields.every(
+    (f) => !f.required || (values[f.key] || '').trim().length > 0
+  );
+
   useEffect(() => {
-    inputRef.current?.focus();
+    firstInputRef.current?.focus();
   }, [step]);
 
   const advance = () => {
-    if (!canAdvance) return;
+    if (!canAdvance || loading) return;
     if (isLastStep) {
       handleSubmit();
     } else {
-      setStep(s => s + 1);
+      setStep((s) => s + 1);
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && current.type !== 'textarea') {
+  const handleKeyDown = (e: React.KeyboardEvent, field: FieldDef) => {
+    if (e.key === 'Enter' && field.type !== 'textarea') {
       e.preventDefault();
       advance();
     }
@@ -77,7 +154,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name, email, phone, message, service, best_day_to_call, best_time_to_reach }),
-      }).catch(err => console.error('Error calling resend-email function:', err));
+      }).catch((err) => console.error('Error calling resend-email function:', err));
 
       setLoading(false);
       onClose();
@@ -113,63 +190,45 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         </div>
 
         <div className="p-8 pt-10">
-          {/* Step indicator */}
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
-            Step {step + 1} of {STEPS.length}
-          </p>
-
-          {/* Question */}
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">{current.label}</h3>
-
           {error && (
             <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm">
               {error}
             </div>
           )}
 
-          {/* Input */}
-          <div className="flex items-center gap-3">
-            <div className="flex-1">
-              {current.type === 'select' ? (
-                <select
-                  ref={inputRef as React.RefObject<HTMLSelectElement>}
-                  value={currentValue}
-                  onChange={(e) => setValues({ ...values, [current.key]: e.target.value })}
-                  onKeyDown={handleKeyDown}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-400 focus:border-sky-400 outline-none text-lg transition"
-                >
-                  <option value="">Select an option</option>
-                  {current.options.map((opt) => (
-                    <option key={opt} value={opt}>{opt}</option>
-                  ))}
-                </select>
-              ) : current.type === 'textarea' ? (
-                <textarea
-                  ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-                  value={currentValue}
-                  onChange={(e) => setValues({ ...values, [current.key]: e.target.value })}
-                  placeholder={current.placeholder}
-                  rows={3}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-400 focus:border-sky-400 outline-none text-lg transition resize-none"
+          {/* Fields */}
+          <div className="space-y-5">
+            {currentFields.map((field, i) => (
+              <div key={field.key}>
+                <label className="block text-lg font-bold text-gray-900 mb-2">{field.label}</label>
+                <FieldInput
+                  field={field}
+                  value={values[field.key] || ''}
+                  onChange={(val) => setValues((v) => ({ ...v, [field.key]: val }))}
+                  inputRef={i === 0 ? firstInputRef : undefined}
+                  onKeyDown={(e) => handleKeyDown(e, field)}
                 />
-              ) : (
-                <input
-                  ref={inputRef as React.RefObject<HTMLInputElement>}
-                  type={current.type}
-                  value={currentValue}
-                  onChange={(e) => setValues({ ...values, [current.key]: e.target.value })}
-                  onKeyDown={handleKeyDown}
-                  placeholder={current.placeholder}
-                  className="w-full px-4 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-sky-400 focus:border-sky-400 outline-none text-lg transition"
-                />
-              )}
-            </div>
+              </div>
+            ))}
+          </div>
 
-            {/* Arrow button */}
+          {/* Arrow button */}
+          <div className="flex items-center justify-between mt-6">
+            {step > 0 ? (
+              <button
+                onClick={() => setStep((s) => s - 1)}
+                className="text-sm text-gray-500 hover:text-gray-700 transition"
+              >
+                Back
+              </button>
+            ) : (
+              <span />
+            )}
+
             <button
               onClick={advance}
               disabled={!canAdvance || loading}
-              className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
+              className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${
                 canAdvance
                   ? 'bg-sky-400 text-white hover:bg-sky-500 shadow-lg shadow-sky-400/30'
                   : 'bg-gray-200 text-gray-400'
@@ -183,20 +242,9 @@ export default function ContactForm({ onClose }: ContactFormProps) {
             </button>
           </div>
 
-          {/* Helper text */}
-          <p className="text-xs text-gray-400 mt-3">
-            {isLastStep ? 'Press the arrow to submit' : 'Press Enter or click the arrow to continue'}
+          <p className="text-xs text-gray-400 mt-3 text-right">
+            {isLastStep ? 'Click the arrow to submit' : 'Fill both fields then click the arrow to continue'}
           </p>
-
-          {/* Back button */}
-          {step > 0 && (
-            <button
-              onClick={() => setStep(s => s - 1)}
-              className="mt-4 text-sm text-gray-500 hover:text-gray-700 transition"
-            >
-              Back
-            </button>
-          )}
         </div>
       </div>
     </div>
