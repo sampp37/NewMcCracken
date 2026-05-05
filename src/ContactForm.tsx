@@ -140,12 +140,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         .from('contact_requests')
         .insert([{ name, email, phone, service, message, best_day_to_call, best_time_to_reach }]);
 
-      if (dbError) {
-        const msg = dbError.message?.toLowerCase().includes('fetch')
-          ? 'Could not reach the server. Please check your connection and try again.'
-          : dbError.message;
-        throw new Error(msg);
-      }
+      if (dbError) throw new Error(`DB error: ${dbError.message} (code: ${dbError.code})`);
 
       fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/resend-email`, {
         method: 'POST',
@@ -162,10 +157,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     } catch (err) {
       console.error('Error submitting form:', err);
       const raw = err instanceof Error ? err.message : String(err);
-      const msg = raw.toLowerCase().includes('fetch')
-        ? 'Could not reach the server. Please check your connection and try again.'
-        : raw || 'There was an error submitting your request. Please try again.';
-      setError(msg);
+      setError(raw || 'There was an error submitting your request. Please try again.');
       setLoading(false);
     }
   };
