@@ -330,9 +330,6 @@ function App() {
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.75' }}
           >
             <p>
-              Let us bring your old house back to life with fresh, modern tools and techniques. So much so your only "problem" will be handling all the compliments from neighbors wondering how great it looks now.
-            </p>
-            <p>
               Proudly family owned and serving the Lafayette area for 25+ years, we're committed to delivering exceptional results one house at the time.
             </p>
             <p>
@@ -393,7 +390,7 @@ function App() {
                 Areas We Serve
               </h2>
               <p className="text-gray-300 mb-8 max-w-2xl text-xl">
-                McCracken is proud to offer top-quality painting services tailored to your neighborhood in and around Austin. Our painters serve the following areas with dedication and care:
+                McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette. Our painters serve the following areas with dedication and care:
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
                 {[
@@ -679,31 +676,8 @@ function App() {
         </div>
       </section>
 
-      {/* Project Modal */}
-      {modalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">What's Your Project About?</h2>
-              <button
-                onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600 transition p-1 rounded-lg hover:bg-gray-100"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="p-6">
-              <ContactForm fieldPrefix="modal" onSuccess={closeModal} />
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Multi-step Contact Form Modal */}
+      {modalOpen && <ContactForm onClose={closeModal} />}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
