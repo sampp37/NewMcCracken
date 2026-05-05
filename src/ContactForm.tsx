@@ -1,12 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, X } from 'lucide-react';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
+import { supabase } from './supabaseClient';
 
 const TIME_OPTIONS = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -145,7 +140,12 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         .from('contact_requests')
         .insert([{ name, email, phone, service, message, best_day_to_call, best_time_to_reach }]);
 
-      if (dbError) throw new Error(`Database error: ${dbError.message}`);
+      if (dbError) {
+        const msg = dbError.message?.toLowerCase().includes('fetch')
+          ? 'Could not reach the server. Please check your connection and try again.'
+          : dbError.message;
+        throw new Error(msg);
+      }
 
       fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/resend-email`, {
         method: 'POST',
@@ -160,8 +160,11 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       onClose();
       navigate('/thank-you');
     } catch (err) {
-      const msg = err instanceof Error ? err.message : 'There was an error submitting your request. Please try again.';
       console.error('Error submitting form:', err);
+      const raw = err instanceof Error ? err.message : String(err);
+      const msg = raw.toLowerCase().includes('fetch')
+        ? 'Could not reach the server. Please check your connection and try again.'
+        : raw || 'There was an error submitting your request. Please try again.';
       setError(msg);
       setLoading(false);
     }
