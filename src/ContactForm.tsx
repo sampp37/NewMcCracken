@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ChevronRight, X, Check } from 'lucide-react';
 
 const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://tltiysrigsdwqfqygqms.supabase.co';
@@ -67,7 +66,7 @@ type StepId = 'nameEmail' | 'phoneService' | 'schedule' | 'message';
 const STEP_ORDER: StepId[] = ['nameEmail', 'phoneService', 'schedule', 'message'];
 
 export default function ContactForm({ onClose }: ContactFormProps) {
-  const navigate = useNavigate();
+
   const [stepIndex, setStepIndex] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -140,7 +139,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
 
       setLoading(false);
       onClose();
-      navigate('/thank-you');
+      window.location.href = 'https://offers.mccrackenpainting.com/formsubmitted';
     } catch (err) {
       console.error('Submit error:', err);
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
