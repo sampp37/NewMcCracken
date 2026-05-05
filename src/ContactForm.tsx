@@ -127,26 +127,41 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://tltiysrigsdwqfqygqms.supabase.co';
     const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsdGl5c3JpZ3Nkd3FmcXlncW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NjQ0NzYsImV4cCI6MjA4OTU0MDQ3Nn0.DxDU8VDH5fnRsb8chTJsfZAw_q6BU1Be4tC5JZ02s7E';
 
-    try {
-      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        },
-        body: JSON.stringify(payload),
-      });
+    const endpoints = [
+      // same-origin proxy (works in bolt.new dev preview, bypasses iframe sandbox)
+      { url: '/api/submit', headers: { 'Content-Type': 'application/json' } },
+      // direct Supabase (works in production deployments)
+      {
+        url: `${SUPABASE_URL}/functions/v1/submit-contact`,
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
+      },
+    ];
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || `Server returned ${res.status}`);
+    let lastErr: unknown = null;
+    for (const endpoint of endpoints) {
+      try {
+        const res = await fetch(endpoint.url, {
+          method: 'POST',
+          headers: endpoint.headers,
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || `Server returned ${res.status}`);
+        }
+        setLoading(false);
+        onClose();
+        window.location.href = '/formsubmitted';
+        return;
+      } catch (err) {
+        console.warn('Endpoint failed:', endpoint.url, err);
+        lastErr = err;
       }
+    }
 
-      setLoading(false);
-      onClose();
-      window.location.href = '/formsubmitted';
-    } catch (err) {
-      console.error('Submit error:', err);
+    // all endpoints failed
+    {
+      const err = lastErr;
       const errName = err instanceof Error ? err.name : 'Error';
       const errMsg = err instanceof Error ? err.message : String(err);
       const isFetchFail = errName === 'TypeError' && /fetch/i.test(errMsg);
