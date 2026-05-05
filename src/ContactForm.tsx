@@ -1,129 +1,108 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, X } from 'lucide-react';
-import { supabase } from './supabaseClient';
+import { ChevronRight, X, Check } from 'lucide-react';
 
-const TIME_OPTIONS = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
-type FieldDef = {
-  key: string;
-  label: string;
-  type: 'text' | 'email' | 'tel' | 'select' | 'textarea';
-  placeholder?: string;
-  options?: string[];
-  required?: boolean;
-};
-
-const STEPS: FieldDef[][] = [
-  [
-    { key: 'name', label: 'What is your name?', type: 'text', placeholder: 'Your full name', required: true },
-    { key: 'email', label: 'What is your email?', type: 'email', placeholder: 'your@email.com', required: true },
-  ],
-  [
-    { key: 'phone', label: 'What is your phone number?', type: 'tel', placeholder: '(765) 430-2200' },
-    { key: 'service', label: 'Select a service', type: 'select', options: ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'], required: true },
-  ],
-  [
-    { key: 'best_day_to_call', label: 'Best day to call', type: 'select', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], required: true },
-    { key: 'best_time_to_reach', label: 'Best time to reach you', type: 'select', options: TIME_OPTIONS, required: true },
-  ],
-  [
-    { key: 'message', label: 'Simple project description', type: 'textarea', placeholder: 'Tell us about your project...', required: true },
-  ],
-];
+const SERVICES = ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'];
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const TIMES = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 interface ContactFormProps {
   onClose: () => void;
 }
 
-function FieldInput({
-  field,
-  value,
+function CheckboxGroup({
+  options,
+  selected,
   onChange,
-  inputRef,
-  onKeyDown,
+  columns = 2,
 }: {
-  field: FieldDef;
-  value: string;
-  onChange: (val: string) => void;
-  inputRef?: React.RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
-  onKeyDown?: (e: React.KeyboardEvent) => void;
+  options: string[];
+  selected: string[];
+  onChange: (selected: string[]) => void;
+  columns?: number;
 }) {
-  const base = 'w-full px-4 py-3 border-2 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 border-gray-200';
-
-  if (field.type === 'select') {
-    return (
-      <select
-        ref={inputRef as React.RefObject<HTMLSelectElement>}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={onKeyDown}
-        className={base}
-      >
-        <option value="">Select an option</option>
-        {field.options!.map((opt) => (
-          <option key={opt} value={opt}>{opt}</option>
-        ))}
-      </select>
-    );
-  }
-
-  if (field.type === 'textarea') {
-    return (
-      <textarea
-        ref={inputRef as React.RefObject<HTMLTextAreaElement>}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={field.placeholder}
-        rows={3}
-        className={`${base} resize-none`}
-      />
-    );
-  }
+  const toggle = (opt: string) => {
+    if (selected.includes(opt)) {
+      onChange(selected.filter((s) => s !== opt));
+    } else {
+      onChange([...selected, opt]);
+    }
+  };
 
   return (
-    <input
-      ref={inputRef as React.RefObject<HTMLInputElement>}
-      type={field.type}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      onKeyDown={onKeyDown}
-      placeholder={field.placeholder}
-      className={base}
-    />
+    <div className={`grid gap-2 grid-cols-${columns}`}>
+      {options.map((opt) => {
+        const active = selected.includes(opt);
+        return (
+          <button
+            key={opt}
+            type="button"
+            onClick={() => toggle(opt)}
+            className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border-2 text-sm font-medium transition-all duration-150 text-left ${
+              active
+                ? 'border-sky-400 bg-sky-50 text-sky-700'
+                : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            <span
+              className={`flex-shrink-0 w-4 h-4 rounded flex items-center justify-center border transition-colors ${
+                active ? 'bg-sky-400 border-sky-400' : 'border-gray-300'
+              }`}
+            >
+              {active && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
+            </span>
+            {opt}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
+type StepId = 'nameEmail' | 'phoneService' | 'schedule' | 'message';
+
+const STEP_ORDER: StepId[] = ['nameEmail', 'phoneService', 'schedule', 'message'];
+
 export default function ContactForm({ onClose }: ContactFormProps) {
   const navigate = useNavigate();
-  const [step, setStep] = useState(0);
-  const [values, setValues] = useState<Record<string, string>>({});
+  const [stepIndex, setStepIndex] = useState(0);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [services, setServices] = useState<string[]>([]);
+  const [days, setDays] = useState<string[]>([]);
+  const [times, setTimes] = useState<string[]>([]);
+  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const firstInputRef = useRef<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
-  const currentFields = STEPS[step];
-  const isLastStep = step === STEPS.length - 1;
+  const step = STEP_ORDER[stepIndex];
+  const isLastStep = stepIndex === STEP_ORDER.length - 1;
 
-  const canAdvance = currentFields.every(
-    (f) => !f.required || (values[f.key] || '').trim().length > 0
-  );
+  const canAdvance = (() => {
+    if (step === 'nameEmail') return name.trim().length > 0 && email.trim().length > 0;
+    if (step === 'phoneService') return services.length > 0;
+    if (step === 'schedule') return days.length > 0 && times.length > 0;
+    if (step === 'message') return message.trim().length > 0;
+    return false;
+  })();
 
   useEffect(() => {
-    firstInputRef.current?.focus();
+    if (step === 'nameEmail') nameRef.current?.focus();
   }, [step]);
 
   const advance = () => {
     if (!canAdvance || loading) return;
-    if (isLastStep) {
-      handleSubmit();
-    } else {
-      setStep((s) => s + 1);
-    }
+    if (isLastStep) handleSubmit();
+    else setStepIndex((i) => i + 1);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent, field: FieldDef) => {
-    if (e.key === 'Enter' && field.type !== 'textarea') {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
       e.preventDefault();
       advance();
     }
@@ -133,34 +112,56 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     setLoading(true);
     setError(null);
 
-    const { name, email, phone, service, message, best_day_to_call, best_time_to_reach } = values;
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim() || null,
+      service: services.join(', '),
+      message: message.trim(),
+      best_day_to_call: days.join(', '),
+      best_time_to_reach: times.join(', '),
+    };
 
     try {
-      const { error: dbError } = await supabase
-        .from('contact_requests')
-        .insert([{ name, email, phone, service, message, best_day_to_call, best_time_to_reach }]);
-
-      if (dbError) throw new Error(`DB error: ${dbError.message} (code: ${dbError.code})`);
-
-      fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/resend-email`, {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        let detail = text;
+        try { detail = JSON.parse(text).message || text; } catch { /* ignore */ }
+        throw new Error(`Error ${res.status}: ${detail}`);
+      }
+
+      // fire-and-forget email
+      fetch(`${SUPABASE_URL}/functions/v1/resend-email`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, phone, message, service, best_day_to_call, best_time_to_reach }),
-      }).catch((err) => console.error('Error calling resend-email function:', err));
+        body: JSON.stringify(payload),
+      }).catch((err) => console.error('resend-email:', err));
 
       setLoading(false);
       onClose();
       navigate('/thank-you');
     } catch (err) {
-      console.error('Error submitting form:', err);
-      const raw = err instanceof Error ? err.message : String(err);
-      setError(raw || 'There was an error submitting your request. Please try again.');
+      console.error('Submit error:', err);
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
       setLoading(false);
     }
   };
+
+  const inputClass = 'w-full px-4 py-3 border-2 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 border-gray-200';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={onClose}>
@@ -168,7 +169,6 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         className="bg-white rounded-2xl shadow-2xl w-full max-w-lg relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition p-1 rounded-lg hover:bg-gray-100 z-10"
@@ -180,45 +180,71 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         <div className="h-1 bg-gray-100">
           <div
             className="h-full bg-sky-400 transition-all duration-300"
-            style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
+            style={{ width: `${((stepIndex + 1) / STEP_ORDER.length) * 100}%` }}
           />
         </div>
 
         <div className="p-8 pt-10">
           {error && (
-            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm break-words">
               {error}
             </div>
           )}
 
-          {/* Fields */}
           <div className="space-y-5">
-            {currentFields.map((field, i) => (
-              <div key={field.key}>
-                <label className="block text-lg font-bold text-gray-900 mb-2">{field.label}</label>
-                <FieldInput
-                  field={field}
-                  value={values[field.key] || ''}
-                  onChange={(val) => setValues((v) => ({ ...v, [field.key]: val }))}
-                  inputRef={i === 0 ? firstInputRef : undefined}
-                  onKeyDown={(e) => handleKeyDown(e, field)}
-                />
+            {step === 'nameEmail' && (
+              <>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">What is your name?</label>
+                  <input ref={nameRef} type="text" value={name} onChange={(e) => setName(e.target.value)} onKeyDown={handleKeyDown} placeholder="Your full name" className={inputClass} />
+                </div>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">What is your email?</label>
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={handleKeyDown} placeholder="your@email.com" className={inputClass} />
+                </div>
+              </>
+            )}
+
+            {step === 'phoneService' && (
+              <>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">Phone number <span className="text-gray-400 font-normal text-sm">(optional)</span></label>
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} onKeyDown={handleKeyDown} placeholder="(765) 430-2200" className={inputClass} />
+                </div>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">Which services are you interested in?</label>
+                  <CheckboxGroup options={SERVICES} selected={services} onChange={setServices} columns={2} />
+                </div>
+              </>
+            )}
+
+            {step === 'schedule' && (
+              <>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">Best day(s) to call</label>
+                  <CheckboxGroup options={DAYS} selected={days} onChange={setDays} columns={3} />
+                </div>
+                <div>
+                  <label className="block text-lg font-bold text-gray-900 mb-2">Best time(s) to reach you</label>
+                  <CheckboxGroup options={TIMES} selected={times} onChange={setTimes} columns={4} />
+                </div>
+              </>
+            )}
+
+            {step === 'message' && (
+              <div>
+                <label className="block text-lg font-bold text-gray-900 mb-2">Tell us about your project</label>
+                <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Brief description of the work you need done..." rows={4} className={`${inputClass} resize-none`} />
               </div>
-            ))}
+            )}
           </div>
 
-          {/* Arrow button */}
           <div className="flex items-center justify-between mt-6">
-            {step > 0 ? (
-              <button
-                onClick={() => setStep((s) => s - 1)}
-                className="text-sm text-gray-500 hover:text-gray-700 transition"
-              >
+            {stepIndex > 0 ? (
+              <button onClick={() => setStepIndex((i) => i - 1)} className="text-sm text-gray-500 hover:text-gray-700 transition">
                 Back
               </button>
-            ) : (
-              <span />
-            )}
+            ) : <span />}
 
             <button
               onClick={advance}
@@ -238,7 +264,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           </div>
 
           <p className="text-xs text-gray-400 mt-3 text-right">
-            {isLastStep ? 'Click the arrow to submit' : 'Fill both fields then click the arrow to continue'}
+            Step {stepIndex + 1} of {STEP_ORDER.length}
           </p>
         </div>
       </div>
