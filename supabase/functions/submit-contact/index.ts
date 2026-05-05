@@ -50,7 +50,7 @@ Deno.serve(async (req: Request) => {
     }
 
     // Send notification email via Resend
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "re_s7Sh6jGi_EsiiskJzwVqi5yfWwj2gBrYw";
     if (RESEND_API_KEY) {
       const emailHtml = `
 <h2 style="color:#1a3a9e;">New Contact Form Submission — McCracken Painting</h2>
