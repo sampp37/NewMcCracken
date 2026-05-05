@@ -14,51 +14,54 @@ Deno.serve(async (req: Request) => {
 
   try {
     const body = await req.json();
-    const { name, email, phone, service, message, best_day_to_call, best_time_to_reach } = body;
+    const { name, email, phone, service, message, best_day_to_call, best_time_to_reach, _emailOnly } = body;
 
     if (!name || !email || !service || !message) {
       return new Response(
-        JSON.stringify({ error: "Missing required fields: name, email, service, message" }),
+        JSON.stringify({ error: "Missing required fields" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
-    );
-
-    const { error: dbError } = await supabase.from("contact_requests").insert({
-      name: String(name).trim(),
-      email: String(email).trim(),
-      phone: phone ? String(phone).trim() : null,
-      service: String(service).trim(),
-      message: String(message).trim(),
-      best_day_to_call: best_day_to_call ? String(best_day_to_call).trim() : null,
-      best_time_to_reach: best_time_to_reach ? String(best_time_to_reach).trim() : null,
-    });
-
-    if (dbError) {
-      console.error("DB insert error:", dbError);
-      return new Response(
-        JSON.stringify({ error: dbError.message }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    // Only insert into DB when not email-only mode
+    if (!_emailOnly) {
+      const supabase = createClient(
+        Deno.env.get("SUPABASE_URL")!,
+        Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
       );
+
+      const { error: dbError } = await supabase.from("contact_requests").insert({
+        name: String(name).trim(),
+        email: String(email).trim(),
+        phone: phone ? String(phone).trim() : null,
+        service: String(service).trim(),
+        message: String(message).trim(),
+        best_day_to_call: best_day_to_call ? String(best_day_to_call).trim() : null,
+        best_time_to_reach: best_time_to_reach ? String(best_time_to_reach).trim() : null,
+      });
+
+      if (dbError) {
+        console.error("DB insert error:", dbError);
+        return new Response(
+          JSON.stringify({ error: dbError.message }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
     }
 
     // Send notification email via Resend
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (RESEND_API_KEY) {
-      const emailBody = `
-<h2>New Contact Form Submission</h2>
-<table style="border-collapse:collapse;width:100%;font-family:sans-serif;">
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Name</td><td style="padding:8px;">${String(name).trim()}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Email</td><td style="padding:8px;">${String(email).trim()}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Phone</td><td style="padding:8px;">${phone ? String(phone).trim() : '—'}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Service</td><td style="padding:8px;">${String(service).trim()}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Best Day to Call</td><td style="padding:8px;">${best_day_to_call ? String(best_day_to_call).trim() : '—'}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Best Time</td><td style="padding:8px;">${best_time_to_reach ? String(best_time_to_reach).trim() : '—'}</td></tr>
-  <tr><td style="padding:8px;font-weight:bold;background:#f5f5f5;">Message</td><td style="padding:8px;">${String(message).trim()}</td></tr>
+      const emailHtml = `
+<h2 style="color:#1a3a9e;">New Contact Form Submission — McCracken Painting</h2>
+<table style="border-collapse:collapse;width:100%;font-family:Arial,sans-serif;font-size:15px;">
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;width:160px;">Name</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${String(name).trim()}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Email</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${String(email).trim()}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Phone</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${phone ? String(phone).trim() : '—'}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Service</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${String(service).trim()}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Best Day</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${best_day_to_call ? String(best_day_to_call).trim() : '—'}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Best Time</td><td style="padding:10px 12px;border-bottom:1px solid #e5e7eb;">${best_time_to_reach ? String(best_time_to_reach).trim() : '—'}</td></tr>
+  <tr><td style="padding:10px 12px;font-weight:bold;background:#f0f4ff;">Message</td><td style="padding:10px 12px;">${String(message).trim()}</td></tr>
 </table>
       `.trim();
 
@@ -72,7 +75,7 @@ Deno.serve(async (req: Request) => {
           from: "McCracken Painting <onboarding@resend.dev>",
           to: ["sampp37@gmail.com"],
           subject: `New Quote Request from ${String(name).trim()}`,
-          html: emailBody,
+          html: emailHtml,
         }),
       }).catch((err) => console.error("Resend error:", err));
     }
