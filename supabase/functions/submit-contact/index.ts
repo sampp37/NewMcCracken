@@ -65,19 +65,42 @@ Deno.serve(async (req: Request) => {
 </table>
       `.trim();
 
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "McCracken Painting <onboarding@resend.dev>",
-          to: ["sampp37@gmail.com"],
-          subject: `New Quote Request from ${String(name).trim()}`,
-          html: emailHtml,
-        }),
-      }).catch((err) => console.error("Resend error:", err));
+      try {
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${RESEND_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "McCracken Painting <onboarding@resend.dev>",
+            to: ["sampp37@gmail.com"],
+            subject: `New Quote Request from ${String(name).trim()}`,
+            html: emailHtml,
+          }),
+        });
+        const resendBody = await resendRes.text();
+        console.log("Resend status:", resendRes.status, "body:", resendBody);
+        if (_emailOnly) {
+          return new Response(
+            JSON.stringify({ success: resendRes.ok, resend_status: resendRes.status, resend_body: resendBody }),
+            { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      } catch (err) {
+        console.error("Resend error:", err);
+        if (_emailOnly) {
+          return new Response(
+            JSON.stringify({ success: false, error: String(err) }),
+            { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      }
+    } else if (_emailOnly) {
+      return new Response(
+        JSON.stringify({ success: false, error: "RESEND_API_KEY not configured" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
     return new Response(
