@@ -514,7 +514,7 @@ function App() {
             </div>
             <div className="w-full lg:w-1/2 space-y-6">
               <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide">
-                Color Studio
+                How To Choose Colors?
               </h2>
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
                 When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
