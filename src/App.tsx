@@ -503,6 +503,9 @@ function App() {
         }}
       >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-12 w-full">
+          <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide text-center mb-10">
+            How To Choose Colors?
+          </h2>
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
               <img
@@ -513,14 +516,12 @@ function App() {
               />
             </div>
             <div className="w-full lg:w-1/2 space-y-6">
-              <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide">
-                How To Choose Colors?
-              </h2>
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
                 When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
               </p>
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
-                Our professionals are always on hand to answer any questions or offer expert color suggestions.              </p>
+                Our professionals are always on hand to answer any questions and offer free expert color suggestions.
+              </p>
               <div className="flex flex-col items-start gap-2">
                 <button
                   onClick={openModal}
