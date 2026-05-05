@@ -520,8 +520,7 @@ function App() {
                 When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
               </p>
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
-                Our professionals are always on hand to answer any questions or offer expert color suggestions. More than that, our premium paints come in a wide range, from classically timeless to up to the minute trends.
-              </p>
+                Our professionals are always on hand to answer any questions or offer expert color suggestions.              </p>
               <div className="flex flex-col items-start gap-2">
                 <button
                   onClick={openModal}
