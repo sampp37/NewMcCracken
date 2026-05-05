@@ -220,13 +220,39 @@ export default function ContactForm({ onClose }: ContactFormProps) {
 
             {step === 'schedule' && (
               <>
-                <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-2">Best day(s) to call</label>
-                  <CheckboxGroup options={DAYS} selected={days} onChange={setDays} columns={3} />
+                <div className="mb-1">
+                  <p className="text-base font-semibold text-sky-600">We work around your schedule.</p>
+                  <p className="text-sm text-gray-500">Let us know when it's easiest to reach you — we'll adapt to fit your availability.</p>
                 </div>
                 <div>
-                  <label className="block text-lg font-bold text-gray-900 mb-2">Best time(s) to reach you</label>
-                  <CheckboxGroup options={TIMES} selected={times} onChange={setTimes} columns={4} />
+                  <label className="block text-base font-bold text-gray-900 mb-2">Best day(s) to call</label>
+                  <select
+                    multiple
+                    value={days}
+                    onChange={(e) => setDays(Array.from(e.target.selectedOptions, (o) => o.value))}
+                    className="w-full border-2 border-gray-200 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 px-3 py-1"
+                    size={5}
+                  >
+                    {DAYS.map((d) => (
+                      <option key={d} value={d} className="py-1.5 px-2 rounded cursor-pointer">{d}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-gray-400 mt-1">Hold Ctrl / Cmd to select multiple</p>
+                </div>
+                <div>
+                  <label className="block text-base font-bold text-gray-900 mb-2">Best time(s) to reach you</label>
+                  <select
+                    multiple
+                    value={times}
+                    onChange={(e) => setTimes(Array.from(e.target.selectedOptions, (o) => o.value))}
+                    className="w-full border-2 border-gray-200 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 px-3 py-1"
+                    size={5}
+                  >
+                    {TIMES.map((t) => (
+                      <option key={t} value={t} className="py-1.5 px-2 rounded cursor-pointer">{t}</option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-gray-400 mt-1">Hold Ctrl / Cmd to select multiple</p>
                 </div>
               </>
             )}
