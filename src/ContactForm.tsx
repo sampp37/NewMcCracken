@@ -124,44 +124,51 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       return;
     }
 
-    const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://tltiysrigsdwqfqygqms.supabase.co';
-    const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsdGl5c3JpZ3Nkd3FmcXlncW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NjQ0NzYsImV4cCI6MjA4OTU0MDQ3Nn0.DxDU8VDH5fnRsb8chTJsfZAw_q6BU1Be4tC5JZ02s7E';
+    const SUPABASE_URL = 'https://zroehayusudopemhfdgi.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpyb2VoYXl1c3Vkb3BlbWhmZGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1MjEzODgsImV4cCI6MjA3MjA5NzM4OH0.-AnaNIPhE5w1OSbcR-pZIE6LS1VvDrDhahdMcrTJUQQ';
 
-    const endpoints = [
-      // Vercel proxy — no Authorization header needed, rewrites to Supabase server-side
-      { url: '/api/submit', headers: { 'Content-Type': 'application/json' } },
-      // Direct Supabase fallback
-      {
-        url: `${SUPABASE_URL}/functions/v1/submit-contact`,
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
-      },
-    ];
-
-    let lastErr: unknown = null;
-    for (const endpoint of endpoints) {
-      try {
-        const res = await fetch(endpoint.url, {
-          method: 'POST',
-          headers: endpoint.headers,
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          throw new Error(data.error || `Server returned ${res.status}`);
-        }
-        setLoading(false);
-        onClose();
-        window.location.href = '/formsubmitted';
-        return;
-      } catch (err) {
-        console.warn('Endpoint failed:', endpoint.url, err);
-        lastErr = err;
+    const insertToSupabase = async (data: object) => {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.message || body.error || `Server returned ${res.status}`);
       }
-    }
+    };
 
-    // all endpoints failed
-    {
-      const err = lastErr;
+    try {
+      try {
+        await insertToSupabase(payload);
+      } catch (colErr) {
+        const msg = colErr instanceof Error ? colErr.message : String(colErr);
+        if (msg.includes('best_day_to_call') || msg.includes('best_time_to_reach') || msg.includes('schema cache')) {
+          // columns don't exist yet — embed scheduling info in message
+          const fallbackPayload = {
+            name: payload.name,
+            email: payload.email,
+            phone: payload.phone,
+            service: payload.service,
+            message: `${payload.message}\n\nBest day(s): ${payload.best_day_to_call}\nBest time(s): ${payload.best_time_to_reach}`,
+          };
+          await insertToSupabase(fallbackPayload);
+        } else {
+          throw colErr;
+        }
+      }
+
+      setLoading(false);
+      onClose();
+      window.location.href = '/formsubmitted';
+      return;
+    } catch (err) {
       const errName = err instanceof Error ? err.name : 'Error';
       const errMsg = err instanceof Error ? err.message : String(err);
       const isFetchFail = errName === 'TypeError' && /fetch/i.test(errMsg);
