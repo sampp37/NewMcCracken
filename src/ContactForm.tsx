@@ -123,33 +123,20 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     };
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Prefer': 'return=minimal',
         },
         body: JSON.stringify(payload),
       });
 
-      if (!res.ok) {
-        const text = await res.text();
-        let detail = text;
-        try { detail = JSON.parse(text).message || text; } catch { /* ignore */ }
-        throw new Error(`Error ${res.status}: ${detail}`);
-      }
+      const data = await res.json().catch(() => ({}));
 
-      // fire-and-forget email
-      fetch(`${SUPABASE_URL}/functions/v1/resend-email`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      }).catch((err) => console.error('resend-email:', err));
+      if (!res.ok) {
+        throw new Error(data.error || `Error ${res.status}`);
+      }
 
       setLoading(false);
       onClose();
