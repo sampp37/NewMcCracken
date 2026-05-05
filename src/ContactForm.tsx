@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronRight, X, Check } from 'lucide-react';
-import { supabase } from './supabaseClient';
 
 const SERVICES = ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'];
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
@@ -119,26 +118,56 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       best_time_to_reach: times.join(', '),
     };
 
+    if (!navigator.onLine) {
+      setError('You appear to be offline. Please check your internet connection and try again.');
+      setLoading(false);
+      return;
+    }
+
+    const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string) || 'https://tltiysrigsdwqfqygqms.supabase.co';
+    const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsdGl5c3JpZ3Nkd3FmcXlncW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NjQ0NzYsImV4cCI6MjA4OTU0MDQ3Nn0.DxDU8VDH5fnRsb8chTJsfZAw_q6BU1Be4tC5JZ02s7E';
+
     try {
-      const { error } = await supabase.from('contact_requests').insert(payload);
-
-      if (error) throw new Error(error.message);
-
-      // fire-and-forget email notification
-      const SUPABASE_URL = 'https://tltiysrigsdwqfqygqms.supabase.co';
-      const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsdGl5c3JpZ3Nkd3FmcXlncW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NjQ0NzYsImV4cCI6MjA4OTU0MDQ3Nn0.DxDU8VDH5fnRsb8chTJsfZAw_q6BU1Be4tC5JZ02s7E';
-      fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SUPABASE_ANON_KEY}` },
-        body: JSON.stringify({ ...payload, _emailOnly: true }),
-      }).catch(() => {});
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Server returned ${res.status}`);
+      }
 
       setLoading(false);
       onClose();
       window.location.href = '/formsubmitted';
     } catch (err) {
       console.error('Submit error:', err);
-      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      const errName = err instanceof Error ? err.name : 'Error';
+      const errMsg = err instanceof Error ? err.message : String(err);
+      const isFetchFail = errName === 'TypeError' && /fetch/i.test(errMsg);
+
+      if (isFetchFail) {
+        const mailLines = [
+          `Name: ${payload.name}`,
+          `Email: ${payload.email}`,
+          `Phone: ${payload.phone ?? '-'}`,
+          `Service: ${payload.service}`,
+          `Best Day: ${payload.best_day_to_call}`,
+          `Best Time: ${payload.best_time_to_reach}`,
+          '',
+          'Message:',
+          payload.message,
+        ].join('\n');
+        const mailto = `mailto:sampp37@gmail.com?subject=${encodeURIComponent(`Quote Request from ${payload.name}`)}&body=${encodeURIComponent(mailLines)}`;
+        setError(`BLOCKED|||${mailto}`);
+      } else {
+        setError(`${errMsg}`);
+      }
       setLoading(false);
     }
   };
@@ -167,7 +196,26 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         </div>
 
         <div className="p-8 pt-10">
-          {error && (
+          {error && error.startsWith('BLOCKED|||') && (
+            <div className="mb-4 p-4 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-sm space-y-3">
+              <p className="font-semibold">We couldn't reach our server from your browser.</p>
+              <p>This is usually caused by an ad blocker, VPN, or browser extension blocking <code className="bg-amber-100 px-1 rounded">supabase.co</code>.</p>
+              <p className="font-semibold">Try one of these:</p>
+              <ul className="list-disc ml-5 space-y-1">
+                <li>Disable your ad blocker for this page and try again</li>
+                <li>Try a different browser or disable extensions</li>
+                <li>Or send your request directly by email:</li>
+              </ul>
+              <a
+                href={error.split('|||')[1]}
+                className="inline-block mt-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-lg transition"
+              >
+                Send by Email Instead
+              </a>
+              <p className="text-xs mt-2">Or call us directly at <a href="tel:+17652938680" className="font-bold underline">(765) 293-8680</a></p>
+            </div>
+          )}
+          {error && !error.startsWith('BLOCKED|||') && (
             <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-sm break-words">
               {error}
             </div>
