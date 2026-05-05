@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/submit", "destination": "https://tltiysrigsdwqfqygqms.supabase.co/functions/v1/submit-contact" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
