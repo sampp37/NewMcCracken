@@ -153,7 +153,7 @@ function App() {
           className="hero-bg-img absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/[0.45]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-32 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-10 lg:py-32 relative">
           <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight whitespace-nowrap">
               ON TIME &amp; ON BUDGET<br />
@@ -170,6 +170,13 @@ function App() {
             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
               ({phoneNumber.replace(/\D/g, '').slice(0, 3)}) {phoneNumber.replace(/\D/g, '').slice(3, 6)}-{phoneNumber.replace(/\D/g, '').slice(6)}
             </a>
+            {/* Reviews badges — gray bg removed via multiply blend */}
+            <img
+              src="/McCracken_Reviews....webp"
+              alt="5-star reviews on Facebook, Yelp and Google"
+              className="w-56 sm:w-64 lg:w-72 mix-blend-lighten opacity-90"
+              loading="eager"
+            />
           </div>
         </div>
         {/* Bottom fade shadow */}
@@ -363,9 +370,6 @@ function App() {
             <p>
               Our commitment goes beyond the brush, we promise to be your best guests, treating your place with the utmost care and leaving it even more pristine than when we arrived.
             </p>
-            <p>
-              If you envision a painting project, reach out for a free quote today.
-            </p>
           </div>
         </div>
       </section>
@@ -418,7 +422,7 @@ function App() {
                 Areas We Serve
               </h2>
               <p className="text-gray-300 mb-8 max-w-2xl text-xl">
-                McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette. Our painters serve the following areas with dedication and care:
+                McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
                 {[
@@ -477,7 +481,7 @@ function App() {
           <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-6">
             That Experienced Painter You Need? We're the One
           </h2>
-          <div className="text-white text-lg leading-loose whitespace-pre-line">
+          <div className="text-white text-lg leading-loose space-y-3">
             <p>We understand that painting isn't just a project; it's an integral part of your home! That's why we:</p>
             <p>Run background checks on all team members.</p>
             <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
