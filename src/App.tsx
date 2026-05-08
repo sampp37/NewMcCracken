@@ -201,7 +201,7 @@ function App() {
               className="text-white font-bold uppercase tracking-wide"
               style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '36px', lineHeight: '1.25' }}
             >
-              GET THE FEELING OF ENTERING A NEW HOME. EVERY DAY.
+              GET THE FEELING OF ENTERING A NEW HOME.
             </h2>
 
             {/* Body text */}
@@ -210,7 +210,7 @@ function App() {
               style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '22px', lineHeight: '1.75' }}
             >
               <p>
-                Our three generations of painting experts offers a variety of interior and exterior painting services tailored to the unique needs of homes in Lafayette. When searching for professional painters in Lafayette, McCracken is the local choice.
+                Three generations of painting have made us experts in what Lafayette homes truly need.
               </p>
               <p>
                 Stop searching for "painters near me" and start exploring our full list of services below to see how we can help enhance your property.
@@ -239,38 +239,38 @@ function App() {
             className="text-gray-900 font-bold text-center mb-10"
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '32px' }}
           >
-            WHY CHOOSE US
+            WHY YOUR NEIGHBORS CHOOSE US
           </h2>
 
           {/* Two-column layout */}
           <div className="flex flex-col lg:flex-row" style={{ gap: '40px' }}>
             {/* Left column - text */}
-            <div className="space-y-6" style={{ flex: '1 1 0' }}>
+            <div className="space-y-10" style={{ flex: '1 1 0' }}>
               {[
                 {
                   num: '1.',
                   title: 'Respect Time & Communication',
-                  body: 'We do everything from start to finish on time while communicating with you throughout the entire project. If the details or scope of work change, we always communicate how and when things will get done.',
+                  body: 'Your house. Your schedule. From your free quote to blue tape walkthrough, everything gets done on time while communicating with you throughout the entire project.',
                 },
                 {
                   num: '2.',
                   title: 'Stress Free & Mess-Free Service',
-                  body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should. We start with proper prep and end with thorough cleanup.",
+                  body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should.",
                 },
                 {
                   num: '3.',
                   title: 'Your Kids and Pets, Our Priority.',
-                  body: 'Maintaining a kids and pet friendly atmosphere and being respectful of the home environment are non negotiable core values.',
+                  body: 'Kids and pet friendly atmosphere. No tools or paint buckets just hanging around.',
                 },
                 {
                   num: '4.',
                   title: 'Value Based Pricing',
-                  body: 'We offer upfront and honest pricing without any hidden fees. Rest assured, you will get what you pay for. Above all else, we prioritize giving you the most kind and cautious high quality service.',
+                  body: 'Upfront, honest pricing without hidden fees. Rest assured, you get what you pay for.',
                 },
               ].map(({ num, title, body }) => (
                 <div key={num} className="text-left">
                   <h3
-                    className="font-bold text-gray-900 mb-1"
+                    className="font-bold text-gray-900 mb-2"
                     style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
                   >
                     {num} {title}
