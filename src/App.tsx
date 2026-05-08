@@ -48,10 +48,17 @@ function VoiceGenieWidget() {
   return null;
 }
 
+const getPhoneNumber = () => {
+  const hour = new Date().getHours();
+  const isBusinessHours = hour >= 9 && hour < 18;
+  return isBusinessHours ? "765 430 2200" : "765-293-8680";
+};
+
 function App() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const phoneNumber = getPhoneNumber();
 
   useEffect(() => {
     if (location.hash) {
@@ -139,8 +146,8 @@ function App() {
               GET A FREE ESTIMATE
             </button>
             <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast!</p>
-            <a href="tel:+17652938680" className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
-              (765) 293-8680
+            <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
+              ({phoneNumber.replace(/\D/g, '').slice(0, 3)}) {phoneNumber.replace(/\D/g, '').slice(3, 6)}-{phoneNumber.replace(/\D/g, '').slice(6)}
             </a>
           </div>
         </div>
