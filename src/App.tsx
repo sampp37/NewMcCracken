@@ -482,8 +482,6 @@ function App() {
             <p>Run background checks on all team members.</p>
             <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
             <p>Take extra precautions when prepping and cleaning.</p>
-            <p className="mt-4"><span className="font-bold text-xl">PLUS:</span> The unique needs and requirements of your home are backed by 3 generations of local painting expertise, meaning all our painting services are uniquely tailored</p>
-            <p>to the needs and requirements of your neighborhood residential community in Lafayette.</p>
           </div>
         </div>
       </section>
