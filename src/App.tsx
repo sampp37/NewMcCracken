@@ -48,6 +48,27 @@ function VoiceGenieWidget() {
   return null;
 }
 
+function PortfolioImage() {
+  const [tapped, setTapped] = useState(false);
+  return (
+    <div
+      className="overflow-visible flex items-center justify-center cursor-pointer"
+      onClick={() => setTapped(t => !t)}
+    >
+      <img
+        src="/portfolio_(2).webp"
+        alt="McCracken Painting portfolio of completed projects"
+        loading="lazy"
+        className={[
+          'w-full rounded-lg transition-transform duration-300 origin-center',
+          'md:hover:scale-110',
+          tapped ? 'scale-110 md:scale-100' : 'animate-pulse-subtle md:animate-none',
+        ].join(' ')}
+      />
+    </div>
+  );
+}
+
 const getPhoneNumber = () => {
   const hour = new Date().getHours();
   const isBusinessHours = hour >= 9 && hour < 18;
@@ -457,12 +478,11 @@ function App() {
             That Experienced Painter You Need? We're the One
           </h2>
           <div className="text-white text-lg leading-loose whitespace-pre-line">
-            <p>We understand that painting isn't just a project; it's an integral part of your home! To ensure your total satisfaction and peace of mind, your local</p>
-            <p>residential painting services in Lafayette will always:</p>
+            <p>We understand that painting isn't just a project; it's an integral part of your home! That's why we:</p>
             <p>Run background checks on all team members.</p>
             <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
-            <p>Take extra precautions when prepping and cleaning to make sure your property stays as beautiful and livable as possible.</p>
-            <p className="mt-4"><span className="font-bold text-xl">PLUS:</span> You can rest assured McCracken Painting Lafayette is 100% locally owned and operated, meaning all our painting services are uniquely tailored</p>
+            <p>Take extra precautions when prepping and cleaning.</p>
+            <p className="mt-4"><span className="font-bold text-xl">PLUS:</span> The unique needs and requirements of your home are backed by 3 generations of local painting expertise, meaning all our painting services are uniquely tailored</p>
             <p>to the needs and requirements of your neighborhood residential community in Lafayette.</p>
           </div>
         </div>
@@ -479,17 +499,9 @@ function App() {
               <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.8' }}>
                 We promise to be the best house guest you've ever had. Through courtesy and attention to detail, we ensure that every piece of furniture, lamp, speaker, artwork, and decorative object is carefully handled, protected, and returned to its original position.
               </p>
-              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.8' }}>
-                Our goal is to generate a whole lot of joy in your home by providing excellent painting work and amazing customer service. Our three-generation painting company have completed numerous successful projects, showcasing their skill and dedication to quality.
-              </p>
             </div>
             <div className="w-full lg:w-1/2">
-              <img
-                src="/portfolio_(2).webp"
-                alt="McCracken Painting portfolio of completed projects"
-                className="w-full"
-                loading="lazy"
-              />
+              <PortfolioImage />
             </div>
           </div>
         </div>
@@ -524,7 +536,7 @@ function App() {
             </div>
             <div className="w-full lg:w-1/2 space-y-6">
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
-                When every color is available at your fingertips, the creative possibilities are endless. However, we know that sometimes unlimited options can be overwhelming, so we're here to guide you through the entire color decision making process.
+                When every color is available at your fingertips, the creative possibilities are endless.
               </p>
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
                 Our professionals are always on hand to answer any questions and offer free expert color suggestions.
@@ -608,20 +620,22 @@ function App() {
           },
         ];
         const [reviewPage, setReviewPage] = useState(0);
-        const totalPages = Math.ceil(allReviews.length / 3);
-        const visible = allReviews.slice(reviewPage * 3, reviewPage * 3 + 3);
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        const perPage = isMobile ? 1 : 3;
+        const totalPages = Math.ceil(allReviews.length / perPage);
+        const visible = allReviews.slice(reviewPage * perPage, reviewPage * perPage + perPage);
         return (
           <section id="reviews" className="py-20 bg-[#0a1628]">
             <div className="max-w-7xl mx-auto px-6 lg:px-12">
               <div className="text-center mb-14">
-                <p className="text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
+                <p className="hidden md:block text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
                 <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wide">
                   See Why These Hoosiers Wouldn't Go Anywhere Else
                 </h2>
               </div>
               <div className="grid md:grid-cols-3 gap-8">
                 {visible.map((review, i) => (
-                  <div key={reviewPage * 3 + i} className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
+                  <div key={reviewPage * perPage + i} className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
                     <h3 className="text-white font-bold text-xl leading-snug">{review.title}</h3>
                     <p className="text-gray-300 text-lg leading-relaxed">"{review.body}"</p>
                     <div className="mt-auto pt-4 border-t border-white/10">
