@@ -170,11 +170,11 @@ function App() {
             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
               ({phoneNumber.replace(/\D/g, '').slice(0, 3)}) {phoneNumber.replace(/\D/g, '').slice(3, 6)}-{phoneNumber.replace(/\D/g, '').slice(6)}
             </a>
-            {/* Reviews badges — gray bg removed via multiply blend */}
+            {/* Reviews badges — mix-blend-screen removes gray bg */}
             <img
               src="/McCracken_Reviews....webp"
               alt="5-star reviews on Facebook, Yelp and Google"
-              className="w-56 sm:w-64 lg:w-72 mix-blend-lighten opacity-60"
+              className="w-56 sm:w-64 lg:w-72 mix-blend-screen rounded-xl"
               loading="eager"
             />
           </div>
@@ -197,6 +197,25 @@ function App() {
           ))}
         </div>
       </div>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
+          <h2 className="text-4xl sm:text-5xl font-bold text-black text-center mb-12 uppercase tracking-wide">
+            Portfolio
+          </h2>
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="w-full lg:w-1/2 space-y-6">
+              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.8' }}>
+                We promise to be the best house guest you've ever had. Through courtesy and attention to detail, we ensure that every piece of furniture, lamp, speaker, artwork, and decorative object is carefully handled, protected, and returned to its original position.
+              </p>
+            </div>
+            <div className="w-full lg:w-1/2">
+              <PortfolioImage />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Section 2 */}
       <section
@@ -486,25 +505,6 @@ function App() {
             <p>Run background checks on all team members.</p>
             <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
             <p>Take extra precautions when prepping and cleaning.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-          <h2 className="text-4xl sm:text-5xl font-bold text-black text-center mb-12 uppercase tracking-wide">
-            Portfolio
-          </h2>
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="w-full lg:w-1/2 space-y-6">
-              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.8' }}>
-                We promise to be the best house guest you've ever had. Through courtesy and attention to detail, we ensure that every piece of furniture, lamp, speaker, artwork, and decorative object is carefully handled, protected, and returned to its original position.
-              </p>
-            </div>
-            <div className="w-full lg:w-1/2">
-              <PortfolioImage />
-            </div>
           </div>
         </div>
       </section>
