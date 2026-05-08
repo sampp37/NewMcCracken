@@ -2,8 +2,6 @@ import { useState, useRef, useEffect } from 'react';
 import { ChevronRight, X, Check } from 'lucide-react';
 
 const SERVICES = ['Interior Painting', 'Exterior Painting', 'Power Washing', 'Epoxy Floor'];
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const TIMES = ['8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 interface ContactFormProps {
   onClose: () => void;
@@ -58,20 +56,16 @@ function CheckboxGroup({
   );
 }
 
-type StepId = 'nameEmail' | 'phoneService' | 'schedule' | 'message';
+type StepId = 'nameEmail' | 'phoneService';
 
-const STEP_ORDER: StepId[] = ['nameEmail', 'phoneService', 'schedule', 'message'];
+const STEP_ORDER: StepId[] = ['nameEmail', 'phoneService'];
 
 export default function ContactForm({ onClose }: ContactFormProps) {
-
   const [stepIndex, setStepIndex] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [services, setServices] = useState<string[]>([]);
-  const [days, setDays] = useState<string[]>([]);
-  const [times, setTimes] = useState<string[]>([]);
-  const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -82,8 +76,6 @@ export default function ContactForm({ onClose }: ContactFormProps) {
   const canAdvance = (() => {
     if (step === 'nameEmail') return name.trim().length > 0 && email.trim().length > 0;
     if (step === 'phoneService') return services.length > 0;
-    if (step === 'schedule') return days.length > 0 && times.length > 0;
-    if (step === 'message') return message.trim().length > 0;
     return false;
   })();
 
@@ -113,9 +105,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       email: email.trim(),
       phone: phone.trim() || null,
       service: services.join(', '),
-      message: message.trim(),
-      best_day_to_call: days.join(', '),
-      best_time_to_reach: times.join(', '),
+      message: '',
     };
 
     if (!navigator.onLine) {
@@ -127,7 +117,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     const SUPABASE_URL = 'https://zroehayusudopemhfdgi.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpyb2VoYXl1c3Vkb3BlbWhmZGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1MjEzODgsImV4cCI6MjA3MjA5NzM4OH0.-AnaNIPhE5w1OSbcR-pZIE6LS1VvDrDhahdMcrTJUQQ';
 
-    const insertToSupabase = async (data: object) => {
+    try {
       const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
         method: 'POST',
         headers: {
@@ -136,32 +126,12 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
           'Prefer': 'return=minimal',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
+
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.message || body.error || `Server returned ${res.status}`);
-      }
-    };
-
-    try {
-      try {
-        await insertToSupabase(payload);
-      } catch (colErr) {
-        const msg = colErr instanceof Error ? colErr.message : String(colErr);
-        if (msg.includes('best_day_to_call') || msg.includes('best_time_to_reach') || msg.includes('schema cache')) {
-          // columns don't exist yet — embed scheduling info in message
-          const fallbackPayload = {
-            name: payload.name,
-            email: payload.email,
-            phone: payload.phone,
-            service: payload.service,
-            message: `${payload.message}\n\nBest day(s): ${payload.best_day_to_call}\nBest time(s): ${payload.best_time_to_reach}`,
-          };
-          await insertToSupabase(fallbackPayload);
-        } else {
-          throw colErr;
-        }
       }
 
       setLoading(false);
@@ -179,11 +149,6 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           `Email: ${payload.email}`,
           `Phone: ${payload.phone ?? '-'}`,
           `Service: ${payload.service}`,
-          `Best Day: ${payload.best_day_to_call}`,
-          `Best Time: ${payload.best_time_to_reach}`,
-          '',
-          'Message:',
-          payload.message,
         ].join('\n');
         const mailto = `mailto:sampp37@gmail.com?subject=${encodeURIComponent(`Quote Request from ${payload.name}`)}&body=${encodeURIComponent(mailLines)}`;
         setError(`BLOCKED|||${mailto}`);
@@ -268,52 +233,6 @@ export default function ContactForm({ onClose }: ContactFormProps) {
                   <CheckboxGroup options={SERVICES} selected={services} onChange={setServices} columns={2} />
                 </div>
               </>
-            )}
-
-            {step === 'schedule' && (
-              <>
-                <div className="mb-1">
-                  <p className="text-base font-semibold text-sky-600">We work around your schedule.</p>
-                  <p className="text-sm text-gray-500">Let us know when it's easiest to reach you — we'll adapt to fit your availability.</p>
-                </div>
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">Best day(s) to call</label>
-                  <select
-                    multiple
-                    value={days}
-                    onChange={(e) => setDays(Array.from(e.target.selectedOptions, (o) => o.value))}
-                    className="w-full border-2 border-gray-200 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 px-3 py-1"
-                    size={5}
-                  >
-                    {DAYS.map((d) => (
-                      <option key={d} value={d} className="py-1.5 px-2 rounded cursor-pointer">{d}</option>
-                    ))}
-                  </select>
-                  <p className="text-xs text-gray-400 mt-1">Hold Ctrl / Cmd to select multiple</p>
-                </div>
-                <div>
-                  <label className="block text-base font-bold text-gray-900 mb-2">Best time(s) to reach you</label>
-                  <select
-                    multiple
-                    value={times}
-                    onChange={(e) => setTimes(Array.from(e.target.selectedOptions, (o) => o.value))}
-                    className="w-full border-2 border-gray-200 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 px-3 py-1"
-                    size={5}
-                  >
-                    {TIMES.map((t) => (
-                      <option key={t} value={t} className="py-1.5 px-2 rounded cursor-pointer">{t}</option>
-                    ))}
-                  </select>
-                  <p className="text-xs text-gray-400 mt-1">Hold Ctrl / Cmd to select multiple</p>
-                </div>
-              </>
-            )}
-
-            {step === 'message' && (
-              <div>
-                <label className="block text-lg font-bold text-gray-900 mb-2">Tell us about your project</label>
-                <textarea value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Brief description of the work you need done..." rows={4} className={`${inputClass} resize-none`} />
-              </div>
             )}
           </div>
 
