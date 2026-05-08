@@ -174,7 +174,7 @@ function App() {
             <img
               src="/McCracken_Reviews....webp"
               alt="5-star reviews on Facebook, Yelp and Google"
-              className="w-56 sm:w-64 lg:w-72 mix-blend-lighten opacity-90"
+              className="w-56 sm:w-64 lg:w-72 mix-blend-lighten opacity-60"
               loading="eager"
             />
           </div>
@@ -278,7 +278,7 @@ function App() {
                 {
                   num: '1.',
                   title: 'Respect Time & Communication',
-                  body: 'Your house. Your schedule. From your free quote to blue tape walkthrough, everything gets done on time while communicating with you throughout the entire project.',
+                  body: 'Your house. Your schedule. From your free quote to blue tape walkthrough, everything gets done on time.',
                 },
                 {
                   num: '2.',
