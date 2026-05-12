@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import App from './App.tsx';
 import ThankYou from './ThankYou.tsx';
 import FormSubmitted from './FormSubmitted.tsx';
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/formsubmitted" element={<FormSubmitted />} />
       </Routes>
+      <SpeedInsights />
     </BrowserRouter>
   </StrictMode>
 );
