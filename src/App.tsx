@@ -53,11 +53,6 @@ function PortfolioImage() {
   );
 }
 
-const getPhoneNumber = () => {
-  const hour = new Date().getHours();
-  const isBusinessHours = hour >= 9 && hour < 18;
-  return isBusinessHours ? "765 430 2200" : "765-293-8680";
-};
 
 const allReviews = [
   {
@@ -178,8 +173,6 @@ function App() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const phoneNumber = getPhoneNumber();
-
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -266,8 +259,11 @@ function App() {
               GET A FREE ESTIMATE
             </button>
             <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast!</p>
-            <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} className="inline-flex items-center justify-center text-white text-2xl lg:text-3xl font-bold hover:text-sky-300 transition">
-              ({phoneNumber.replace(/\D/g, '').slice(0, 3)}) {phoneNumber.replace(/\D/g, '').slice(3, 6)}-{phoneNumber.replace(/\D/g, '').slice(6)}
+            <a
+              href="tel:+17654302200"
+              className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-semibold hover:scale-105 transform border-4 border-white"
+            >
+              Call Now for a Free Quote in 24hrs or Less
             </a>
             {/* Reviews badges — mix-blend-screen removes gray bg */}
             <img
@@ -362,6 +358,12 @@ function App() {
                 Stop searching for "painters near me" and start exploring our full list of services below to see how we can help enhance your property.
               </p>
             </div>
+            <a
+              href="tel:+17654302200"
+              className="inline-flex items-center justify-center bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-lg transition text-lg font-semibold hover:scale-105 transform"
+            >
+              Call Now for a Free Estimate
+            </a>
           </div>
 
         </div>
