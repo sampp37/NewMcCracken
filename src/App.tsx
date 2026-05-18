@@ -3,34 +3,6 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ContactForm from './ContactForm';
 
-function VoiceGenieWidget() {
-  useEffect(() => {
-    window.VG_CONFIG = {
-      ID: 'Rw5lqbJJc9jUkVvs2SI0',
-      region: 'na',
-      render: 'bottom-right',
-      stylesheets: ['https://vg-bunny-cdn.b-cdn.net/vg_live_build/styles.css'],
-    };
-
-    const container = document.createElement('div');
-    container.style.width = '0';
-    container.style.height = '0';
-    container.id = 'VG_OVERLAY_CONTAINER';
-    document.body.appendChild(container);
-
-    const script = document.createElement('script');
-    script.src = 'https://vg-bunny-cdn.b-cdn.net/vg_live_build/vg_bundle.js';
-    script.defer = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(container);
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  return null;
-}
 
 function PortfolioImage() {
   const [tapped, setTapped] = useState(false);
@@ -259,11 +231,13 @@ function App() {
               GET A FREE ESTIMATE
             </button>
             <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast!</p>
-            <a
-              href="tel:+17654302200"
-              className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-semibold hover:scale-105 transform border-4 border-white"
-            >
-              Call Now for a Free Quote in 24hrs or Less
+            <a href="tel:+17654302200" className="flex flex-col items-center gap-1 group">
+              <span className="text-white text-3xl lg:text-4xl font-bold tracking-wide group-hover:text-sky-300 transition">
+                (765) 430-2200
+              </span>
+              <span className="text-sky-300 text-base font-semibold uppercase tracking-widest">
+                Free In Home Estimates — Call Today
+              </span>
             </a>
             {/* Reviews badges — mix-blend-screen removes gray bg */}
             <img
@@ -688,8 +662,18 @@ function App() {
         </div>
       </section>
 
-      {/* Multi-step Contact Form Modal */}
+      {/* Contact Form Modal */}
       {modalOpen && <ContactForm onClose={closeModal} />}
+
+      {/* Pulsing call button — bottom right */}
+      <a
+        href="tel:+17654302200"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-sky-400 hover:bg-sky-500 text-white font-bold px-5 py-3 rounded-full shadow-lg transition-transform hover:scale-105 animate-call-pulse"
+        aria-label="Call us now"
+      >
+        <Phone className="w-5 h-5" />
+        <span className="text-sm font-bold uppercase tracking-wide">Call</span>
+      </a>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
@@ -726,7 +710,6 @@ function App() {
           </div>
         </div>
       </footer>
-      <VoiceGenieWidget />
     </div>
   );
 }
