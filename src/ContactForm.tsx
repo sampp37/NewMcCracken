@@ -1,9 +1,8 @@
 import { X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const SUPABASE_URL = 'https://tltiysrigsdwqfqygqms.supabase.co';
-const SUPABASE_ANON_KEY =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsdGl5c3JpZ3Nkd3FmcXlncW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5NjQ0NzYsImV4cCI6MjA4OTU0MDQ3Nn0.DxDU8VDH5fnRsb8chTJsfZAw_q6BU1Be4tC5JZ02s7E';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
 export default function ContactForm({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState('');
@@ -36,11 +35,16 @@ export default function ContactForm({ onClose }: { onClose: () => void }) {
         body: JSON.stringify({ name, phone, details }),
       });
 
-      if (!res.ok) throw new Error('server');
+      if (!res.ok) {
+        const body = await res.text().catch(() => '');
+        console.error(`Form submit failed — status ${res.status}:`, body);
+        throw new Error(`HTTP ${res.status}`);
+      }
 
       setSuccess(true);
       setTimeout(() => onClose(), 2500);
-    } catch {
+    } catch (err) {
+      console.error('Form submit error:', err);
       setError('Something went wrong. Please call us at (765) 430-2200.');
     } finally {
       setLoading(false);
