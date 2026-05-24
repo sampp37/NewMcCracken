@@ -35,11 +35,13 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpyb2VoYXl1c3Vkb3BlbWhmZGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1MjEzODgsImV4cCI6MjA3MjA5NzM4OH0.-AnaNIPhE5w1OSbcR-pZIE6LS1VvDrDhahdMcrTJUQQ';
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/functions/v1/submit-contact`, {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/contact_requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal',
         },
         body: JSON.stringify(payload),
       });
