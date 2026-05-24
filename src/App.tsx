@@ -1,7 +1,6 @@
 import { Phone, Menu, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ContactForm from './ContactForm';
 
 
 function PortfolioImage() {
@@ -144,7 +143,6 @@ function ReviewsSection() {
 function App() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -156,9 +154,6 @@ function App() {
       }
     }
   }, [location]);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
 
   return (
     <div className="min-h-screen bg-white">
@@ -225,7 +220,6 @@ function App() {
               IN LAFAYETTE
             </h1>
             <button
-              onClick={openModal}
               className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-semibold hover:scale-105 transform border-4 border-white"
             >
               GET A FREE ESTIMATE
@@ -550,7 +544,6 @@ function App() {
                 </div>
               </div>
               <button
-                onClick={openModal}
                 className="w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition uppercase tracking-wide text-sm"
               >
                 Get a Free Quote
@@ -620,7 +613,6 @@ function App() {
               </p>
               <div className="flex flex-col items-start gap-2">
                 <button
-                  onClick={openModal}
                   className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-bold hover:scale-105 transform border-4 border-white uppercase tracking-wide"
                 >
                   SAME DAY FREE QUOTE NOW
@@ -652,7 +644,6 @@ function App() {
               GET A FREE ESTIMATE IN 24 HRS
             </p>
             <button
-              onClick={openModal}
               className="px-12 py-4 rounded-lg border-2 border-[#2cc4c4] text-white font-extrabold text-lg uppercase tracking-widest hover:bg-[#2cc4c4]/20 transition"
             >
               GET A FREE ESTIMATE TODAY
@@ -661,9 +652,6 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Contact Form Modal */}
-      {modalOpen && <ContactForm onClose={closeModal} />}
 
       {/* Pulsing call button — bottom right */}
       <a
