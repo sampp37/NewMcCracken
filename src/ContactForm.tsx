@@ -19,23 +19,11 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     setLoading(true);
     setError(null);
 
-    const payload = {
-      name: name.trim(),
-      phone_number: phone.trim(),
-      details: details.trim() || null,
-    };
-
-    if (!navigator.onLine) {
-      setError('You appear to be offline. Please check your internet connection and try again.');
-      setLoading(false);
-      return;
-    }
-
     const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
     const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/submit_contact_request`, {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/save-lead`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,32 +31,32 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify({
-          p_name: payload.name,
-          p_phone: payload.phone_number,
-          p_details: payload.details,
+          name: name.trim(),
+          phone_number: phone.trim(),
+          details: details.trim() || null,
         }),
       });
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        throw new Error((body as { message?: string; error?: string }).message || (body as { message?: string; error?: string }).error || `Server returned ${res.status}`);
+        throw new Error(
+          (body as { error?: string }).error || `Server error ${res.status}`
+        );
       }
 
-      setLoading(false);
       onClose();
       window.location.href = '/formsubmitted';
     } catch (err) {
-      const errName = err instanceof Error ? err.name : 'Error';
       const errMsg = err instanceof Error ? err.message : String(err);
-      const isFetchFail = errName === 'TypeError' && /fetch/i.test(errMsg);
+      const isFetchFail = err instanceof TypeError && /fetch/i.test(errMsg);
 
       if (isFetchFail) {
-        const mailLines = [
-          `Name: ${payload.name}`,
-          `Phone: ${payload.phone_number}`,
-          `Details: ${payload.details ?? '-'}`,
+        const body = [
+          `Name: ${name.trim()}`,
+          `Phone: ${phone.trim()}`,
+          `Details: ${details.trim() || '-'}`,
         ].join('\n');
-        const mailto = `mailto:sampp37@gmail.com?subject=${encodeURIComponent(`Quote Request from ${payload.name}`)}&body=${encodeURIComponent(mailLines)}`;
+        const mailto = `mailto:sampp37@gmail.com?subject=${encodeURIComponent(`Quote Request from ${name.trim()}`)}&body=${encodeURIComponent(body)}`;
         setError(`BLOCKED|||${mailto}`);
       } else {
         setError(errMsg);
@@ -77,10 +65,14 @@ export default function ContactForm({ onClose }: ContactFormProps) {
     }
   };
 
-  const inputClass = 'w-full px-4 py-3 border-2 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 border-gray-200';
+  const inputClass =
+    'w-full px-4 py-3 border-2 rounded-xl outline-none text-base transition focus:ring-2 focus:ring-sky-400 focus:border-sky-400 border-gray-200';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60"
+      onClick={onClose}
+    >
       <div
         className="bg-white rounded-2xl shadow-2xl w-full max-w-lg relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
@@ -96,20 +88,14 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           {error && error.startsWith('BLOCKED|||') && (
             <div className="mb-4 p-4 rounded-lg bg-amber-50 border border-amber-300 text-amber-900 text-sm space-y-3">
               <p className="font-semibold">We couldn't reach our server from your browser.</p>
-              <p>This is usually caused by an ad blocker, VPN, or browser extension blocking <code className="bg-amber-100 px-1 rounded">supabase.co</code>.</p>
-              <p className="font-semibold">Try one of these:</p>
-              <ul className="list-disc ml-5 space-y-1">
-                <li>Disable your ad blocker for this page and try again</li>
-                <li>Try a different browser or disable extensions</li>
-                <li>Or send your request directly by email:</li>
-              </ul>
+              <p>This is usually caused by an ad blocker or browser extension. Try disabling it and submitting again, or:</p>
               <a
                 href={error.split('|||')[1]}
-                className="inline-block mt-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-lg transition"
+                className="inline-block mt-1 bg-amber-600 hover:bg-amber-700 text-white font-semibold px-5 py-2.5 rounded-lg transition"
               >
                 Send by Email Instead
               </a>
-              <p className="text-xs mt-2">Or call us directly at <a href="tel:+17652938680" className="font-bold underline">(765) 293-8680</a></p>
+              <p className="text-xs mt-1">Or call us at <a href="tel:+17654302200" className="font-bold underline">(765) 430-2200</a></p>
             </div>
           )}
           {error && !error.startsWith('BLOCKED|||') && (
