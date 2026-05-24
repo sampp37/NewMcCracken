@@ -30,40 +30,39 @@ Deno.serve(async (req: Request) => {
       );
     }
 
+    const cleanName = String(name).trim();
+    const cleanPhone = String(phone_number).trim();
+    const cleanDetails = details ? String(details).trim() || null : null;
+
+    // Service role key bypasses PostgREST schema cache and RLS entirely
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    const cleanName = String(name).trim();
-    const cleanPhone = String(phone_number).trim();
-    const cleanDetails = details ? String(details).trim() || null : null;
-
-    const { error: dbError } = await supabase.rpc('submit_contact_request', {
-      p_name: cleanName,
-      p_phone: cleanPhone,
-      p_details: cleanDetails,
-    });
+    const { error: dbError } = await supabase
+      .from("contact_requests")
+      .insert({ name: cleanName, phone_number: cleanPhone, details: cleanDetails });
 
     if (dbError) {
-      console.error("RPC error, trying direct SQL:", dbError);
-      const { error: sqlError } = await supabase.from('_dummy_fallback_').select().limit(0);
-      const dbUrl = Deno.env.get("SUPABASE_DB_URL");
-      if (dbUrl) {
-        const { default: postgres } = await import("npm:postgres@3.4.4");
-        const sql = postgres(dbUrl);
-        await sql`
-          INSERT INTO public.contact_requests (name, phone_number, details)
-          VALUES (${cleanName}, ${cleanPhone}, ${cleanDetails})
-        `;
-        await sql.end();
-      } else {
-        return new Response(
-          JSON.stringify({ error: dbError.message }),
-          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
+      console.error("Insert error:", dbError);
+      return new Response(
+        JSON.stringify({ error: dbError.message }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
+
+    // Fire notification email asynchronously without blocking response
+    EdgeRuntime.waitUntil(
+      fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/send-contact-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")}`,
+        },
+        body: JSON.stringify({ name: cleanName, phone_number: cleanPhone, details: cleanDetails }),
+      }).catch((err) => console.error("send-contact-email error:", err))
+    );
 
     return new Response(
       JSON.stringify({ success: true }),
