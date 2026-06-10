@@ -18,7 +18,7 @@ function PortfolioImage() {
         className={[
           'w-full rounded-lg transition-transform duration-300 origin-center',
           'md:hover:scale-110',
-          tapped ? 'scale-110 md:scale-100' : 'animate-pulse-subtle md:animate-none',
+          tapped ? 'scale-110 md:scale-100' : '',
         ].join(' ')}
       />
     </div>
@@ -28,114 +28,154 @@ function PortfolioImage() {
 
 const allReviews = [
   {
-    title: '10 Years of Large Scale Projects Done Right',
-    body: <>I've been working with McCracken Painting for over <strong className="text-white">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-white">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-white">the job done right and on time</strong>.</>,
-    name: 'Caitlin Wright',
+    title: 'A Friendly Family Team You Can Actually Talk To!',
+    body: <>Great group of family painters that are <strong className="text-gray-900">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
+    name: 'Drew Powell',
   },
   {
     title: 'Always Exceeds Expectations, Every Single Time!',
-    body: <>We have used McCracken as a painting vendor for <strong className="text-white">several years</strong> and they always do a <strong className="text-white">great job</strong>. They always exceed expectations with quality and <strong className="text-white">timeliness</strong>. They're friendly and easy to communicate with!</>,
+    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They always exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
     name: 'Caroline Baker',
   },
   {
     title: 'Amazing Work and Excellent Communication — 10/10!',
-    body: <>McCracken painting <strong className="text-white">has always done amazing work</strong>. Very well ran and <strong className="text-white">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
+    body: <>McCracken painting <strong className="text-gray-900">has always done amazing work</strong>. Very well ran and <strong className="text-gray-900">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
     name: 'Casey Frier',
   },
   {
     title: 'Fast, Quality Work — Hiring Again for Sure!',
-    body: <>Great job. They painted my apartment and everything looks great. <strong className="text-white">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
+    body: <>Great job. They painted my apartment and everything looks great. <strong className="text-gray-900">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
     name: 'Stephen Morrow',
   },
   {
-    title: 'A Friendly Family Team You Can Actually Talk To!',
-    body: <>Great group of family painters that are <strong className="text-white">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
-    name: 'Drew Powell',
-  },
-  {
     title: 'Great Work and Kind Employees!',
-    body: <>They do a great job painting and have <strong className="text-white">very kind employees</strong>!</>,
+    body: <>They do a great job painting and have <strong className="text-gray-900">very kind employees</strong>!</>,
     name: 'William Powell',
   },
   {
     title: '10 Years of Large Scale Projects Done Right',
-    body: <>I've been working with McCracken Painting for over <strong className="text-white">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-white">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-white">the job done right and on time</strong>.</>,
+    body: <>I've been working with McCracken Painting for over <strong className="text-gray-900">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-gray-900">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-gray-900">the job done right and on time</strong>.</>,
     name: 'Caitlin Wright',
   },
   {
+    title: 'A Friendly Family Team You Can Actually Talk To!',
+    body: <>Great group of family painters that are <strong className="text-gray-900">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
+    name: 'Drew Powell',
+  },
+  {
     title: 'Always Exceeds Expectations, Every Single Time!',
-    body: <>We have used McCracken as a painting vendor for <strong className="text-white">several years</strong> and they always do a <strong className="text-white">great job</strong>. They always exceed expectations with quality and <strong className="text-white">timeliness</strong>. They're friendly and easy to communicate with!</>,
+    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They always exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
     name: 'Caroline Baker',
   },
   {
     title: 'Amazing Work and Excellent Communication — 10/10!',
-    body: <>McCracken painting <strong className="text-white">has always done amazing work</strong>. Very well ran and <strong className="text-white">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
+    body: <>McCracken painting <strong className="text-gray-900">has always done amazing work</strong>. Very well ran and <strong className="text-gray-900">excellent with communication</strong>. I highly recommend them for your next painting project. You will not be disappointed! 10/10.</>,
     name: 'Casey Frier',
   },
   {
     title: 'Fast, Quality Work — Hiring Again for Sure!',
-    body: <>Great job. They painted my apartment and everything looks great. <strong className="text-white">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
+    body: <>Great job. They painted my apartment and everything looks great. <strong className="text-gray-900">Fast working!!!</strong> Definitely hiring for my next paint job!</>,
     name: 'Stephen Morrow',
   },
   {
-    title: 'A Friendly Family Team You Can Actually Talk To!',
-    body: <>Great group of family painters that are <strong className="text-white">super friendly and easy to talk too</strong>. I highly recommend!!!</>,
-    name: 'Drew Powell',
-  },
-  {
     title: 'Great Work and Kind Employees!',
-    body: <>They do a great job painting and have <strong className="text-white">very kind employees</strong>!</>,
+    body: <>They do a great job painting and have <strong className="text-gray-900">very kind employees</strong>!</>,
     name: 'William Powell',
   },
+  {
+    title: '10 Years of Large Scale Projects Done Right',
+    body: <>I've been working with McCracken Painting for over <strong className="text-gray-900">10 years on large-scale student housing projects</strong>, and they've consistently delivered great results. Their team is reliable, <strong className="text-gray-900">organized</strong>, and able to handle projects of any size with professionalism. I know I can count on them to get <strong className="text-gray-900">the job done right and on time</strong>.</>,
+    name: 'Caitlin Wright',
+  },
+];
+
+const awards = [
+  { src: '/BBRAward.png', alt: 'Best of Business Rate 2025' },
+  { src: '/QBAward.webp', alt: 'Quality Business Awards 2025-2026 Winner' },
+  { src: '/BBB.png', alt: 'BBB Torch Awards for Ethics Winner' },
 ];
 
 function ReviewsSection() {
   const [reviewPage, setReviewPage] = useState(0);
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   const perPage = isMobile ? 1 : 3;
   const totalPages = Math.ceil(allReviews.length / perPage);
   const visible = allReviews.slice(reviewPage * perPage, reviewPage * perPage + perPage);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setReviewPage(p => (p + 1) % totalPages);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [totalPages, reviewPage]);
+
+  const goTo = (p: number) => setReviewPage(Math.max(0, Math.min(totalPages - 1, p)));
+
   return (
-    <section id="reviews" className="py-20 bg-[#0a1628]">
+    <section id="reviews" className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="text-center mb-14">
-          <p className="hidden md:block text-sky-400 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-wide">
+        <div className="text-center mb-12">
+          <p className="text-orange-500 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-wide">
             See Why These Hoosiers Wouldn't Go Anywhere Else
           </h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {visible.map((review, i) => (
-            <div key={reviewPage * perPage + i} className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
-              <h3 className="text-white font-bold text-xl leading-snug">{review.title}</h3>
-              <p className="text-gray-300 text-lg leading-relaxed">"{review.body}"</p>
-              <div className="mt-auto pt-4 border-t border-white/10">
-                <p className="text-white font-bold text-lg">{review.name}</p>
+            <div
+              key={reviewPage * perPage + i}
+              className="bg-white border border-gray-200 rounded-2xl p-7 flex flex-col gap-4 shadow-sm"
+            >
+              <h3 className="text-gray-900 font-bold text-lg leading-snug">{review.title}</h3>
+              <p className="text-gray-600 text-base leading-relaxed flex-1">"{review.body}"</p>
+              <div className="pt-4 border-t border-gray-100">
+                <p className="text-gray-900 font-bold">{review.name}</p>
               </div>
             </div>
           ))}
         </div>
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4 mt-10">
-            <button
-              onClick={() => setReviewPage(p => Math.max(0, p - 1))}
-              disabled={reviewPage === 0}
-              className="p-3 rounded-full border border-white/20 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition"
-              aria-label="Previous reviews"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <span className="text-gray-400 text-sm">{reviewPage + 1} / {totalPages}</span>
-            <button
-              onClick={() => setReviewPage(p => Math.min(totalPages - 1, p + 1))}
-              disabled={reviewPage === totalPages - 1}
-              className="p-3 rounded-full border border-white/20 text-white hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition"
-              aria-label="Next reviews"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+
+        <div className="flex items-center justify-center gap-4 mt-10">
+          <button
+            onClick={() => goTo(reviewPage - 1)}
+            disabled={reviewPage === 0}
+            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition"
+            aria-label="Previous reviews"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                className={`rounded-full transition-all duration-300 h-2 ${
+                  i === reviewPage ? 'bg-orange-500 w-6' : 'bg-gray-300 w-2'
+                }`}
+                aria-label={`Go to page ${i + 1}`}
+              />
+            ))}
           </div>
-        )}
+
+          <button
+            onClick={() => goTo(reviewPage + 1)}
+            disabled={reviewPage === totalPages - 1}
+            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition"
+            aria-label="Next reviews"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -147,6 +187,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
+
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -205,51 +246,55 @@ function App() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-24 relative overflow-hidden" style={{ minHeight: '75vh' }}>
-        <img
-          src="/Lafayette_Downtown_esquina.jpeg"
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          loading="eager"
-          className="hero-bg-img absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/[0.45]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-10 lg:py-32 relative">
-          <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white leading-tight whitespace-nowrap">
-              ON TIME &amp; ON BUDGET<br />
-              HOME PAINTERS<br />
-              IN LAFAYETTE
-            </h1>
-            <button
-              onClick={openModal}
-              className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-semibold hover:scale-105 transform border-4 border-white"
-            >
-              GET A FREE ESTIMATE
-            </button>
-            <p className="text-base text-white font-semibold tracking-wide drop-shadow">*Same Day Spots Filling Fast!</p>
-            <a href="tel:+17654302200" className="flex flex-col items-center gap-1 group">
-              <span className="text-white text-3xl lg:text-4xl font-bold tracking-wide group-hover:text-sky-300 transition">
-                (765) 430-2200
-              </span>
-              <span className="text-sky-300 text-base font-semibold uppercase tracking-widest">
-                Free In Home Estimates — Call Today
-              </span>
-            </a>
-            {/* Reviews badges — mix-blend-screen removes gray bg */}
-            <img
-              src="/McCracken_Reviews....webp"
-              alt="5-star reviews on Facebook, Yelp and Google"
-              className="w-56 sm:w-64 lg:w-72 mix-blend-screen rounded-xl"
-              loading="eager"
-            />
-          </div>
+      {/* ─── HERO SECTION ─────────────────────────────────────────── */}
+      <section className="pt-28 bg-white">
+
+        {/* Part 1 — Headline */}
+        <div className="text-center px-6 pt-8 pb-5">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-snug">
+            Painting Is Messy<br />
+            Avoid The Stress With<br />
+            A 3 Generation Crew That<br />
+            Cleans Up Every Day Before Leaving
+          </h1>
         </div>
-        {/* Bottom fade shadow */}
-        <div className="absolute bottom-0 left-0 right-0 h-8" style={{ background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.18))' }} />
+
+        {/* Part 2 — Main image */}
+        <div className="px-4 sm:px-8 flex justify-center">
+          <img
+            src="/McClients.webp"
+            alt="McCracken Painting happy clients"
+            fetchPriority="high"
+            loading="eager"
+            className="w-full max-w-3xl lg:max-h-80 object-cover object-top rounded-2xl shadow-xl"
+          />
+        </div>
+
+        {/* Part 3 — Award badges */}
+        <div className="py-7 flex items-center justify-center gap-6 sm:gap-10 px-6">
+          {awards.map((award) => (
+            <div
+              key={award.src}
+              className="award-badge w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden flex-shrink-0"
+            >
+              <img src={award.src} alt={award.alt} className="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
       </section>
+
+      {/* ─── CTA BANNER ───────────────────────────────────────────── */}
+      <div className="bg-orange-500 py-6 px-6 text-center">
+        <button
+          onClick={openModal}
+          className="text-white font-extrabold text-lg sm:text-xl lg:text-2xl px-6 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide"
+        >
+          Get My Professional Estimate For Free Within 24 Hrs
+        </button>
+      </div>
+
+      {/* ─── REVIEWS (immediately after CTA so it peeks at fold) ─── */}
+      <ReviewsSection />
 
       {/* Marquee Banner */}
       <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-4">
@@ -298,8 +343,6 @@ function App() {
         }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-20 flex flex-col-reverse lg:flex-row lg:items-start items-center gap-12 min-h-screen">
-
-          {/* Left — photo — centered vertically with auto margins */}
           <div className="w-full lg:w-5/12 flex-shrink-0" style={{ marginTop: 'auto', marginBottom: 'auto' }}>
             <img
               src="/Painting.png"
@@ -308,28 +351,19 @@ function App() {
               loading="lazy"
             />
           </div>
-
-          {/* Right — text, offset down to align title with image top */}
           <div className="w-full lg:w-7/12 space-y-6 lg:pt-[8vh] text-center lg:text-left">
-            {/* Title */}
             <h2
               className="text-white font-bold uppercase tracking-wide"
               style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '36px', lineHeight: '1.25' }}
             >
               GET THE FEELING OF ENTERING A NEW HOME.
             </h2>
-
-            {/* Body text */}
             <div
               className="text-gray-200 space-y-4"
               style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '22px', lineHeight: '1.75' }}
             >
-              <p>
-                Three generations of painting have made us experts in what Lafayette homes truly need.
-              </p>
-              <p>
-                Stop searching for "painters near me" and start exploring our full list of services below to see how we can help enhance your property.
-              </p>
+              <p>Three generations of painting have made us experts in what Lafayette homes truly need.</p>
+              <p>Stop searching for "painters near me" and start exploring our full list of services below to see how we can help enhance your property.</p>
             </div>
             <a
               href="tel:+17654302200"
@@ -338,7 +372,6 @@ function App() {
               Call Now for a Free Estimate
             </a>
           </div>
-
         </div>
       </section>
 
@@ -355,77 +388,39 @@ function App() {
         }}
       >
         <div className="py-14" style={{ position: 'relative', zIndex: 1, paddingLeft: '40px', paddingRight: '40px' }}>
-          {/* Title */}
           <h2
             className="text-gray-900 font-bold text-center mb-10"
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '32px' }}
           >
             WHY YOUR NEIGHBORS CHOOSE US
           </h2>
-
-          {/* Two-column layout */}
           <div className="flex flex-col lg:flex-row" style={{ gap: '40px' }}>
-            {/* Left column - text */}
             <div className="space-y-10" style={{ flex: '1 1 0' }}>
               {[
-                {
-                  num: '1.',
-                  title: 'Respect Time & Communication',
-                  body: 'Your house. Your schedule. From your free quote to blue tape walkthrough, everything gets done on time.',
-                },
-                {
-                  num: '2.',
-                  title: 'Stress Free & Mess-Free Service',
-                  body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should.",
-                },
-                {
-                  num: '3.',
-                  title: 'Your Kids and Pets, Our Priority.',
-                  body: 'Kids and pet friendly atmosphere. No tools or paint buckets just hanging around.',
-                },
-                {
-                  num: '4.',
-                  title: 'Value Based Pricing',
-                  body: 'Upfront, honest pricing without hidden fees. Rest assured, you get what you pay for.',
-                },
+                { num: '1.', title: 'Respect Time & Communication', body: 'Your house. Your schedule. From your free quote to blue tape walkthrough, everything gets done on time.' },
+                { num: '2.', title: 'Stress Free & Mess-Free Service', body: "Paint is messy, but your experience shouldn't be. We believe in cleaning up after ourselves every day, just like any good house guest should." },
+                { num: '3.', title: 'Your Kids and Pets, Our Priority.', body: 'Kids and pet friendly atmosphere. No tools or paint buckets just hanging around.' },
+                { num: '4.', title: 'Value Based Pricing', body: 'Upfront, honest pricing without hidden fees. Rest assured, you get what you pay for.' },
               ].map(({ num, title, body }) => (
                 <div key={num} className="text-left">
-                  <h3
-                    className="font-bold text-gray-900 mb-2"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}
-                  >
+                  <h3 className="font-bold text-gray-900 mb-2" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '21px' }}>
                     {num} {title}
                   </h3>
-                  <p
-                    className="text-gray-700"
-                    style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.6' }}
-                  >
+                  <p className="text-gray-700" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '18px', lineHeight: '1.6' }}>
                     {body}
                   </p>
                 </div>
               ))}
             </div>
-
-            {/* Right column - images */}
             <div className="w-full lg:w-[420px] lg:max-w-[420px] flex-shrink-0 flex flex-col gap-4">
-              <img
-                src="/McCracken-van.jpg"
-                alt="McCracken Painting van"
-                style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }}
-                loading="lazy"
-              />
-              <img
-                src="/painting-s3.png"
-                alt="Painter at work"
-                style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }}
-                loading="lazy"
-              />
+              <img src="/McCracken-van.jpg" alt="McCracken Painting van" style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }} loading="lazy" />
+              <img src="/painting-s3.png" alt="Painter at work" style={{ borderRadius: '12px', width: '100%', flex: '1', objectFit: 'cover' }} loading="lazy" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 4 */}
+      {/* Section 4 — Generational Expertise */}
       <section
         id="about"
         className="w-full relative"
@@ -439,37 +434,19 @@ function App() {
         }}
       >
         <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-12 py-20">
-          <h2
-            className="text-white font-bold uppercase mb-10"
-            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '40px' }}
-          >
+          <h2 className="text-white font-bold uppercase mb-10" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '40px' }}>
             GENERATIONAL EXPERTISE
           </h2>
-
-          <img
-            src="/family-photo.jpg"
-            alt="McCracken Painting family team"
-            className="rounded-2xl shadow-2xl w-full max-w-sm mb-10"
-            loading="lazy"
-          />
-
-          <div
-            className="text-gray-200 max-w-3xl space-y-6"
-            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.75' }}
-          >
-            <p>
-              Proudly family owned and serving the Lafayette area for 25+ years, we're committed to delivering exceptional results one house at the time.
-            </p>
-            <p>
-              Our commitment goes beyond the brush, we promise to be your best guests, treating your place with the utmost care and leaving it even more pristine than when we arrived.
-            </p>
+          <img src="/family-photo.jpg" alt="McCracken Painting family team" className="rounded-2xl shadow-2xl w-full max-w-sm mb-10" loading="lazy" />
+          <div className="text-gray-200 max-w-3xl space-y-6" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.75' }}>
+            <p>Proudly family owned and serving the Lafayette area for 25+ years, we're committed to delivering exceptional results one house at the time.</p>
+            <p>Our commitment goes beyond the brush, we promise to be your best guests, treating your place with the utmost care and leaving it even more pristine than when we arrived.</p>
           </div>
         </div>
       </section>
 
       {/* Community Sponsors Banner */}
       <div className="bg-white border-y border-gray-200 shadow-sm py-6">
-        {/* Mobile: title above, 3 logos below */}
         <div className="flex flex-col items-center gap-4 px-6 md:hidden">
           <h3 className="text-lg font-extrabold text-gray-900 uppercase tracking-wide">PROUDLY SPONSORING</h3>
           <div className="flex items-center justify-center gap-8">
@@ -478,7 +455,6 @@ function App() {
             <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" />
           </div>
         </div>
-        {/* Desktop: logos — title — logos */}
         <div className="hidden md:flex relative items-center justify-between px-6 lg:px-12">
           <div className="flex items-center gap-10">
             <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" />
@@ -500,33 +476,16 @@ function App() {
       <section
         id="areasweserve"
         className="relative py-14 overflow-hidden"
-        style={{
-          backgroundImage: 'url("/areas-served.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
+        style={{ backgroundImage: 'url("/areas-served.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="absolute inset-0 bg-[#0a2a4a]/80"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
             <div>
-              <h2 className="text-4xl font-bold text-white uppercase tracking-wide mb-4">
-                Areas We Serve
-              </h2>
-              <p className="text-gray-300 mb-8 max-w-2xl text-xl">
-                McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.
-              </p>
+              <h2 className="text-4xl font-bold text-white uppercase tracking-wide mb-4">Areas We Serve</h2>
+              <p className="text-gray-300 mb-8 max-w-2xl text-xl">McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
-                {[
-                  'Lafayette', 'Otterbein', 'Delphi',
-                  'Frankfort', 'Monticello', 'Crawfordsville',
-                  'Attica', 'Brookston', 'Lebanon',
-                  'Rensselaer', 'Fowler', 'Thorntown',
-                  'West Lafayette', 'Battle Ground', 'Shadeland',
-                  'Dayton', 'Clarks Hill', 'Stockwell',
-                  'Montmorenci'
-                ].map((area) => (
+                {['Lafayette','Otterbein','Delphi','Frankfort','Monticello','Crawfordsville','Attica','Brookston','Lebanon','Rensselaer','Fowler','Thorntown','West Lafayette','Battle Ground','Shadeland','Dayton','Clarks Hill','Stockwell','Montmorenci'].map((area) => (
                   <div key={area} className="flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-cyan-400 flex-shrink-0" />
                     <span className="text-white text-lg">{area}</span>
@@ -535,9 +494,7 @@ function App() {
               </div>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm min-w-[280px]">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wide mb-5">
-                Contact Info:
-              </h3>
+              <h3 className="text-xl font-bold text-white uppercase tracking-wide mb-5">Contact Info:</h3>
               <div className="space-y-4 mb-6">
                 <a href="tel:+17654302200" className="flex items-center gap-3 text-white hover:text-cyan-300 transition">
                   <Phone className="h-5 w-5 text-cyan-400" />
@@ -548,10 +505,7 @@ function App() {
                   <span className="text-white">104 Pineview Ln<br />Lafayette, IN 47905</span>
                 </div>
               </div>
-              <button
-                onClick={openModal}
-                className="w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition uppercase tracking-wide text-sm"
-              >
+              <button onClick={openModal} className="w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition uppercase tracking-wide text-sm">
                 Get a Free Quote
               </button>
             </div>
@@ -562,12 +516,7 @@ function App() {
       {/* CTA Section */}
       <section
         className="relative py-14 overflow-hidden"
-        style={{
-          backgroundImage: 'url("/MC-6.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
+        style={{ backgroundImage: 'url("/MC-6.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="absolute inset-0 bg-[#0a1e2e]/75"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -583,19 +532,11 @@ function App() {
         </div>
       </section>
 
-      {/* Section 8 - Color Studio */}
+      {/* Section 8 — Color Studio */}
       <section
         id="colors"
         className="relative py-16"
-        style={{
-          minHeight: '85vh',
-          display: 'flex',
-          alignItems: 'center',
-          backgroundImage: 'url("/MC-S3.jpg")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
+        style={{ minHeight: '85vh', display: 'flex', alignItems: 'center', backgroundImage: 'url("/MC-S3.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="relative max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide text-center mb-10">
@@ -603,12 +544,7 @@ function App() {
           </h2>
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="w-full lg:w-1/2">
-              <img
-                src="/Color_consultation11.webp"
-                alt="Color consultation paint buckets"
-                className="w-full rounded-lg"
-                loading="lazy"
-              />
+              <img src="/Color_consultation11.webp" alt="Color consultation paint buckets" className="w-full rounded-lg" loading="lazy" />
             </div>
             <div className="w-full lg:w-1/2 space-y-6">
               <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
@@ -631,21 +567,14 @@ function App() {
         </div>
       </section>
 
-      {/* Reviews Section */}
-      <ReviewsSection />
-
-
       {/* Contact Section */}
       <div id="FreeEstimate" />
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <p className="text-xl text-gray-600">
-              Ready to transform your space? Contact us today for a free estimate.
-            </p>
+            <p className="text-xl text-gray-600">Ready to transform your space? Contact us today for a free estimate.</p>
           </div>
-
           <div className="rounded-2xl overflow-hidden bg-[#1a3a9e] px-8 py-10 flex flex-col items-center gap-6 shadow-2xl">
             <p className="text-white text-2xl sm:text-3xl font-extrabold uppercase tracking-wide text-center">
               GET A FREE ESTIMATE IN 24 HRS
@@ -681,9 +610,7 @@ function App() {
               <div className="flex items-center mb-4">
                 <img src="/McCracken_logo.jpg" alt="McCracken Painting" className="h-16" loading="lazy" />
               </div>
-              <p className="text-gray-400">
-                Professional painting services in West Lafayette, Indiana for over 25 years.
-              </p>
+              <p className="text-gray-400">Professional painting services in West Lafayette, Indiana for over 25 years.</p>
             </div>
             <div>
               <h4 className="text-lg font-bold mb-4">Services</h4>
@@ -698,7 +625,7 @@ function App() {
               <h4 className="text-lg font-bold mb-4">Contact</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>West Lafayette, Indiana</li>
-                <li>(765) 293-8680</li>
+                <li>(765) 430-2200</li>
                 <li>Monday - Friday</li>
               </ul>
             </div>
