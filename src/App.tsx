@@ -130,18 +130,25 @@ function ReviewsSection() {
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
-          {visible.map((review, i) => (
-            <div
-              key={reviewPage * perPage + i}
-              className="bg-white border border-gray-200 rounded-2xl p-7 flex flex-col gap-4 shadow-sm"
-            >
-              <h3 className="text-gray-900 font-bold text-lg leading-snug">{review.title}</h3>
-              <p className="text-gray-600 text-base leading-relaxed flex-1">"{review.body}"</p>
-              <div className="pt-4 border-t border-gray-100">
-                <p className="text-gray-900 font-bold">{review.name}</p>
+          {visible.map((review, i) => {
+            const cardStyles = [
+              'bg-white border border-gray-200 border-l-4 border-l-orange-400',
+              'bg-orange-50 border border-orange-100 border-l-4 border-l-orange-500',
+              'bg-gray-50 border border-gray-200 border-l-4 border-l-gray-400',
+            ];
+            return (
+              <div
+                key={reviewPage * perPage + i}
+                className={`${cardStyles[i % 3]} rounded-2xl p-7 flex flex-col gap-4 shadow-sm`}
+              >
+                <h3 className="text-gray-900 font-bold text-lg leading-snug">{review.title}</h3>
+                <p className="text-gray-600 text-base leading-relaxed flex-1">"{review.body}"</p>
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-gray-900 font-bold">{review.name}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="flex items-center justify-center gap-4 mt-10">
@@ -250,8 +257,8 @@ function App() {
       <section className="pt-28 bg-white">
 
         {/* Part 1 — Headline */}
-        <div className="text-center px-6 pt-8 pb-5">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-snug">
+        <div className="text-center px-6 pt-4 pb-3">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-snug">
             Painting Is Messy<br />
             Avoid The Stress With<br />
             A 3 Generation Crew That<br />
@@ -266,28 +273,28 @@ function App() {
             alt="McCracken Painting happy clients"
             fetchPriority="high"
             loading="eager"
-            className="w-full max-w-3xl lg:max-h-80 object-cover object-top rounded-2xl shadow-xl"
+            className="w-full max-w-2xl lg:max-h-64 object-cover object-center rounded-2xl shadow-xl"
           />
         </div>
 
         {/* Part 3 — Award badges */}
-        <div className="py-7 flex items-center justify-center gap-6 sm:gap-10 px-6">
+        <div className="py-5 flex items-center justify-center gap-6 sm:gap-10 px-6">
           {awards.map((award) => (
             <div
               key={award.src}
-              className="award-badge w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden flex-shrink-0"
+              className="award-badge w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden flex-shrink-0 bg-white"
             >
-              <img src={award.src} alt={award.alt} className="w-full h-full object-cover" />
+              <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
             </div>
           ))}
         </div>
       </section>
 
-      {/* ─── CTA BANNER ───────────────────────────────────────────── */}
-      <div className="bg-orange-500 py-6 px-6 text-center">
+      {/* ─── CTA BUTTON ───────────────────────────────────────────── */}
+      <div className="py-6 text-center bg-white">
         <button
           onClick={openModal}
-          className="text-white font-extrabold text-lg sm:text-xl lg:text-2xl px-6 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide"
+          className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-lg sm:text-xl lg:text-2xl px-8 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
         >
           Get My Professional Estimate For Free Within 24 Hrs
         </button>
@@ -295,21 +302,6 @@ function App() {
 
       {/* ─── REVIEWS (immediately after CTA so it peeks at fold) ─── */}
       <ReviewsSection />
-
-      {/* Marquee Banner */}
-      <div className="bg-white overflow-hidden border-y border-gray-200 shadow-sm py-4">
-        <div className="flex animate-marquee whitespace-nowrap" style={{ width: 'max-content' }}>
-          {[...Array(8)].map((_, i) => (
-            <span key={i} className="inline-flex items-center mx-12">
-              <img src="/McCracken_logo.jpg" alt="" className="h-14 w-auto object-contain mx-5" />
-              <span className="text-4xl font-extrabold tracking-widest uppercase">
-                <span className="text-gray-900">WE'RE THE BEST </span>
-                <span className="text-sky-400">HOUSE GUESTS EVER</span>
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* Portfolio Section */}
       <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
@@ -475,37 +467,35 @@ function App() {
       {/* Areas Served Section */}
       <section
         id="areasweserve"
-        className="relative py-14 overflow-hidden"
-        style={{ backgroundImage: 'url("/areas-served.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+        className="relative py-14 bg-white"
       >
-        <div className="absolute inset-0 bg-[#0a2a4a]/80"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
             <div>
-              <h2 className="text-4xl font-bold text-white uppercase tracking-wide mb-4">Areas We Serve</h2>
-              <p className="text-gray-300 mb-8 max-w-2xl text-xl">McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.</p>
+              <h2 className="text-4xl font-bold text-gray-900 uppercase tracking-wide mb-4">Areas We Serve</h2>
+              <p className="text-gray-600 mb-8 max-w-2xl text-xl">McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
                 {['Lafayette','Otterbein','Delphi','Frankfort','Monticello','Crawfordsville','Attica','Brookston','Lebanon','Rensselaer','Fowler','Thorntown','West Lafayette','Battle Ground','Shadeland','Dayton','Clarks Hill','Stockwell','Montmorenci'].map((area) => (
                   <div key={area} className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-cyan-400 flex-shrink-0" />
-                    <span className="text-white text-lg">{area}</span>
+                    <MapPin className="h-4 w-4 text-orange-500 flex-shrink-0" />
+                    <span className="text-gray-900 text-lg">{area}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-8 backdrop-blur-sm min-w-[280px]">
-              <h3 className="text-xl font-bold text-white uppercase tracking-wide mb-5">Contact Info:</h3>
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 min-w-[280px]">
+              <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide mb-5">Contact Info:</h3>
               <div className="space-y-4 mb-6">
-                <a href="tel:+17654302200" className="flex items-center gap-3 text-white hover:text-cyan-300 transition">
-                  <Phone className="h-5 w-5 text-cyan-400" />
+                <a href="tel:+17654302200" className="flex items-center gap-3 text-gray-900 hover:text-orange-500 transition">
+                  <Phone className="h-5 w-5 text-orange-500" />
                   <span className="text-lg font-medium">(765) 430-2200</span>
                 </a>
                 <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-white">104 Pineview Ln<br />Lafayette, IN 47905</span>
+                  <MapPin className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-gray-700">104 Pineview Ln<br />Lafayette, IN 47905</span>
                 </div>
               </div>
-              <button onClick={openModal} className="w-full bg-white text-gray-900 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition uppercase tracking-wide text-sm">
+              <button onClick={openModal} className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition uppercase tracking-wide text-sm">
                 Get a Free Quote
               </button>
             </div>
@@ -595,7 +585,7 @@ function App() {
       {/* Pulsing call button — bottom right */}
       <a
         href="tel:+17654302200"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-sky-400 hover:bg-sky-500 text-white font-bold px-5 py-3 rounded-full shadow-lg transition-transform hover:scale-105 animate-call-pulse"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-3 rounded-full shadow-lg transition-transform hover:scale-105 animate-call-pulse"
         aria-label="Call us now"
       >
         <Phone className="w-5 h-5" />
