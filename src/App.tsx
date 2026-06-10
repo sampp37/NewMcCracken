@@ -259,10 +259,8 @@ function App() {
         {/* Part 1 — Headline */}
         <div className="text-center px-6 pt-4 pb-3">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-snug">
-            Painting Is Messy<br />
-            Avoid The Stress With<br />
-            A 3 Generation Crew That<br />
-            Cleans Up Every Day Before Leaving
+            Painting Is Messy, Avoid The Stress With<br />
+            A 3 Generation Crew That Cleans Up Every Day Before Leaving
           </h1>
         </div>
 
@@ -273,7 +271,7 @@ function App() {
             alt="McCracken Painting happy clients"
             fetchPriority="high"
             loading="eager"
-            className="w-full max-w-2xl lg:max-h-64 object-cover object-center rounded-2xl shadow-xl"
+            className="w-full max-w-xl lg:max-h-52 object-contain rounded-2xl shadow-xl"
           />
         </div>
 
