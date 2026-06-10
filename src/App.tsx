@@ -254,49 +254,79 @@ function App() {
       </nav>
 
       {/* ─── HERO SECTION ─────────────────────────────────────────── */}
-      <section className="pt-28 bg-white">
+      <section className="pt-28 bg-white overflow-hidden">
 
-        {/* Part 1 — Headline */}
-        <div className="text-center px-6 pt-4 pb-3">
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-gray-900 leading-snug">
-            Painting Is Messy, Avoid The Stress With<br />
-            A 3 Generation Crew That Cleans Up Every Day Before Leaving
-          </h1>
-        </div>
+        {/* Mobile layout: headline → image → awards (stacked) */}
+        {/* Desktop layout: left col (headline + CTA + awards) | right col (image edge-to-edge) */}
+        <div className="flex flex-col lg:flex-row lg:items-stretch lg:min-h-[520px]">
 
-        {/* Part 2 — Main image */}
-        <div className="px-4 sm:px-8 flex justify-center">
-          <img
-            src="/McClients.webp"
-            alt="McCracken Painting happy clients"
-            fetchPriority="high"
-            loading="eager"
-            className="w-full max-w-xl lg:max-h-52 object-contain rounded-2xl shadow-xl"
-          />
-        </div>
+          {/* LEFT — content */}
+          <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-8 pb-6 lg:py-12 lg:w-[52%] xl:w-[48%] flex-shrink-0">
 
-        {/* Part 3 — Award badges */}
-        <div className="py-5 flex items-center justify-center gap-6 sm:gap-10 px-6">
-          {awards.map((award) => (
-            <div
-              key={award.src}
-              className="award-badge w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden flex-shrink-0 bg-white"
-            >
-              <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
+            {/* Headline — 4 lines on desktop, 2 lines on mobile */}
+            <h1 className="font-extrabold text-gray-900 leading-tight mb-6">
+              {/* Mobile: 2 lines */}
+              <span className="block lg:hidden text-2xl sm:text-3xl">
+                Painting Is Messy, Avoid The Stress With<br />
+                A 3 Generation Crew That Cleans Up Every Day Before Leaving
+              </span>
+              {/* Desktop: 4 lines */}
+              <span className="hidden lg:block text-3xl xl:text-4xl">
+                Painting Is Messy<br />
+                Avoid The Stress With<br />
+                A 3 Generation Crew That<br />
+                Cleans Up Every Day Before Leaving
+              </span>
+            </h1>
+
+            {/* CTA button */}
+            <div className="mb-8">
+              <button
+                onClick={openModal}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base sm:text-lg px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+              >
+                Get My Professional Estimate For Free Within 24 Hrs
+              </button>
             </div>
-          ))}
+
+            {/* Award badges */}
+            <div className="flex items-center gap-5 sm:gap-7">
+              {awards.map((award) => (
+                <div
+                  key={award.src}
+                  className="award-badge w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white"
+                >
+                  <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — image, edge-to-edge, no frame */}
+          {/* Mobile: show below content with slight padding */}
+          <div className="lg:hidden px-4 pb-6">
+            <img
+              src="/McClients.webp"
+              alt="McCracken Painting happy clients"
+              fetchPriority="high"
+              loading="eager"
+              className="w-full rounded-2xl shadow-xl object-contain"
+            />
+          </div>
+
+          {/* Desktop: fills the right column flush to top/bottom/right */}
+          <div className="hidden lg:block flex-1 relative">
+            <img
+              src="/McClients.webp"
+              alt="McCracken Painting happy clients"
+              fetchPriority="high"
+              loading="eager"
+              className="absolute inset-0 w-full h-full object-contain object-center"
+            />
+          </div>
+
         </div>
       </section>
-
-      {/* ─── CTA BUTTON ───────────────────────────────────────────── */}
-      <div className="py-6 text-center bg-white">
-        <button
-          onClick={openModal}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-lg sm:text-xl lg:text-2xl px-8 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
-        >
-          Get My Professional Estimate For Free Within 24 Hrs
-        </button>
-      </div>
 
       {/* ─── REVIEWS (immediately after CTA so it peeks at fold) ─── */}
       <ReviewsSection />
