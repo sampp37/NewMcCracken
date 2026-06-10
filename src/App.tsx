@@ -256,72 +256,78 @@ function App() {
       {/* ─── HERO SECTION ─────────────────────────────────────────── */}
       <section className="pt-28 bg-white overflow-hidden">
 
-        {/* Mobile layout: headline → image → awards (stacked) */}
-        {/* Desktop layout: left col (headline + CTA + awards) | right col (image edge-to-edge) */}
-        <div className="flex flex-col lg:flex-row lg:items-stretch lg:min-h-[520px]">
-
-          {/* LEFT — content */}
-          <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 pt-8 pb-6 lg:py-12 lg:w-[52%] xl:w-[48%] flex-shrink-0">
-
-            {/* Headline — 4 lines on desktop, 2 lines on mobile */}
-            <h1 className="font-extrabold text-gray-900 leading-tight mb-6">
-              {/* Mobile: 2 lines */}
-              <span className="block lg:hidden text-2xl sm:text-3xl">
-                Painting Is Messy, Avoid The Stress With<br />
-                A 3 Generation Crew That Cleans Up Every Day Before Leaving
-              </span>
-              {/* Desktop: 4 lines */}
-              <span className="hidden lg:block text-3xl xl:text-4xl">
-                Painting Is Messy<br />
-                Avoid The Stress With<br />
-                A 3 Generation Crew That<br />
-                Cleans Up Every Day Before Leaving
-              </span>
+        {/* ── MOBILE (< lg) ── centered headline → full-bleed image → awards */}
+        <div className="lg:hidden">
+          <div className="text-center px-6 pt-6 pb-5">
+            <h1 className="font-extrabold text-gray-900 leading-tight text-2xl sm:text-3xl">
+              Painting Is Messy, Avoid The Stress With<br />
+              A 3 Generation Crew That Cleans Up Every Day
             </h1>
+          </div>
+          {/* Full-bleed image — no padding, no rounding, no shadow */}
+          <img
+            src="/McClients.webp"
+            alt="McCracken Painting happy clients"
+            fetchPriority="high"
+            loading="eager"
+            className="w-full object-cover"
+            style={{ maxHeight: '70vw' }}
+          />
+          {/* Awards centered below image */}
+          <div className="flex items-center justify-center gap-6 py-6 px-6">
+            {awards.map((award) => (
+              <div key={award.src} className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white">
+                <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
+              </div>
+            ))}
+          </div>
+          {/* Mobile CTA */}
+          <div className="px-6 pb-8 text-center">
+            <button
+              onClick={openModal}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg w-full"
+            >
+              Get My Professional Estimate For Free Within 24 Hrs
+            </button>
+          </div>
+        </div>
 
-            {/* CTA button */}
+        {/* ── DESKTOP (≥ lg) ── left col content | right col edge-to-edge image */}
+        <div className="hidden lg:flex lg:items-stretch lg:min-h-[520px]">
+
+          {/* LEFT — headline, CTA, awards */}
+          <div className="flex flex-col justify-center px-12 lg:px-16 py-12 lg:w-[50%] xl:w-[46%] flex-shrink-0">
+            <h1 className="font-extrabold text-gray-900 leading-tight text-3xl xl:text-4xl mb-6">
+              Painting Is Messy<br />
+              Avoid The Stress With<br />
+              A 3 Generation Crew That<br />
+              Cleans Up Every Day
+            </h1>
             <div className="mb-8">
               <button
                 onClick={openModal}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base sm:text-lg px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
               >
                 Get My Professional Estimate For Free Within 24 Hrs
               </button>
             </div>
-
-            {/* Award badges */}
-            <div className="flex items-center gap-5 sm:gap-7">
+            <div className="flex items-center gap-5 lg:gap-7">
               {awards.map((award) => (
-                <div
-                  key={award.src}
-                  className="award-badge w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white"
-                >
+                <div key={award.src} className="w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white">
                   <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT — image, edge-to-edge, no frame */}
-          {/* Mobile: show below content with slight padding */}
-          <div className="lg:hidden px-4 pb-6">
+          {/* RIGHT — image fills column flush, no padding, no frame */}
+          <div className="flex-1 relative overflow-hidden">
             <img
               src="/McClients.webp"
               alt="McCracken Painting happy clients"
               fetchPriority="high"
               loading="eager"
-              className="w-full rounded-2xl shadow-xl object-contain"
-            />
-          </div>
-
-          {/* Desktop: fills the right column flush to top/bottom/right */}
-          <div className="hidden lg:block flex-1 relative">
-            <img
-              src="/McClients.webp"
-              alt="McCracken Painting happy clients"
-              fetchPriority="high"
-              loading="eager"
-              className="absolute inset-0 w-full h-full object-contain object-center"
+              className="absolute inset-0 w-full h-full object-cover object-center"
             />
           </div>
 
