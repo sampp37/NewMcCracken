@@ -384,7 +384,7 @@ function App() {
           {/* Awards centered below image */}
           <div className="flex items-center justify-center gap-6 py-6 px-6">
             {awards.map((award) => (
-              <div key={award.src} className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white">
+              <div key={award.src} className="w-[134px] h-[134px] sm:w-40 sm:h-40 rounded-full overflow-hidden flex-shrink-0 bg-white">
                 <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
               </div>
             ))}
@@ -395,7 +395,7 @@ function App() {
               onClick={openModal}
               className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg w-full"
             >
-              Get My Professional Estimate For Free Within 24 Hrs
+              Get My Professional Estimate For Free Today!
             </button>
           </div>
         </div>
@@ -416,12 +416,12 @@ function App() {
                 onClick={openModal}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-7 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
               >
-                Get My Professional Estimate For Free Within 24 Hrs
+                Get My Professional Estimate For Free Today!
               </button>
             </div>
             <div className="flex items-center gap-5 lg:gap-7">
               {awards.map((award) => (
-                <div key={award.src} className="w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden flex-shrink-0 bg-white">
+                <div key={award.src} className="w-[134px] h-[134px] lg:w-40 lg:h-40 rounded-full overflow-hidden flex-shrink-0 bg-white">
                   <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
                 </div>
               ))}
