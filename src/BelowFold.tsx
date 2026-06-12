@@ -517,33 +517,6 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
         </div>
       </section>
 
-      {/* Community Sponsors Banner */}
-      <div className="bg-white border-y border-gray-200 shadow-sm py-6">
-        <div className="flex flex-col items-center gap-4 px-6 md:hidden">
-          <h3 className="text-lg font-extrabold text-gray-900 uppercase tracking-wide">PROUDLY SPONSORING</h3>
-          <div className="flex items-center justify-center gap-8">
-            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-16 w-auto object-contain" loading="lazy" />
-            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-16 w-auto object-contain" loading="lazy" />
-            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-16 w-auto object-contain" loading="lazy" />
-          </div>
-        </div>
-        <div className="hidden md:flex relative items-center justify-between px-6 lg:px-12">
-          <div className="flex items-center gap-10">
-            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" loading="lazy" />
-            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" loading="lazy" />
-            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-20 w-auto object-contain" loading="lazy" />
-          </div>
-          <h3 className="absolute left-1/2 -translate-x-1/2 text-xl sm:text-2xl font-extrabold text-gray-900 uppercase tracking-wide whitespace-nowrap">
-            PROUDLY SPONSORING
-          </h3>
-          <div className="flex items-center gap-10">
-            <img src="/sponsor2....jpg" alt="Frontier School Corporation" className="h-20 w-auto object-contain" loading="lazy" />
-            <img src="/cottages.jpg" alt="The Cottages on Lindberg" className="h-20 w-auto object-contain" loading="lazy" />
-            <img src="/Sponsor...jpg" alt="Rich Goyer Brookston Open Golf" className="h-20 w-auto object-contain" loading="lazy" />
-          </div>
-        </div>
-      </div>
-
       {/* Areas Served */}
       <section id="areasweserve" className="relative py-14 bg-white">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -576,25 +549,6 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 Get a Free Quote
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Banner */}
-      <section
-        className="relative py-14 overflow-hidden"
-        style={{ backgroundImage: 'url("/MC-6.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
-      >
-        <div className="absolute inset-0 bg-[#0a1e2e]/75"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-6">
-            That Experienced Painter You Need? We're the One
-          </h2>
-          <div className="text-white text-lg leading-loose space-y-3">
-            <p>We understand that painting isn't just a project; it's an integral part of your home! That's why we:</p>
-            <p>Run background checks on all team members.</p>
-            <p>Communicate with you, so we can fully understand all your priorities and concerns.</p>
-            <p>Take extra precautions when prepping and cleaning.</p>
           </div>
         </div>
       </section>
