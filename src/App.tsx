@@ -1,5 +1,5 @@
-import { Phone, Menu, X, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Phone, Menu, X, MapPin, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import ContactForm from './ContactForm';
 
@@ -94,6 +94,114 @@ const awards = [
   { src: '/QBAward.webp', alt: 'Quality Business Awards 2025-2026 Winner' },
   { src: '/BBB.png', alt: 'BBB Torch Awards for Ethics Winner' },
 ];
+
+const serviceSlides = [
+  '/McClients1.webp',
+  '/McClients2.webp',
+  '/McClients3.webp',
+  '/McClients4.webp',
+];
+
+function ServiceCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const dragStartX = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const total = serviceSlides.length;
+
+  const next = useCallback(() => setCurrent(c => (c + 1) % total), [total]);
+  const prev = useCallback(() => setCurrent(c => (c - 1 + total) % total), [total]);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(next, 5000);
+  }, [next]);
+
+  useEffect(() => {
+    resetTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [resetTimer]);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    dragStartX.current = e.clientX;
+    setDragging(true);
+  };
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (dragStartX.current !== null) {
+      const delta = e.clientX - dragStartX.current;
+      if (delta < -50) { next(); resetTimer(); }
+      else if (delta > 50) { prev(); resetTimer(); }
+    }
+    dragStartX.current = null;
+    setDragging(false);
+  };
+  const handleMouseLeave = () => {
+    dragStartX.current = null;
+    setDragging(false);
+  };
+  const handleTouchStart = (e: React.TouchEvent) => {
+    dragStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (dragStartX.current !== null) {
+      const delta = e.changedTouches[0].clientX - dragStartX.current;
+      if (delta < -50) { next(); resetTimer(); }
+      else if (delta > 50) { prev(); resetTimer(); }
+    }
+    dragStartX.current = null;
+  };
+
+  return (
+    <div
+      className="relative overflow-hidden rounded-2xl shadow-xl select-none"
+      style={{ cursor: dragging ? 'grabbing' : 'grab' }}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Slide strip */}
+      <div
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {serviceSlides.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`McCracken Painting client ${i + 1}`}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            draggable={false}
+            className="w-full flex-shrink-0 object-cover"
+            style={{ aspectRatio: '4/3' }}
+          />
+        ))}
+      </div>
+
+      {/* Left arrow */}
+      <button
+        onClick={(e) => { e.stopPropagation(); prev(); resetTimer(); }}
+        aria-label="Previous photo"
+        className="group absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200
+          bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+      >
+        <ChevronLeft className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
+      </button>
+
+      {/* Right arrow */}
+      <button
+        onClick={(e) => { e.stopPropagation(); next(); resetTimer(); }}
+        aria-label="Next photo"
+        className="group absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200
+          bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+      >
+        <ChevronRight className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
+      </button>
+    </div>
+  );
+}
+
 
 function ReviewsSection() {
   const [reviewPage, setReviewPage] = useState(0);
@@ -334,8 +442,85 @@ function App() {
         </div>
       </section>
 
-      {/* ─── REVIEWS (immediately after CTA so it peeks at fold) ─── */}
+      {/* ─── REVIEWS ─── */}
       <ReviewsSection />
+
+      {/* ─── SERVICES + CAROUSEL ─── */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+
+          {/* Mobile: text → carousel → CTA */}
+          <div className="lg:hidden flex flex-col gap-8">
+            <div>
+              <h2 className="text-2xl font-extrabold text-orange-500 leading-tight mb-1">
+                Interior &amp; Exterior Painting
+              </h2>
+              <p className="text-gray-700 font-semibold text-base mb-5">
+                Award Winning Company – Local Family, Trusted Since 2000
+              </p>
+              <ul className="space-y-3">
+                {[
+                  'Furniture and Paintings are Handled with Respect',
+                  'Arrive Exactly When Promised',
+                  'Initial Quote Stays the Same',
+                  'Your House Rules are Our Priority',
+                  'Kids & Pets Friendly Environment',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <span className="text-gray-800 text-base font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ServiceCarousel />
+            <button
+              onClick={openModal}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+            >
+              Get My Professional Estimate for Free
+            </button>
+          </div>
+
+          {/* Desktop: carousel left | content right */}
+          <div className="hidden lg:flex items-center gap-14">
+            <div className="w-[55%] flex-shrink-0">
+              <ServiceCarousel />
+            </div>
+            <div className="flex-1 flex flex-col gap-6">
+              <div>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-orange-500 leading-tight mb-2">
+                  Interior &amp; Exterior Painting
+                </h2>
+                <p className="text-gray-700 font-semibold text-lg">
+                  Award Winning Company – Local Family, Trusted Since 2000
+                </p>
+              </div>
+              <ul className="space-y-4">
+                {[
+                  'Furniture and Paintings are Handled with Respect',
+                  'Arrive Exactly When Promised',
+                  'Initial Quote Stays the Same',
+                  'Your House Rules are Our Priority',
+                  'Kids & Pets Friendly Environment',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" strokeWidth={2.5} />
+                    <span className="text-gray-800 text-lg font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <button
+                onClick={openModal}
+                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+              >
+                Get My Professional Estimate for Free
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* Portfolio Section */}
       <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
