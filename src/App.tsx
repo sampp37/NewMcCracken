@@ -96,21 +96,24 @@ const awards = [
 ];
 
 const serviceSlides = [
-  '/McClients1.webp',
-  '/McClients2.webp',
-  '/McClients3.webp',
-  '/McClients4.webp',
+  { src: '/McClients1.webp', position: 'center 70%' },
+  { src: '/McClients2.webp', position: 'center 15%' },
+  { src: '/McClients3.webp', position: 'center center' },
+  { src: '/McClients4.webp', position: 'center center' },
 ];
 
 function ServiceCarousel() {
-  const [current, setCurrent] = useState(0);
+  const total = serviceSlides.length;
+  // Extended: [clone_of_last, s0, s1, s2, s3, clone_of_first]
+  const extSlides = [serviceSlides[total - 1], ...serviceSlides, serviceSlides[0]];
+  const [current, setCurrent] = useState(1);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [dragging, setDragging] = useState(false);
   const dragStartX = useRef<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = serviceSlides.length;
 
-  const next = useCallback(() => setCurrent(c => (c + 1) % total), [total]);
-  const prev = useCallback(() => setCurrent(c => (c - 1 + total) % total), [total]);
+  const next = useCallback(() => setCurrent(c => c + 1), []);
+  const prev = useCallback(() => setCurrent(c => c - 1), []);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -121,6 +124,23 @@ function ServiceCarousel() {
     resetTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [resetTimer]);
+
+  const handleTransitionEnd = () => {
+    if (current === total + 1) {
+      setTransitionEnabled(false);
+      setCurrent(1);
+    } else if (current === 0) {
+      setTransitionEnabled(false);
+      setCurrent(total);
+    }
+  };
+
+  useEffect(() => {
+    if (!transitionEnabled) {
+      const raf = requestAnimationFrame(() => requestAnimationFrame(() => setTransitionEnabled(true)));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [transitionEnabled]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     dragStartX.current = e.clientX;
@@ -163,18 +183,22 @@ function ServiceCarousel() {
     >
       {/* Slide strip */}
       <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${current * 100}%)` }}
+        className="flex"
+        style={{
+          transform: `translateX(-${current * 100}%)`,
+          transition: transitionEnabled ? 'transform 500ms ease-in-out' : 'none',
+        }}
+        onTransitionEnd={handleTransitionEnd}
       >
-        {serviceSlides.map((src, i) => (
+        {extSlides.map((slide, i) => (
           <img
-            key={src}
-            src={src}
-            alt={`McCracken Painting client ${i + 1}`}
-            loading={i === 0 ? 'eager' : 'lazy'}
+            key={i}
+            src={slide.src}
+            alt={`McCracken Painting client`}
+            loading={i === 1 ? 'eager' : 'lazy'}
             draggable={false}
             className="w-full flex-shrink-0 object-cover"
-            style={{ aspectRatio: '4/3' }}
+            style={{ aspectRatio: '4/3', objectPosition: slide.position }}
           />
         ))}
       </div>
@@ -183,8 +207,7 @@ function ServiceCarousel() {
       <button
         onClick={(e) => { e.stopPropagation(); prev(); resetTimer(); }}
         aria-label="Previous photo"
-        className="group absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200
-          bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+        className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
       >
         <ChevronLeft className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
       </button>
@@ -193,8 +216,7 @@ function ServiceCarousel() {
       <button
         onClick={(e) => { e.stopPropagation(); next(); resetTimer(); }}
         aria-label="Next photo"
-        className="group absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200
-          bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
       >
         <ChevronRight className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
       </button>
@@ -476,9 +498,9 @@ function App() {
             <ServiceCarousel />
             <button
               onClick={openModal}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg"
             >
-              Get My Professional Estimate for Free
+              Get My Professional Estimate For Free
             </button>
           </div>
 
@@ -512,9 +534,9 @@ function App() {
               </ul>
               <button
                 onClick={openModal}
-                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform hover:scale-105 transform uppercase tracking-wide shadow-lg"
+                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg"
               >
-                Get My Professional Estimate for Free
+                Get My Professional Estimate For Free
               </button>
             </div>
           </div>
