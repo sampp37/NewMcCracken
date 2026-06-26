@@ -8,7 +8,6 @@ const BelowFold = lazy(() => import('./BelowFold'));
 const awards = [
   { src: '/BBRAward.png', alt: 'Best of Business Rate 2025' },
   { src: '/QBAward.webp', alt: 'Quality Business Awards 2025-2026 Winner' },
-  { src: '/BBB.png', alt: 'BBB Torch Awards for Ethics Winner' },
 ];
 
 function App() {

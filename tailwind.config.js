@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        'pulse-subtle': {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.03)' },
+        'call-pulse': {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(249,115,22,0.6)' },
+          '50%': { boxShadow: '0 0 0 12px rgba(249,115,22,0)' },
         },
       },
       animation: {
-        'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+        'call-pulse': 'call-pulse 2s ease-in-out infinite',
       },
     },
   },
   plugins: [],
-};
+}

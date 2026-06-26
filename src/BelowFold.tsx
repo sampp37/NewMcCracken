@@ -209,7 +209,7 @@ function ServiceCarousel() {
 
 // ─── ReviewsSection ───────────────────────────────────────────────────────────
 
-function ReviewsSection({ openModal }: { openModal: () => void }) {
+function ReviewsSection() {
   const [reviewPage, setReviewPage] = useState(0);
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
@@ -303,13 +303,12 @@ function ReviewsSection({ openModal }: { openModal: () => void }) {
 
 export default function BelowFold({ openModal }: { openModal: () => void }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const handleOpen = () => { openModal(); setModalOpen(true); };
   const handleClose = () => setModalOpen(false);
 
   return (
     <>
       {/* Reviews */}
-      <ReviewsSection openModal={openModal} />
+      <ReviewsSection />
 
       {/* Services + Carousel */}
       <section className="bg-white py-16">
