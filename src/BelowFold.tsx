@@ -70,7 +70,6 @@ const allReviews = [
 const serviceSlides = [
   { src: '/McClients1.webp', position: 'center 70%' },
   { src: '/McClients2.webp', position: 'center 15%' },
-  { src: '/McClients3.webp', position: 'center center' },
   { src: '/McClients4.webp', position: 'center center' },
 ];
 
@@ -113,8 +112,8 @@ function ServiceCarousel() {
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(next, 5000);
-  }, [next]);
+    timerRef.current = setInterval(() => setCurrent(c => c + 1), 5000);
+  }, []);
 
   useEffect(() => {
     resetTimer();
@@ -122,10 +121,10 @@ function ServiceCarousel() {
   }, [resetTimer]);
 
   const handleTransitionEnd = () => {
-    if (current === total + 1) {
+    if (current >= total + 1) {
       setTransitionEnabled(false);
       setCurrent(1);
-    } else if (current === 0) {
+    } else if (current <= 0) {
       setTransitionEnabled(false);
       setCurrent(total);
     }
