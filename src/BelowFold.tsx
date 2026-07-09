@@ -73,29 +73,6 @@ const serviceSlides = [
   { src: '/McClients4.webp', position: 'center center' },
 ];
 
-// ─── PortfolioImage ───────────────────────────────────────────────────────────
-
-function PortfolioImage() {
-  const [tapped, setTapped] = useState(false);
-  return (
-    <div
-      className="overflow-visible flex items-center justify-center cursor-pointer"
-      onClick={() => setTapped(t => !t)}
-    >
-      <img
-        src="/portfolio_(2).webp"
-        alt="McCracken Painting portfolio of completed projects"
-        loading="lazy"
-        className={[
-          'w-full rounded-lg transition-transform duration-300 origin-center',
-          'md:hover:scale-110',
-          tapped ? 'scale-110 md:scale-100' : '',
-        ].join(' ')}
-      />
-    </div>
-  );
-}
-
 // ─── ServiceCarousel ──────────────────────────────────────────────────────────
 
 function ServiceCarousel() {
@@ -382,21 +359,61 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
         </div>
       </section>
 
-      {/* Portfolio */}
-      <section id="portfolio" className="bg-white py-16" style={{ minHeight: '85vh', display: 'flex', alignItems: 'center' }}>
+      {/* Services */}
+      <section id="portfolio" className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
           <h2 className="text-4xl sm:text-5xl font-bold text-black text-center mb-12 uppercase tracking-wide">
-            Portfolio
+            Lafayette &ndash; Indiana Painting Services
           </h2>
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="w-full lg:w-1/2 space-y-6">
-              <p className="text-gray-800" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '20px', lineHeight: '1.8' }}>
-                We promise to be the best house guest you've ever had. Through courtesy and attention to detail, we ensure that every piece of furniture, lamp, speaker, artwork, and decorative object is carefully handled, protected, and returned to its original position.
-              </p>
-            </div>
-            <div className="w-full lg:w-1/2">
-              <PortfolioImage />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Exterior Painting',
+                img: '/w-exterior1.webp',
+                alt: 'Exterior house painting Lafayette Indiana',
+                text: 'Taking care of your garden and avoiding painting drips is our focus while painting the exteriors of Lafayette houses.',
+              },
+              {
+                title: 'Interior Painting',
+                img: '/w-interior.webp',
+                alt: 'Interior painting service Lafayette Indiana',
+                text: 'All your belongings are treated with respect and put back in their place. Keeping a pet & kids-friendly environment is a minimum requirement.',
+              },
+              {
+                title: 'Pressure Washing',
+                img: '/w-powerwash.webp',
+                alt: 'Pressure washing service Lafayette Indiana',
+                text: 'Let your neighbors think you got a new paint job. Pressure washing done right, focused on bringing back to life your house — no paint needed.',
+              },
+              {
+                title: 'Deck Painting',
+                img: '/w-deck.webp',
+                alt: 'Deck painting service Lafayette Indiana',
+                text: 'Want to supercharge your relaxing moments with a fresh new deck? Our deck painting service gives you the relaxation you really deserve.',
+              },
+              {
+                title: 'Garage Epoxy Floor',
+                img: '/w-epoxy.webp',
+                alt: 'Garage epoxy floor service Lafayette Indiana',
+                text: 'Trusted epoxy flooring experts. Durable, slip-resistant floors for garages, basements & businesses.',
+              },
+            ].map(({ title, img, alt, text }) => (
+              <div key={title} className="rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col">
+                <div className="overflow-hidden">
+                  <img
+                    src={img}
+                    alt={alt}
+                    loading="lazy"
+                    className="w-full object-cover transition-transform duration-300 hover:scale-105"
+                    style={{ aspectRatio: '4/3' }}
+                  />
+                </div>
+                <div className="p-6 flex flex-col gap-3 flex-1">
+                  <h3 className="text-xl font-bold text-orange-500 uppercase tracking-wide">{title}</h3>
+                  <p className="text-gray-700 text-base leading-relaxed flex-1">{text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -533,112 +550,59 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
             </div>
             <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 min-w-[280px]">
               <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide mb-5">Contact Info:</h3>
-              <div className="space-y-4 mb-6">
-                <a href="tel:+17654302200" className="flex items-center gap-3 text-gray-900 hover:text-orange-500 transition">
-                  <Phone className="h-5 w-5 text-orange-500" />
-                  <span className="text-lg font-medium">(765) 430-2200</span>
-                </a>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">104 Pineview Ln<br />Lafayette, IN 47905</span>
-                </div>
+              <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Phone className="h-5 w-5 text-orange-500 flex-shrink-0" />
+                <a href="tel:+17654302200" className="text-gray-700 hover:text-orange-500 transition font-medium">(765) 430-2200</a>
               </div>
-              <button onClick={openModal} className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition uppercase tracking-wide text-sm">
-                Get a Free Quote
+              <div className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700">104 Pineview Ln<br />Lafayette, IN 47905</span>
+              </div>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition mt-2"
+              >
+                Get a Free Estimate
               </button>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Color Studio */}
-      <section
-        id="colors"
-        className="relative py-16"
-        style={{ minHeight: '85vh', display: 'flex', alignItems: 'center', backgroundImage: 'url("/MC-S3.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
-      >
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 w-full">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white uppercase tracking-wide text-center mb-10">
-            How To Choose Colors?
-          </h2>
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="w-full lg:w-1/2">
-              <img src="/Color_consultation11.webp" alt="Color consultation paint buckets" className="w-full rounded-lg" loading="lazy" />
-            </div>
-            <div className="w-full lg:w-1/2 space-y-6">
-              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
-                When every color is available at your fingertips, the creative possibilities are endless.
-              </p>
-              <p className="text-gray-200" style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '19.5px', lineHeight: '1.8' }}>
-                Our professionals are always on hand to answer any questions and offer free expert color suggestions.
-              </p>
-              <div className="flex flex-col items-start gap-2">
-                <button
-                  onClick={openModal}
-                  className="inline-flex items-center justify-center bg-sky-400 hover:bg-sky-500 text-white px-8 py-4 rounded-lg transition text-lg font-bold hover:scale-105 transform border-4 border-white uppercase tracking-wide"
-                >
-                  SAME DAY FREE QUOTE NOW
-                </button>
-                <span className="text-gray-300 font-semibold text-sm uppercase tracking-wide">Same Day Spots Are Filling Up Fast!</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <div id="FreeEstimate" />
-      <section id="contact" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-            <p className="text-xl text-gray-600">Ready to transform your space? Contact us today for a free estimate.</p>
-          </div>
-          <div className="rounded-2xl overflow-hidden bg-[#1a3a9e] px-8 py-10 flex flex-col items-center gap-6 shadow-2xl">
-            <p className="text-white text-2xl sm:text-3xl font-extrabold uppercase tracking-wide text-center">
-              GET A FREE ESTIMATE IN 24 HRS
-            </p>
-            <button
-              onClick={openModal}
-              className="px-12 py-4 rounded-lg border-2 border-[#2cc4c4] text-white font-extrabold text-lg uppercase tracking-widest hover:bg-[#2cc4c4]/20 transition"
-            >
-              GET A FREE ESTIMATE TODAY
-            </button>
-            <p className="text-white/80 text-sm font-semibold tracking-wide">*Same Day Spots Filling Fast!</p>
-          </div>
-        </div>
-      </section>
+      </div>
+    </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
+      <footer className="bg-gray-900 text-white pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
             <div>
-              <div className="flex items-center mb-4">
-                <img src="/McCracken_logo.jpg" alt="McCracken Painting" className="h-16" loading="lazy" />
-              </div>
+              <img src="/McCracken_Painting_Logo.webp" alt="McCracken Painting Logo" className="h-14 mb-4 object-contain" loading="lazy" />
               <p className="text-gray-400">Professional painting services in West Lafayette, Indiana for over 25 years.</p>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4">Services</h4>
+              <h4 className="text-white font-bold uppercase tracking-wide mb-4">Services</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#contact" className="hover:text-white transition">Residential Painting</a></li>
-                <li><a href="#contact" className="hover:text-white transition">Commercial Painting</a></li>
-                <li><a href="#contact" className="hover:text-white transition">Interior Painting</a></li>
-                <li><a href="#contact" className="hover:text-white transition">Exterior Painting</a></li>
+                <li>Exterior Painting</li>
+                <li>Interior Painting</li>
+                <li>Pressure Washing</li>
+                <li>Deck Painting</li>
+                <li>Garage Epoxy Floor</li>
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-bold mb-4">Contact</h4>
+              <h4 className="text-white font-bold uppercase tracking-wide mb-4">Service Areas</h4>
               <ul className="space-y-2 text-gray-400">
                 <li>West Lafayette, Indiana</li>
-                <li>(765) 430-2200</li>
-                <li>Monday - Friday</li>
+                <li>Lafayette, Indiana</li>
+                <li>Frankfort, Indiana</li>
+                <li>Crawfordsville, Indiana</li>
+                <li>Battle Ground, Indiana</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2026 McCracken Painting. All rights reserved.</p>
+          <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-sm">
+            <p>&copy; {new Date().getFullYear()} McCracken Painting. All rights reserved.</p>
+            <a href="tel:+17654302200" className="hover:text-orange-400 transition">(765) 430-2200</a>
           </div>
         </div>
       </footer>

@@ -1,161 +1,82 @@
-import { Phone, Menu, X } from 'lucide-react';
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Phone } from 'lucide-react';
+import BelowFold from './BelowFold';
 import ContactForm from './ContactForm';
 
-const BelowFold = lazy(() => import('./BelowFold'));
-
-const awards = [
-  { src: '/BBRAward.png', alt: 'Best of Business Rate 2025' },
-  { src: '/QBAward.webp', alt: 'Quality Business Awards 2025-2026 Winner' },
-];
-
-function App() {
-  const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location]);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      <nav className="fixed w-full bg-white shadow-sm z-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex items-center h-28">
-            <div className="hidden md:flex flex-1 items-center justify-around">
-              <a href="#reviews" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Reviews</a>
-              <a href="#colors" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Colors</a>
-            </div>
-            <div className="flex-shrink-0 flex items-center h-24 mx-8">
-              <img src="/McCracken_logo.jpg" alt="McCracken Painting" className="h-full w-auto object-contain" />
-            </div>
-            <div className="hidden md:flex flex-1 items-center justify-around">
-              <a href="#areasweserve" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Areas Served</a>
-              <a href="#contact" className="text-black hover:text-gray-700 transition text-2xl font-extrabold whitespace-nowrap">Contact</a>
-            </div>
-            <div className="md:hidden ml-auto">
-              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-4 py-4 space-y-3">
-              <a href="#reviews" className="block text-gray-700 hover:text-blue-600">Reviews</a>
-              <a href="#colors" className="block text-gray-700 hover:text-blue-600">Colors</a>
-              <a href="#areasweserve" className="block text-gray-700 hover:text-blue-600">Areas Served</a>
-              <a href="#contact" className="block text-gray-700 hover:text-blue-600">Contact</a>
-            </div>
-          </div>
-        )}
-      </nav>
+    <>
+      {/* Sticky Navigation */}
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <a href="#" className="flex items-center gap-2 flex-shrink-0">
+              <img
+                src="/McCracken_Painting_Logo.webp"
+                alt="McCracken Painting"
+                className="h-10 object-contain"
+              />
+            </a>
 
-      {/* ─── HERO SECTION ─────────────────────────────────────────── */}
-      <section className="pt-28 bg-white overflow-hidden">
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700">
+              <a href="#reviews" className="hover:text-orange-500 transition">Reviews</a>
+              <a href="#portfolio" className="hover:text-orange-500 transition">Services</a>
+              <a href="#about" className="hover:text-orange-500 transition">About</a>
+              <a href="#areasweserve" className="hover:text-orange-500 transition">Areas</a>
+            </nav>
 
-        {/* Mobile */}
-        <div className="lg:hidden">
-          <div className="text-center px-6 pt-6 pb-5">
-            <h1 className="font-extrabold text-gray-900 leading-tight text-2xl sm:text-3xl">
-              Painting Is Messy, Avoid The Stress With<br />
-              A 3 Generation Crew That Cleans Up Every Day
-            </h1>
-          </div>
-          <img
-            src="/McClients.webp"
-            alt="McCracken Painting happy clients"
-            fetchPriority="high"
-            loading="eager"
-            className="w-full object-cover"
-            style={{ maxHeight: '70vw' }}
-          />
-          <div className="flex items-center justify-center gap-6 py-6 px-6">
-            {awards.map((award) => (
-              <div key={award.src} className="w-[134px] h-[134px] sm:w-40 sm:h-40 rounded-full overflow-hidden flex-shrink-0 bg-white">
-                <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
-              </div>
-            ))}
-          </div>
-          <div className="px-6 pb-8 text-center">
-            <button
-              onClick={openModal}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base px-7 py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg w-full"
-            >
-              Get My Professional Estimate For Free Today!
-            </button>
-          </div>
-        </div>
-
-        {/* Desktop */}
-        <div className="hidden lg:flex lg:items-stretch lg:min-h-[520px]">
-          <div className="flex flex-col justify-center px-12 lg:px-16 py-12 lg:w-[50%] xl:w-[46%] flex-shrink-0">
-            <h1 className="font-extrabold text-gray-900 leading-tight text-3xl xl:text-4xl mb-6">
-              Painting Is Messy<br />
-              Avoid The Stress With<br />
-              A 3 Generation Crew That<br />
-              Cleans Up Every Day
-            </h1>
-            <div className="mb-8">
-              <button
-                onClick={openModal}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-7 py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg"
+            <div className="flex items-center gap-3">
+              <a
+                href="tel:+17654302200"
+                className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-orange-500 transition font-semibold text-sm"
               >
-                Get My Professional Estimate For Free Today!
+                <Phone className="w-4 h-4" />
+                (765) 430-2200
+              </a>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-4 py-2 rounded-lg transition"
+              >
+                Get a Free Estimate
+              </button>
+              <button
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+                onClick={() => setMenuOpen(m => !m)}
+                aria-label="Toggle menu"
+              >
+                <span className="block w-5 h-0.5 bg-gray-700 mb-1" />
+                <span className="block w-5 h-0.5 bg-gray-700 mb-1" />
+                <span className="block w-5 h-0.5 bg-gray-700" />
               </button>
             </div>
-            <div className="flex items-center gap-5 lg:gap-7">
-              {awards.map((award) => (
-                <div key={award.src} className="w-[134px] h-[134px] lg:w-40 lg:h-40 rounded-full overflow-hidden flex-shrink-0 bg-white">
-                  <img src={award.src} alt={award.alt} className="w-full h-full object-contain" />
-                </div>
-              ))}
-            </div>
           </div>
-          <div className="flex-1 relative overflow-hidden">
-            <img
-              src="/McClients.webp"
-              alt="McCracken Painting happy clients"
-              fetchPriority="high"
-              loading="eager"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-          </div>
+
+          {/* Mobile menu */}
+          {menuOpen && (
+            <nav className="md:hidden pb-4 flex flex-col gap-3 text-sm font-semibold text-gray-700 border-t border-gray-100 pt-3">
+              <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Reviews</a>
+              <a href="#portfolio" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Services</a>
+              <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">About</a>
+              <a href="#areasweserve" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Areas</a>
+              <a href="tel:+17654302200" className="flex items-center gap-2 hover:text-orange-500 transition">
+                <Phone className="w-4 h-4" />
+                (765) 430-2200
+              </a>
+            </nav>
+          )}
         </div>
-      </section>
+      </header>
 
-      {/* ─── BELOW FOLD (lazy) ─────────────────────────────────────── */}
-      <Suspense fallback={<div className="h-32" />}>
-        <BelowFold openModal={openModal} />
-      </Suspense>
+      {/* Offset for fixed header */}
+      <div className="h-16" />
 
-      {modalOpen && <ContactForm onClose={closeModal} />}
+      <BelowFold openModal={() => setModalOpen(true)} />
 
-      {/* Floating call button */}
-      <a
-        href="tel:+17654302200"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-3 rounded-full shadow-lg transition-transform hover:scale-105 animate-call-pulse"
-        aria-label="Call us now"
-      >
-        <Phone className="w-5 h-5" />
-        <span className="text-sm font-bold uppercase tracking-wide">Call</span>
-      </a>
-    </div>
+      {modalOpen && <ContactForm onClose={() => setModalOpen(false)} />}
+    </>
   );
 }
-
-export default App;

@@ -1,5 +1,4 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { createClient } from "npm:@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -13,67 +12,53 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { name, phone, details } = await req.json();
+    const { name, email, phone, message } = await req.json();
 
-    if (!name || !phone) {
-      return new Response(JSON.stringify({ error: "Name and phone are required" }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    if (!RESEND_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: "RESEND_API_KEY not configured" }),
+        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
     }
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const resendApiKey = Deno.env.get("RESEND_API_KEY");
-
-    // Save lead to database first — this is the source of truth
-    const supabase = createClient(supabaseUrl, serviceRoleKey);
-    const { error: dbError } = await supabase
-      .from("leads")
-      .insert({ name, phone, details: details || "" });
-
-    if (dbError) {
-      console.error("DB insert error:", dbError);
-      return new Response(JSON.stringify({ error: `Database error: ${dbError.message}` }), {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    // Send email via Resend — if this fails the lead is still saved in DB
-    if (resendApiKey) {
-      const emailBody = `New estimate request from McCracken Painting website:\n\nName: ${name}\nPhone: ${phone}\nDetails: ${details || "Not provided"}`;
-
-      const emailRes = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${resendApiKey}`,
-        },
-        body: JSON.stringify({
-          from: "McCracken Painting <onboarding@resend.dev>",
-          to: ["mccrackenpainting@gmail.com"],
-          subject: `New Estimate Request from ${name}`,
-          text: emailBody,
-        }),
-      });
-
-      if (!emailRes.ok) {
-        const emailErr = await emailRes.text();
-        console.error("Resend error (lead already saved to DB):", emailErr);
-      }
-    }
-
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "McCracken Painting <leads@mccrackenpainting.com>",
+        to: ["info@mccrackenpainting.com"],
+        subject: `New Lead: ${name}`,
+        html: `
+          <h2>New Lead from McCracken Painting Website</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+          <p><strong>Message:</strong> ${message || "No message"}</p>
+        `,
+      }),
     });
+
+    if (!res.ok) {
+      const error = await res.text();
+      return new Response(
+        JSON.stringify({ error }),
+        { status: res.status, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    const data = await res.json();
+    return new Response(
+      JSON.stringify({ success: true, id: data.id }),
+      { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
   } catch (err) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Edge function error:", message);
-    return new Response(JSON.stringify({ error: message }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({ error: String(err) }),
+      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
+    );
   }
 });
