@@ -14,34 +14,40 @@ export default function ContactForm({ onClose }: ContactFormProps) {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(false);
     try {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-      if (supabaseUrl && supabaseKey) {
-        await fetch(`${supabaseUrl}/rest/v1/leads`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${supabaseKey}`,
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-          }),
-        });
+      if (!supabaseUrl || !supabaseKey) throw new Error('Missing Supabase config');
+      const res = await fetch(`${supabaseUrl}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
+      if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'conversion', { send_to: 'AW-17160454175/I_OqCJ-RpM0cEJ-A3_Y_' });
       }
+      setSubmitted(true);
     } catch (err) {
       console.error('Failed to save lead:', err);
+      setError(true);
     }
     setLoading(false);
-    setSubmitted(true);
   };
 
   return (
@@ -126,6 +132,11 @@ export default function ContactForm({ onClose }: ContactFormProps) {
               >
                 {loading ? 'Sending...' : 'Get My Free Estimate'}
               </button>
+              {error && (
+                <p className="text-red-500 text-sm text-center">
+                  Something went wrong. Please try again or call us at (765) 430-2200.
+                </p>
+              )}
             </form>
           </div>
         )}
