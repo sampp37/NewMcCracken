@@ -69,7 +69,7 @@ const allReviews = [
 
 const serviceSlides = [
   { src: '/McClients1.webp', position: 'center 70%' },
-  { src: '/Mcclients222.webp', position: 'center 15%' },
+  { src: '/Mcclients222.webp', position: 'center center' },
   { src: '/McClients4.webp', position: 'center center' },
 ];
 
