@@ -104,11 +104,11 @@ export default function App() {
         </div>
 
         {/* Right: Image */}
-        <div className="flex-1 relative min-h-[50vw] lg:min-h-0">
+        <div className="flex-1 relative min-h-[60vw] lg:min-h-0">
           <img
-            src="/McClients00.webp"
+            src="/McClients...webp"
             alt="McCracken Painting — Family Owners"
-            className="absolute inset-0 w-full h-full object-contain object-center"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
         </div>
       </section>
