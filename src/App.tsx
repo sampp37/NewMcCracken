@@ -77,13 +77,13 @@ export default function App() {
           {/* Left: Text */}
           <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
             <div className="max-w-lg w-full text-center mx-auto">
-              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-4 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
-                THIRD GENERATION<br />OF PAINTERS
+              <h1 className="font-black text-orange-500 leading-none tracking-tight mb-3 text-xl sm:text-2xl lg:text-[1.5rem] xl:text-[1.65rem] whitespace-nowrap">
+                THIRD GENERATION OF PAINTERS
               </h1>
               <p className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
                 Award Winning Company<br />
-                Serving Lafayette<br />
-                and Surroundings
+                Serving Lafayette Area<br />
+                And Surroundings
               </p>
               <div className="flex justify-center mb-6">
                 <button
@@ -93,7 +93,7 @@ export default function App() {
                   GET MY FREE ESTIMATE TODAY
                 </button>
               </div>
-              <p className="text-gray-700 text-sm font-medium mb-6">
+              <p className="text-gray-700 text-lg font-bold mb-6">
                 5 Stars Google
                 <span className="mx-2 text-gray-400">&bull;</span>
                 Family Owned
