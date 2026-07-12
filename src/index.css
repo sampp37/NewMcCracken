@@ -10,3 +10,20 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 }
+
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.18); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.14); }
+  70%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.award-card:hover {
+  transform: scale(1.05);
+}
+
+.award-card:hover .award-img {
+  animation: heartbeat 0.85s ease-in-out infinite;
+}

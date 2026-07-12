@@ -367,13 +367,13 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               { src: '/award1.webp', alt: '2025-2026 Quality Business Award Winner', label: '2025-2026 Winner Quality Business Award' },
               { src: '/S-w-logo-p%20copy.webp', alt: 'Sherwin-Williams Preferred Painter', label: '12 Months Satisfaction Warranty, Wear and Tear Included.' },
             ].map(({ src, alt, label }) => (
-              <div key={label} className="bg-white rounded-2xl shadow-md flex flex-col items-center justify-between px-6 pt-10 pb-8 gap-6">
+              <div key={label} className="award-card bg-white rounded-2xl shadow-md flex flex-col items-center justify-between px-6 pt-10 pb-8 gap-6 transition-transform duration-300 cursor-default">
                 <div className="flex items-center justify-center w-full" style={{ height: '9rem' }}>
                   <img
                     src={src}
                     alt={alt}
                     loading="lazy"
-                    className="max-h-full max-w-full object-contain"
+                    className="award-img max-h-full max-w-full object-contain"
                   />
                 </div>
                 <p className="text-orange-500 font-extrabold text-center text-base leading-snug">
