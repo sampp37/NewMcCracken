@@ -101,15 +101,15 @@ export default function App() {
                 <span className="mx-2 text-gray-400">&bull;</span>
                 Over 1000 Projects
               </p>
-              <div className="flex items-center justify-between gap-3 sm:gap-4 w-full">
+              <div className="flex items-center justify-between gap-6 sm:gap-8 w-full">
                 <div className="flex-1 flex justify-center">
-                  <img src="/award1-p.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/award1-p.webp" alt="Award" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/awardp.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/consumersp.webp" alt="Consumer Choice Premier Business 2025" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
               </div>
             </div>
