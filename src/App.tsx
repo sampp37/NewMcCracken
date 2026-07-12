@@ -75,30 +75,32 @@ export default function App() {
       <section className="mt-16 bg-white">
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
-          <div className="w-full lg:w-[35%] flex items-center justify-start px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
-            <div className="max-w-lg w-full">
-              <p className="text-orange-500 font-extrabold text-lg sm:text-xl tracking-tight mb-3">
-                McCracken-Painting
-              </p>
-              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
-                Award-Winning Painting<br />
-                Company Serving<br />
-                Lafayette Indiana
+          <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
+            <div className="max-w-lg w-full text-center mx-auto">
+              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-4 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
+                THIRD GENERATION<br />OF PAINTERS
               </h1>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm px-6 py-3 rounded-md transition-colors shadow-sm mb-6"
-              >
-                Get My Free Estimate
-              </button>
-              <p className="text-gray-700 text-sm font-medium mb-6">
-                500+ Five-Star Reviews
-                <span className="mx-2 text-gray-400">&bull;</span>
-                25+ Years Experience
-                <span className="mx-2 text-gray-400">&bull;</span>
-                Family Owned &amp; Operated Since 2000
+              <p className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
+                Award Winning Company<br />
+                Serving Lafayette<br />
+                and Surroundings
               </p>
-              <div className="flex items-center gap-5 flex-wrap">
+              <div className="flex justify-center mb-6">
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm px-6 py-3 rounded-md transition-colors shadow-sm uppercase tracking-wide"
+                >
+                  GET MY FREE ESTIMATE TODAY
+                </button>
+              </div>
+              <p className="text-gray-700 text-sm font-medium mb-6">
+                5 Stars Google
+                <span className="mx-2 text-gray-400">&bull;</span>
+                Family Owned
+                <span className="mx-2 text-gray-400">&bull;</span>
+                Over 1000 Projects
+              </p>
+              <div className="flex items-center justify-center gap-5 flex-wrap">
                 <img src="/award1-p.webp" alt="Award" className="h-16 w-auto object-contain" />
                 <img src="/awardp.webp" alt="Award" className="h-16 w-auto object-contain" />
                 <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-16 w-auto object-contain" />
