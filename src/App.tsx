@@ -76,16 +76,14 @@ export default function App() {
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
           <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
-            <div className="max-w-lg w-full text-center mx-auto">
-              <h1 className="font-black text-orange-500 leading-none tracking-tight mb-3 text-xl sm:text-2xl lg:text-[1.5rem] xl:text-[1.65rem] whitespace-nowrap">
-                THIRD GENERATION OF PAINTERS
+            <div className="max-w-lg w-full">
+              <h1 className="font-black text-orange-500 leading-none tracking-tight mb-3 text-xl sm:text-2xl lg:text-[1.5rem] xl:text-[1.65rem]">
+                McCracken-Painting
               </h1>
               <p className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
-                Award Winning Company<br />
-                Serving Lafayette Area<br />
-                And Surroundings
+                Award-Winning Painting Company Serving Lafayette Area And Surroundings
               </p>
-              <div className="flex justify-center mb-6">
+              <div className="flex mb-6">
                 <button
                   onClick={() => setModalOpen(true)}
                   className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm px-6 py-3 rounded-md transition-colors shadow-sm uppercase tracking-wide"
@@ -100,7 +98,7 @@ export default function App() {
                 <span className="mx-2 text-gray-400">&bull;</span>
                 Over 1000 Projects
               </p>
-              <div className="flex items-center justify-center gap-5 flex-wrap">
+              <div className="flex items-center gap-5 flex-wrap">
                 <img src="/award1-p.webp" alt="Award" className="h-16 w-auto object-contain" />
                 <img src="/awardp.webp" alt="Award" className="h-16 w-auto object-contain" />
                 <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-16 w-auto object-contain" />
