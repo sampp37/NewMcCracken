@@ -77,8 +77,9 @@ export default function App() {
           {/* Left: Text */}
           <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
             <div className="max-w-lg w-full">
-              <h1 className="font-black text-orange-500 uppercase leading-none tracking-tight mb-3 text-2xl sm:text-3xl lg:text-[1.75rem] xl:text-[2rem] whitespace-nowrap">
-                THIRD GENERATION OF PAINTERS
+              <h1 className="font-black text-orange-500 uppercase leading-[1.05] tracking-tight mb-3 text-2xl sm:text-3xl lg:text-[1.75rem] xl:text-[2rem]">
+                THIRD GENERATION OF<br />
+                PAINTERS
               </h1>
               <p className="font-black text-slate-900 leading-[1.1] tracking-tight mb-6 text-xl sm:text-2xl lg:text-[1.4rem] xl:text-[1.65rem]">
                 Award Winning Company<br />
