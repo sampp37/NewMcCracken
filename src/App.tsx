@@ -12,24 +12,24 @@ export default function App() {
       {/* Sticky Navigation */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20 sm:h-24">
             <a href="#" className="flex items-center gap-2 flex-shrink-0">
               <img
                 src="/McCracken_Painting_Logo.webp"
                 alt="McCracken Painting"
-                className="h-10 object-contain"
+                className="h-14 sm:h-16 lg:h-20 object-contain"
               />
             </a>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-gray-700">
+            <nav className="hidden md:flex items-center gap-12 lg:gap-16 text-lg lg:text-xl font-semibold text-gray-700">
               <a href="#reviews" className="hover:text-orange-500 transition">Reviews</a>
               <a href="#portfolio" className="hover:text-orange-500 transition">Services</a>
               <a href="#about" className="hover:text-orange-500 transition">About</a>
               <a href="#areasweserve" className="hover:text-orange-500 transition">Areas</a>
             </nav>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4 lg:gap-6 ml-6 lg:ml-10">
               <a
                 href="tel:+17654302200"
                 className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-orange-500 transition font-semibold text-sm"
@@ -39,9 +39,9 @@ export default function App() {
               </a>
               <button
                 onClick={() => setModalOpen(true)}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-4 py-2 rounded-lg transition"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition"
               >
-                Get a Free Estimate
+                Get a Free Estimate Today
               </button>
               <button
                 className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
@@ -72,7 +72,7 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="mt-16 bg-white">
+      <section className="mt-20 sm:mt-24 bg-white">
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
           <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
@@ -103,13 +103,13 @@ export default function App() {
               </p>
               <div className="flex items-center justify-between gap-3 sm:gap-4 w-full">
                 <div className="flex-1 flex justify-center">
-                  <img src="/award1-p.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                  <img src="/award1-p.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/awardp.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                  <img src="/awardp.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain cursor-pointer transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
               </div>
             </div>
