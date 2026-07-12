@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone } from 'lucide-react';
+import { Phone, Calendar } from 'lucide-react';
 import BelowFold from './BelowFold';
 import ContactForm from './ContactForm';
 
@@ -71,8 +71,47 @@ export default function App() {
         </div>
       </header>
 
-      {/* Offset for fixed header */}
-      <div className="h-16" />
+      {/* Hero Section */}
+      <section className="mt-16 min-h-[82vh] flex flex-col lg:flex-row bg-white overflow-hidden">
+        {/* Left: Text */}
+        <div className="flex-1 flex items-center justify-center px-8 sm:px-12 lg:px-16 xl:px-24 py-16 lg:py-0">
+          <div className="max-w-lg w-full">
+            <p className="text-orange-500 font-bold text-lg sm:text-xl tracking-wide mb-4">
+              Third Generation of Painters
+            </p>
+            <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-tight mb-8">
+              Award Winning<br />
+              Painting Company<br />
+              Serving Lafayette<br />
+              Indiana
+            </h1>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-7 py-4 rounded-lg transition-colors duration-150 mb-8 shadow-sm"
+            >
+              Get My Free Estimate
+              <Calendar className="w-5 h-5" />
+            </button>
+            <p className="text-gray-500 text-sm mb-8">
+              Family Owned Since 2000 &bull; 25+ Years Experience &bull; Locally Owned &amp; Operated
+            </p>
+            <div className="flex items-center gap-5 flex-wrap">
+              <img src="/BBB.png" alt="BBB Accredited" className="h-16 w-auto object-contain" />
+              <img src="/BBRAward.png" alt="BBR Award" className="h-16 w-auto object-contain" />
+              <img src="/QBAward.webp" alt="Quality Business Award" className="h-16 w-auto object-contain" />
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Image */}
+        <div className="flex-1 relative min-h-[50vw] lg:min-h-0">
+          <img
+            src="/McClients00.webp"
+            alt="McCracken Painting — Family Owners"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </div>
+      </section>
 
       <BelowFold openModal={() => setModalOpen(true)} />
 
