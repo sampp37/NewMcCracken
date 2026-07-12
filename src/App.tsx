@@ -12,12 +12,12 @@ export default function App() {
       {/* Sticky Navigation */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 sm:h-24">
-            <a href="#" className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center justify-between h-20 sm:h-24 lg:h-28">
+            <a href="#" className="flex items-center flex-shrink-0">
               <img
-                src="/McCracken_Painting_Logo.webp"
+                src="/LOGOO.webp"
                 alt="McCracken Painting"
-                className="h-14 sm:h-16 lg:h-20 object-contain"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
               />
             </a>
 
@@ -72,7 +72,7 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="mt-20 sm:mt-24 bg-white">
+      <section className="mt-20 sm:mt-24 lg:mt-28 bg-white">
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
           <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
