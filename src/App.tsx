@@ -101,10 +101,16 @@ export default function App() {
                 <span className="mx-2 text-gray-400">&bull;</span>
                 Over 1000 Projects
               </p>
-              <div className="flex items-center gap-5 flex-wrap">
-                <img src="/award1-p.webp" alt="Award" className="h-16 w-auto object-contain" />
-                <img src="/awardp.webp" alt="Award" className="h-16 w-auto object-contain" />
-                <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-16 w-auto object-contain" />
+              <div className="flex items-center justify-between gap-3 sm:gap-4 w-full">
+                <div className="flex-1 flex justify-center">
+                  <img src="/award1-p.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <img src="/awardp.webp" alt="Award" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-20 sm:h-24 lg:h-28 xl:h-32 w-auto max-w-full object-contain" />
+                </div>
               </div>
             </div>
           </div>
