@@ -69,7 +69,7 @@ const allReviews = [
 
 const serviceSlides = [
   { src: '/McClients1.webp', position: 'center 70%' },
-  { src: '/McClients2.webp', position: 'center 15%' },
+  { src: '/Mcclients222.webp', position: 'center 15%' },
   { src: '/McClients4.webp', position: 'center center' },
 ];
 
@@ -388,7 +388,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               },
               {
                 title: 'Garage Epoxy Floor',
-                img: '/w-epoxy.webp',
+                img: '/epoxy-garage.webp',
                 alt: 'Garage epoxy floor service Lafayette Indiana',
                 text: 'Trusted epoxy flooring experts. Durable, slip-resistant floors for garages, basements & businesses.',
               },
