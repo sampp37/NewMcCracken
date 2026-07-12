@@ -68,9 +68,9 @@ const allReviews = [
 ];
 
 const serviceSlides = [
-  { src: '/McClients1.webp', position: 'center 70%', aspectRatio: '4/3' },
-  { src: '/Mcclients222.webp', position: 'center center', aspectRatio: '3/4' },
-  { src: '/McClients4.webp', position: 'center center', aspectRatio: '4/3' },
+  { src: '/McClients1.webp', position: 'center 70%' },
+  { src: '/Mcclients222.webp', position: 'center 15%' },
+  { src: '/McClients4.webp', position: 'center center' },
 ];
 
 // ─── ServiceCarousel ──────────────────────────────────────────────────────────
@@ -161,7 +161,7 @@ function ServiceCarousel() {
             loading="lazy"
             draggable={false}
             className="w-full flex-shrink-0 object-cover"
-            style={{ aspectRatio: slide.aspectRatio, objectPosition: slide.position }}
+            style={{ aspectRatio: '4/3', objectPosition: slide.position }}
           />
         ))}
       </div>
