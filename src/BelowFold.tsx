@@ -287,18 +287,18 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
           <div className="lg:hidden flex flex-col gap-8">
             <div>
               <h2 className="text-2xl font-extrabold text-orange-500 leading-tight mb-1">
-                Interior &amp; Exterior Painting
+                Lafayette Neighbors are Quietly Experiencing
               </h2>
               <p className="text-gray-700 font-semibold text-base mb-5">
-                Award Winning Company – Local Family, Trusted Since 2000
+                Award Winning Company. Local Family Painting for 3 Generations
               </p>
               <ul className="space-y-3">
                 {[
-                  'Furniture and Paintings are Handled with Respect',
+                  'Your Final Bill Matches Your Original Quote',
                   'Arrive Exactly When Promised',
-                  'Initial Quote Stays the Same',
-                  'Your House Rules are Our Priority',
-                  'Kids & Pets Friendly Environment',
+                  'Clean Up Every Night Before We Leave',
+                  'Tools and Buckets Safely Placed to Keep Pets and Kids Safe and Comfortable',
+                  '12 Months Satisfaction Warranty, Wear and Tear Included.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
@@ -323,19 +323,19 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
             <div className="flex-1 flex flex-col gap-6">
               <div>
                 <h2 className="text-3xl xl:text-4xl font-extrabold text-orange-500 leading-tight mb-2">
-                  Interior &amp; Exterior Painting
+                  Lafayette Neighbors are Quietly Experiencing
                 </h2>
                 <p className="text-gray-700 font-semibold text-lg">
-                  Award Winning Company – Local Family, Trusted Since 2000
+                  Award Winning Company. Local Family Painting for 3 Generations
                 </p>
               </div>
               <ul className="space-y-4">
                 {[
-                  'Furniture and Paintings are Handled with Respect',
+                  'Your Final Bill Matches Your Original Quote',
                   'Arrive Exactly When Promised',
-                  'Initial Quote Stays the Same',
-                  'Your House Rules are Our Priority',
-                  'Kids & Pets Friendly Environment',
+                  'Clean Up Every Night Before We Leave',
+                  'Tools and Buckets Safely Placed to Keep Pets and Kids Safe and Comfortable',
+                  '12 Months Satisfaction Warranty, Wear and Tear Included.',
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3">
                     <Check className="w-5 h-5 text-orange-500 flex-shrink-0 mt-1" strokeWidth={2.5} />
