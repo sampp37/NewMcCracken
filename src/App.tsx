@@ -72,7 +72,53 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="mt-16 min-h-[82vh] bg-white" />
+      <section className="mt-16 bg-white">
+        <div className="flex flex-col lg:flex-row min-h-[82vh]">
+          {/* Left: Text */}
+          <div className="flex-1 flex items-center justify-start px-6 sm:px-10 lg:px-16 xl:px-24 py-14 lg:py-0 order-2 lg:order-1">
+            <div className="max-w-xl w-full">
+              <p className="text-orange-500 font-extrabold text-lg sm:text-xl tracking-tight mb-3">
+                McCracken-Painting
+              </p>
+              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl xl:text-[3.4rem]">
+                Award-Winning Painting<br />
+                Company Serving<br />
+                Lafayette Indiana
+              </h1>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm px-6 py-3 rounded-md transition-colors shadow-sm mb-6"
+              >
+                Get My Free Estimate
+              </button>
+              <p className="text-gray-700 text-sm font-medium mb-6">
+                500+ Five-Star Reviews
+                <span className="mx-2 text-gray-400">&bull;</span>
+                25+ Years Experience
+                <span className="mx-2 text-gray-400">&bull;</span>
+                Family Owned &amp; Operated Since 2000
+              </p>
+              <div className="flex items-center gap-5 flex-wrap">
+                <img src="/award1-p.webp" alt="Award" className="h-16 w-auto object-contain" />
+                <img src="/awardp.webp" alt="Award" className="h-16 w-auto object-contain" />
+                <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-16 w-auto object-contain" />
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Image */}
+          <div className="flex-1 relative bg-white order-1 lg:order-2 min-h-[60vw] lg:min-h-0">
+            <img
+              src="/000000000000.webp"
+              alt="McCracken Painting family in front of restored Victorian home"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            {/* Soft white fade on left edge (desktop) / top edge (mobile) so image melts into text side */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/70 to-transparent hidden lg:block" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white via-white/70 to-transparent lg:hidden" />
+          </div>
+        </div>
+      </section>
 
       <BelowFold openModal={() => setModalOpen(true)} />
 
