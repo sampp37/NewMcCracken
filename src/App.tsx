@@ -103,13 +103,13 @@ export default function App() {
               </p>
               <div className="flex items-center justify-between gap-6 sm:gap-8 w-full">
                 <div className="flex-1 flex justify-center">
-                  <img src="/award1-p.webp" alt="Award" className="h-48 sm:h-52 lg:h-64 xl:h-72 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/award1-p.webp" alt="Award" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/consumersp.webp" alt="Consumer Choice Premier Business 2025" className="h-48 sm:h-52 lg:h-64 xl:h-72 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/consumersp.webp" alt="Consumer Choice Premier Business 2025" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-48 sm:h-52 lg:h-64 xl:h-72 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
+                  <img src="/S-w-logo-p.webp" alt="Sherwin-Williams Preferred" className="h-28 sm:h-32 lg:h-36 xl:h-40 w-auto max-w-full object-contain transition-transform duration-300 ease-out hover:scale-110 hover:drop-shadow-lg" />
                 </div>
               </div>
             </div>
