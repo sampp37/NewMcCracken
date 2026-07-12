@@ -108,7 +108,7 @@ export default function App() {
           <img
             src="/McClients00.webp"
             alt="McCracken Painting — Family Owners"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-contain object-center"
           />
         </div>
       </section>
