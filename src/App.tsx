@@ -75,12 +75,12 @@ export default function App() {
       <section className="mt-16 bg-white">
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
-          <div className="flex-1 flex items-center justify-start px-6 sm:px-10 lg:px-16 xl:px-24 py-14 lg:py-0 order-2 lg:order-1">
-            <div className="max-w-xl w-full">
+          <div className="w-full lg:w-2/5 flex items-center justify-start px-6 sm:px-10 lg:px-10 xl:px-16 py-14 lg:py-0 order-2 lg:order-1">
+            <div className="max-w-lg w-full">
               <p className="text-orange-500 font-extrabold text-lg sm:text-xl tracking-tight mb-3">
                 McCracken-Painting
               </p>
-              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl xl:text-[3.4rem]">
+              <h1 className="font-black text-slate-900 leading-[1.05] tracking-tight mb-6 text-4xl sm:text-5xl lg:text-[2.75rem] xl:text-[3.1rem]">
                 Award-Winning Painting<br />
                 Company Serving<br />
                 Lafayette Indiana
@@ -107,14 +107,14 @@ export default function App() {
           </div>
 
           {/* Right: Image */}
-          <div className="flex-1 relative bg-white order-1 lg:order-2 min-h-[60vw] lg:min-h-0">
+          <div className="w-full lg:w-3/5 relative bg-white order-1 lg:order-2 min-h-[60vw] lg:min-h-0">
             <img
               src="/000000000000.webp"
               alt="McCracken Painting family in front of restored Victorian home"
-              className="absolute inset-0 w-full h-full object-cover object-center"
+              className="absolute inset-0 w-full h-full object-cover object-[45%_center]"
             />
             {/* Soft white fade on left edge (desktop) / top edge (mobile) so image melts into text side */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white via-white/70 to-transparent hidden lg:block" />
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white via-white/70 to-transparent hidden lg:block" />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white via-white/70 to-transparent lg:hidden" />
           </div>
         </div>
