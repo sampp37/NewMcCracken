@@ -354,6 +354,37 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
         </div>
       </section>
 
+      {/* Award Cards */}
+      <section className="bg-gray-100 py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-orange-500 text-center mb-12">
+            Award Winning Quality &amp; Customer Service
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { src: '/google.webp', alt: 'Google 5 Star Reviews', label: '5 Star Google Reviewed' },
+              { src: '/consumersp%20copy.webp', alt: '2025 Consumer Choice Premier Business Award', label: '2025 Consumer Award for Premier Business' },
+              { src: '/award1.webp', alt: '2025-2026 Quality Business Award Winner', label: '2025-2026 Winner Quality Business Award' },
+              { src: '/S-w-logo-p%20copy.webp', alt: 'Sherwin-Williams Preferred Painter', label: '12 Months Satisfaction Warranty, Wear and Tear Included.' },
+            ].map(({ src, alt, label }) => (
+              <div key={label} className="bg-white rounded-2xl shadow-md flex flex-col items-center justify-between px-6 pt-10 pb-8 gap-6">
+                <div className="flex items-center justify-center w-full" style={{ height: '9rem' }}>
+                  <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
+                <p className="text-orange-500 font-extrabold text-center text-base leading-snug">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Services */}
       <section id="portfolio" className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
