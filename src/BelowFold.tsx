@@ -201,22 +201,33 @@ function ReviewsSection() {
   const totalPages = Math.ceil(allReviews.length / perPage);
   const visible = allReviews.slice(reviewPage * perPage, reviewPage * perPage + perPage);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setReviewPage(p => (p + 1) % totalPages);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [totalPages, reviewPage]);
-
   const goTo = (p: number) => setReviewPage(Math.max(0, Math.min(totalPages - 1, p)));
 
   return (
-    <section id="reviews" className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="reviews" className="py-16 bg-gray-50 relative">
+      {/* Large wall-touching side arrows */}
+      <button
+        onClick={() => goTo(reviewPage - 1)}
+        disabled={reviewPage === 0}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center p-3 rounded-r-2xl bg-white/80 hover:bg-white shadow-md disabled:opacity-20 disabled:cursor-not-allowed transition-transform duration-200 hover:scale-125"
+        aria-label="Previous reviews"
+      >
+        <ChevronLeft className="w-12 h-12 text-gray-700" strokeWidth={2} />
+      </button>
+      <button
+        onClick={() => goTo(reviewPage + 1)}
+        disabled={reviewPage === totalPages - 1}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center p-3 rounded-l-2xl bg-white/80 hover:bg-white shadow-md disabled:opacity-20 disabled:cursor-not-allowed transition-transform duration-200 hover:scale-125"
+        aria-label="Next reviews"
+      >
+        <ChevronRight className="w-12 h-12 text-gray-700" strokeWidth={2} />
+      </button>
+
+      <div className="max-w-7xl mx-auto px-16 lg:px-20">
         <div className="text-center mb-12">
-          <p className="text-orange-500 uppercase tracking-widest font-semibold text-sm mb-3">What Our Clients Say</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-wide">
-            See Why These Hoosiers Wouldn't Go Anywhere Else
+          <p className="text-orange-500 uppercase tracking-widest font-semibold text-[17px] mb-3">What Our Clients Say</p>
+          <h2 className="text-[2rem] sm:text-[2.5rem] font-bold text-gray-900 tracking-wide">
+            See Why These Homeowners Wouldn't Go Anywhere Else
           </h2>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -229,26 +240,18 @@ function ReviewsSection() {
             return (
               <div
                 key={reviewPage * perPage + i}
-                className={`${cardStyles[i % 3]} rounded-2xl p-7 flex flex-col gap-4 shadow-sm`}
+                className={`${cardStyles[i % 3]} rounded-2xl p-7 flex flex-col gap-4 shadow-sm transition-transform duration-200 hover:scale-[1.15] cursor-default`}
               >
-                <h3 className="text-gray-900 font-bold text-lg leading-snug">{review.title}</h3>
-                <p className="text-gray-600 text-base leading-relaxed flex-1">"{review.body}"</p>
+                <h3 className="text-gray-900 font-bold text-[21px] leading-snug">{review.title}</h3>
+                <p className="text-gray-600 text-[19px] leading-relaxed flex-1">"{review.body}"</p>
                 <div className="pt-4 border-t border-gray-100">
-                  <p className="text-gray-900 font-bold">{review.name}</p>
+                  <p className="text-gray-900 font-bold text-[19px]">{review.name}</p>
                 </div>
               </div>
             );
           })}
         </div>
         <div className="flex items-center justify-center gap-4 mt-10">
-          <button
-            onClick={() => goTo(reviewPage - 1)}
-            disabled={reviewPage === 0}
-            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition"
-            aria-label="Previous reviews"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
           <div className="flex items-center gap-2">
             {Array.from({ length: totalPages }, (_, i) => (
               <button
@@ -261,14 +264,6 @@ function ReviewsSection() {
               />
             ))}
           </div>
-          <button
-            onClick={() => goTo(reviewPage + 1)}
-            disabled={reviewPage === totalPages - 1}
-            className="p-3 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-200 disabled:opacity-30 disabled:cursor-not-allowed transition"
-            aria-label="Next reviews"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </section>
