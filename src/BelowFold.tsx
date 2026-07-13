@@ -388,7 +388,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
       {/* Services */}
       <section id="portfolio" className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-          <h2 className="text-4xl sm:text-5xl font-bold text-black text-center mb-12 uppercase tracking-wide">
+          <h2 className="text-4xl sm:text-5xl font-bold text-orange-500 text-center mb-12 uppercase tracking-wide">
             Lafayette &ndash; Indiana Painting Services
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -397,40 +397,45 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 title: 'Exterior Painting',
                 img: '/w-exterior1.webp',
                 alt: 'Exterior house painting Lafayette Indiana',
-                text: 'Taking care of your garden and avoiding painting drips is our focus while painting the exteriors of Lafayette houses.',
+                text: <>Your house will look <strong>brand new</strong>, even if it was built in 1964, so get ready, because the <strong>compliments will not stop coming</strong>.</>,
               },
               {
                 title: 'Interior Painting',
                 img: '/w-interior.webp',
                 alt: 'Interior painting service Lafayette Indiana',
-                text: 'All your belongings are treated with respect and put back in their place. Keeping a pet & kids-friendly environment is a minimum requirement.',
+                text: <>That paint spot you see daily? Gone. No tools or ladders around, <strong>kids &amp; pets safe</strong>. Furniture goes right back to <strong>where it belongs</strong>.</>,
               },
               {
                 title: 'Pressure Washing',
                 img: '/w-powerwash.webp',
                 alt: 'Pressure washing service Lafayette Indiana',
-                text: 'Let your neighbors think you got a new paint job. Pressure washing done right, focused on bringing back to life your house — no paint needed.',
+                text: <>Not ready for a complete Exterior Painting? Just enjoy the feeling of a brand new home in <strong>1 day without the usual cost</strong>!</>,
               },
               {
                 title: 'Deck Painting',
-                img: '/w-deck.webp',
+                img: '/deck.png',
                 alt: 'Deck painting service Lafayette Indiana',
-                text: 'Want to supercharge your relaxing moments with a fresh new deck? Our deck painting service gives you the relaxation you really deserve.',
+                text: <><strong>Prepping</strong> the wood right takes attention, and we don't rush it. Once we've wrapped up, cleanup is just as thorough.</>,
               },
               {
                 title: 'Garage Epoxy Floor',
                 img: '/epoxy-garage.webp',
                 alt: 'Garage epoxy floor service Lafayette Indiana',
-                text: 'Trusted epoxy flooring experts. Durable, slip-resistant floors for garages, basements & businesses.',
+                text: <>Your garage floor will match the sample color <strong>exactly</strong>. And since the whole project is built around your schedule, you won't have to lift a finger, we'll even <strong>move those big items for you</strong>.</>,
               },
             ].map(({ title, img, alt, text }) => (
-              <div key={title} className="rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col">
+              <button
+                key={title}
+                type="button"
+                onClick={openModal}
+                className="group rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col text-left cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              >
                 <div className="overflow-hidden">
                   <img
                     src={img}
                     alt={alt}
                     loading="lazy"
-                    className="w-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     style={{ aspectRatio: '4/3' }}
                   />
                 </div>
@@ -438,7 +443,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                   <h3 className="text-xl font-bold text-orange-500 uppercase tracking-wide">{title}</h3>
                   <p className="text-gray-700 text-base leading-relaxed flex-1">{text}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
