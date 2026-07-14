@@ -416,6 +416,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 img: '/deck.png',
                 alt: 'Deck painting service Lafayette Indiana',
                 text: <><strong>Prepping</strong> the wood right takes attention, and we don't rush it. Once we've wrapped up, cleanup is just as thorough.</>,
+                imgContain: true,
               },
               {
                 title: 'Garage Epoxy Floor',
