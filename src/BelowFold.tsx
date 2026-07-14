@@ -416,35 +416,27 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 img: '/deck.png',
                 alt: 'Deck painting service Lafayette Indiana',
                 text: <><strong>Prepping</strong> the wood right takes attention, and we don't rush it. Once we've wrapped up, cleanup is just as thorough.</>,
-                imgTall: true,
-                imgContain: true,
               },
               {
                 title: 'Garage Epoxy Floor',
                 img: '/epoxy-garage.webp',
                 alt: 'Garage epoxy floor service Lafayette Indiana',
                 text: <>Your garage floor will match the sample color <strong>exactly</strong>. And since the whole project is built around your schedule, you won't have to lift a finger, we'll even <strong>move those big items for you</strong>.</>,
-                imgContain: true,
-                imgTall: true,
               },
-            ].map(({ title, img, alt, text, imgContain, imgTall, imgInset }) => (
+            ].map(({ title, img, alt, text }) => (
               <button
                 key={title}
                 type="button"
                 onClick={openModal}
                 className="group rounded-2xl overflow-hidden shadow-md border border-gray-100 flex flex-col text-left cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
-                <div
-                  className={`relative w-full overflow-hidden bg-white ${imgInset ? 'p-3' : ''}`}
-                  style={{ aspectRatio: imgTall ? '3/4' : '4/3' }}
-                >
+                <div className="overflow-hidden">
                   <img
                     src={img}
                     alt={alt}
                     loading="lazy"
-                    className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
-                      imgContain ? 'object-contain' : 'object-cover group-hover:scale-110'
-                    }`}
+                    className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    style={{ aspectRatio: '4/3' }}
                   />
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
