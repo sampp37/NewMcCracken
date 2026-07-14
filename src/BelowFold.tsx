@@ -422,8 +422,9 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 img: '/epoxy-garage.webp',
                 alt: 'Garage epoxy floor service Lafayette Indiana',
                 text: <>Your garage floor will match the sample color <strong>exactly</strong>. And since the whole project is built around your schedule, you won't have to lift a finger, we'll even <strong>move those big items for you</strong>.</>,
+                objectPosition: 'center 60%',
               },
-            ].map(({ title, img, alt, text }) => (
+            ].map(({ title, img, alt, text, objectPosition }) => (
               <button
                 key={title}
                 type="button"
@@ -436,7 +437,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                     alt={alt}
                     loading="lazy"
                     className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    style={{ aspectRatio: '4/3' }}
+                    style={{ aspectRatio: '4/3', objectPosition: objectPosition ?? 'center' }}
                   />
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
