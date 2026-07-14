@@ -92,10 +92,10 @@ function HistoricHomesSection() {
   const next = () => setCurrent(c => (c + 1) % total);
 
   return (
-    <section className="w-full py-16 px-6" style={{ backgroundColor: '#f0f0f0' }}>
+    <section className="w-full py-16 px-6" style={{ backgroundColor: '#f8f8f8' }}>
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Left — headline + text */}
-        <div className="text-left">
+        <div className="text-center">
           <h2
             className="font-bold leading-tight mb-8"
             style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '38px', color: '#f97316' }}
@@ -129,7 +129,7 @@ function HistoricHomesSection() {
             src={portfolioSlides[current]}
             alt="Portfolio project"
             className="w-full rounded-xl shadow-lg object-cover"
-            style={{ aspectRatio: '4/3' }}
+            style={{ aspectRatio: '4/3', objectPosition: current === 2 ? 'left center' : 'center' }}
           />
           <button
             onClick={next}
