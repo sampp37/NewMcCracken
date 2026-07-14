@@ -92,28 +92,27 @@ function HistoricHomesSection() {
         {/* Headline */}
         <h2
           className="font-bold leading-tight mb-10"
-          style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '42px', color: '#d4521a' }}
+          style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '42px', color: '#f97316' }}
         >
           Lafayette Historic Homes Now<br />Feel Like Brand New
         </h2>
 
         {/* Body text */}
         <div
-          className="space-y-4 mb-10"
+          className="space-y-1 mb-10"
           style={{ fontFamily: 'Georgia, serif', fontSize: '18px', color: '#1a1a1a', lineHeight: '1.8' }}
         >
           <p>Three generations of painting in Lafayette led us to:</p>
           <p>
-            A <span style={{ textDecoration: 'underline', fontWeight: 'bold' }}>4 step</span>{' '}
+            A <strong>4 step</strong>{' '}
             <strong>process</strong> that keeps every job{' '}
             <strong>clean, on time and on budget</strong>.
           </p>
           <p>No more waiting, your schedule stays <strong>yours</strong>.</p>
-          <p>Quoted project <strong>matches</strong> final bill.</p>
         </div>
 
         {/* Carousel */}
-        <div className="relative mx-auto" style={{ maxWidth: '480px' }}>
+        <div className="relative mx-auto" style={{ maxWidth: '360px' }}>
           {total > 1 && (
             <button
               onClick={prev}
