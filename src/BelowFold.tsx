@@ -416,7 +416,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 img: '/deck.png',
                 alt: 'Deck painting service Lafayette Indiana',
                 text: <><strong>Prepping</strong> the wood right takes attention, and we don't rush it. Once we've wrapped up, cleanup is just as thorough.</>,
-                imgContain: true,
+                imgTall: true,
               },
               {
                 title: 'Garage Epoxy Floor',
@@ -424,8 +424,9 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 alt: 'Garage epoxy floor service Lafayette Indiana',
                 text: <>Your garage floor will match the sample color <strong>exactly</strong>. And since the whole project is built around your schedule, you won't have to lift a finger, we'll even <strong>move those big items for you</strong>.</>,
                 imgContain: true,
+                imgTall: true,
               },
-            ].map(({ title, img, alt, text, imgContain }) => (
+            ].map(({ title, img, alt, text, imgContain, imgTall }) => (
               <button
                 key={title}
                 type="button"
@@ -437,10 +438,10 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                     src={img}
                     alt={alt}
                     loading="lazy"
-                    className={`w-full transition-transform duration-500 group-hover:scale-105 ${
+                    className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${
                       imgContain ? 'object-contain' : 'object-cover group-hover:scale-110'
                     }`}
-                    style={{ aspectRatio: imgContain ? '3/4' : '4/3' }}
+                    style={{ aspectRatio: imgTall ? '3/4' : '4/3' }}
                   />
                 </div>
                 <div className="p-6 flex flex-col gap-3 flex-1">
