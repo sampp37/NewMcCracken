@@ -75,7 +75,14 @@ const serviceSlides = [
 
 // ─── HistoricHomesSection ─────────────────────────────────────────────────────
 
-const portfolioSlides = ['/image copy copy.png'];
+const portfolioSlides = [
+  '/exterior0p.webp',
+  '/exterior1p.webp',
+  '/exterior2p.webp',
+  '/exterior3p.webp',
+  '/exterior4p.webp',
+  '/w-exterior1 copy.webp',
+];
 
 function HistoricHomesSection() {
   const [current, setCurrent] = useState(0);
@@ -84,73 +91,68 @@ function HistoricHomesSection() {
   const prev = () => setCurrent(c => (c - 1 + total) % total);
   const next = () => setCurrent(c => (c + 1) % total);
 
-  const dotCount = 10;
-
   return (
     <section className="w-full py-16 px-6" style={{ backgroundColor: '#f0f0f0' }}>
-      <div className="max-w-3xl mx-auto text-center">
-        {/* Headline */}
-        <h2
-          className="font-bold leading-tight mb-10"
-          style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '42px', color: '#f97316' }}
-        >
-          Lafayette Historic Homes Now<br />Feel Like Brand New
-        </h2>
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        {/* Left — headline + text */}
+        <div className="text-left">
+          <h2
+            className="font-bold leading-tight mb-8"
+            style={{ fontFamily: 'Arial, Helvetica, sans-serif', fontSize: '38px', color: '#f97316' }}
+          >
+            Lafayette Historic Homes Now<br />Feel Like Brand New
+          </h2>
 
-        {/* Body text */}
-        <div
-          className="space-y-1 mb-10"
-          style={{ fontFamily: 'Georgia, serif', fontSize: '18px', color: '#1a1a1a', lineHeight: '1.8' }}
-        >
-          <p>Three generations of painting in Lafayette led us to:</p>
-          <p>
-            A <strong>4 step</strong>{' '}
-            <strong>process</strong> that keeps every job{' '}
-            <strong>clean, on time and on budget</strong>.
-          </p>
-          <p>No more waiting, your schedule stays <strong>yours</strong>.</p>
+          <div
+            className="space-y-2"
+            style={{ fontFamily: 'Georgia, serif', fontSize: '18px', color: '#1a1a1a', lineHeight: '1.7' }}
+          >
+            <p>Three generations of painting in Lafayette led us to:</p>
+            <p>
+              A <strong>4 step</strong>{' '}
+              <strong>process</strong> that keeps every job{' '}
+              <strong>clean, on time and on budget</strong>.
+            </p>
+            <p>No more waiting, your schedule stays <strong>yours</strong>.</p>
+          </div>
         </div>
 
-        {/* Carousel */}
-        <div className="relative mx-auto" style={{ maxWidth: '360px' }}>
-          {total > 1 && (
-            <button
-              onClick={prev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
-            >
-              <ChevronLeft size={22} />
-            </button>
-          )}
+        {/* Right — carousel */}
+        <div className="relative mx-auto w-full" style={{ maxWidth: '420px' }}>
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
+          >
+            <ChevronLeft size={22} />
+          </button>
           <img
             src={portfolioSlides[current]}
             alt="Portfolio project"
             className="w-full rounded-xl shadow-lg object-cover"
             style={{ aspectRatio: '4/3' }}
           />
-          {total > 1 && (
-            <button
-              onClick={next}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
-            >
-              <ChevronRight size={22} />
-            </button>
-          )}
-        </div>
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
+          >
+            <ChevronRight size={22} />
+          </button>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-5">
-          {Array.from({ length: dotCount }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => i < total && setCurrent(i)}
-              className="rounded-full transition-colors"
-              style={{
-                width: '10px',
-                height: '10px',
-                backgroundColor: i === current ? '#1a1a1a' : '#b0b0b0',
-              }}
-            />
-          ))}
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-4">
+            {portfolioSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className="rounded-full transition-colors"
+                style={{
+                  width: '10px',
+                  height: '10px',
+                  backgroundColor: i === current ? '#f97316' : '#b0b0b0',
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
