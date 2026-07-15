@@ -30,7 +30,7 @@ Deno.serve(async (req: Request) => {
       },
       body: JSON.stringify({
         from: "McCracken Painting <leads@palai.biz>",
-        to: ["info@mccrackenpainting.com"],
+        to: ["sampp37@gmail.com"],
         subject: `New Lead: ${name}`,
         html: `
           <h2>New Lead from McCracken Painting Website</h2>

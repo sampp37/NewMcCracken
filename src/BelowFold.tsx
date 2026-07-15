@@ -137,7 +137,7 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
         </div>
 
         {/* Right — carousel */}
-        <div className="relative mx-auto w-full" style={{ maxWidth: '420px' }}>
+        <div className="relative mx-auto w-full transition-transform duration-500 ease-out hover:scale-110" style={{ maxWidth: '420px' }}>
           <button
             onClick={prev}
             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
@@ -290,7 +290,7 @@ function ServiceCarousel() {
 
 // ─── ReviewsSection ───────────────────────────────────────────────────────────
 
-function ReviewsSection() {
+function ReviewsSection({ openModal }: { openModal: () => void }) {
   const [reviewPage, setReviewPage] = useState(0);
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.innerWidth < 768 : false
@@ -342,16 +342,18 @@ function ReviewsSection() {
               'bg-gray-50 border border-gray-200 border-l-4 border-l-gray-400',
             ];
             return (
-              <div
+              <button
+                type="button"
                 key={reviewPage * perPage + i}
-                className={`${cardStyles[i % 3]} rounded-2xl p-5 flex flex-col gap-3 shadow-sm transition-transform duration-200 hover:scale-[1.15] cursor-default`}
+                onClick={openModal}
+                className={`${cardStyles[i % 3]} rounded-2xl p-5 flex flex-col gap-3 shadow-sm transition-transform duration-200 hover:scale-[1.15] cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-orange-500`}
               >
                 <h3 className="text-gray-900 font-bold text-[21px] leading-snug">{review.title}</h3>
                 <p className="text-gray-600 text-[19px] leading-relaxed flex-1">"{review.body}"</p>
                 <div className="pt-4 border-t border-gray-100">
                   <p className="text-gray-900 font-bold text-[19px]">{review.name}</p>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -465,8 +467,12 @@ function FourStepProcess() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {steps.map((step) => (
           <div key={step.title} className="flex flex-col items-center text-center">
-            <div className="flex items-center justify-center h-28 mb-4">
-              <img src={step.img} alt={step.alt} className="h-24 w-24 object-contain" />
+            <div className="flex items-center justify-center h-28 mb-4 overflow-visible">
+              <img
+                src={step.img}
+                alt={step.alt}
+                className="h-24 w-24 object-contain transition-transform duration-300 ease-out hover:scale-150"
+              />
             </div>
             <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">
               {step.title}
@@ -490,7 +496,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
   return (
     <>
       {/* Reviews */}
-      <ReviewsSection />
+      <ReviewsSection openModal={openModal} />
 
       {/* Services + Carousel */}
       <section className="bg-white py-16">
@@ -578,7 +584,12 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               { src: '/award1.webp', alt: '2025-2026 Quality Business Award Winner', label: '2025-2026 Winner Quality Business Award' },
               { src: '/S-w-logo-p%20copy.webp', alt: 'Sherwin-Williams Preferred Painter', label: '12 Months Satisfaction Warranty, Wear and Tear Included.' },
             ].map(({ src, alt, label }) => (
-              <div key={label} className="award-card bg-white rounded-2xl shadow-md flex flex-col items-center justify-between px-6 pt-10 pb-8 gap-6 transition-transform duration-300 cursor-default">
+              <button
+                type="button"
+                key={label}
+                onClick={openModal}
+                className="award-card bg-white rounded-2xl shadow-md flex flex-col items-center justify-between px-6 pt-10 pb-8 gap-6 transition-transform duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
                 <div className="flex items-center justify-center w-full" style={{ height: '9rem' }}>
                   <img
                     src={src}
@@ -587,10 +598,10 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                     className="award-img max-h-full max-w-full object-contain"
                   />
                 </div>
-                <p className="text-orange-500 font-extrabold text-center text-base leading-snug">
+                <p className="text-black font-extrabold text-center text-lg leading-snug">
                   {label}
                 </p>
-              </div>
+              </button>
             ))}
           </div>
         </div>
@@ -672,12 +683,14 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <img
-                src="/mapLaf.webp"
-                alt="Map of Lafayette Indiana and surrounding areas served by McCracken Painting"
-                className="w-full rounded-2xl shadow-md"
-                loading="lazy"
-              />
+              <div className="overflow-hidden rounded-2xl shadow-md">
+                <img
+                  src="/mapLaf.webp"
+                  alt="Map of Lafayette Indiana and surrounding areas served by McCracken Painting"
+                  className="w-full block transition-transform duration-500 ease-out hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-orange-500 uppercase tracking-wide mb-8 leading-tight">
