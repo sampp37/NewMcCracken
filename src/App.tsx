@@ -26,7 +26,7 @@ export default function App() {
               <a href="#reviews" className="hover:text-orange-500 transition">Reviews</a>
               <a href="#portfolio" className="hover:text-orange-500 transition">Services</a>
               <a href="#about" className="hover:text-orange-500 transition">About</a>
-              <a href="#areasweserve" className="hover:text-orange-500 transition">Areas</a>
+              <a href="#lafayette-map" className="hover:text-orange-500 transition">Areas</a>
             </nav>
 
             <div className="flex items-center gap-4 lg:gap-6 ml-6 lg:ml-10">
@@ -61,7 +61,7 @@ export default function App() {
               <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Reviews</a>
               <a href="#portfolio" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Services</a>
               <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">About</a>
-              <a href="#areasweserve" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Areas</a>
+              <a href="#lafayette-map" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Areas</a>
               <a href="tel:+17654302200" className="flex items-center gap-2 hover:text-orange-500 transition">
                 <Phone className="w-4 h-4" />
                 (765) 430-2200

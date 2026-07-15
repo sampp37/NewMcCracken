@@ -1,4 +1,4 @@
-import { Phone, MapPin, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Phone, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ContactForm from './ContactForm';
 
@@ -82,6 +82,10 @@ const portfolioSlides = [
   '/exterior3p.webp',
   '/exterior4p.webp',
   '/w-exterior1 copy.webp',
+  '/home11p.webp',
+  '/home7.webp',
+  '/home4.webp',
+  '/home2.webp',
 ];
 
 function HistoricHomesSection({ openModal }: { openModal: () => void }) {
@@ -663,44 +667,38 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
       {/* 4-Step Process */}
       <FourStepProcess />
 
-      {/* Areas Served */}
-      <section id="areasweserve" className="relative py-14 bg-white">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-start">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 uppercase tracking-wide mb-4">Areas We Serve</h2>
-              <p className="text-gray-600 mb-8 max-w-2xl text-xl">McCracken is proud to offer top quality painting services tailored to your neighborhood in and around Lafayette.</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-10 gap-y-3">
-                {['Lafayette','Otterbein','Delphi','Frankfort','Monticello','Crawfordsville','Attica','Brookston','Lebanon','Rensselaer','Fowler','Thorntown','West Lafayette','Battle Ground','Shadeland','Dayton','Clarks Hill','Stockwell','Montmorenci'].map((area) => (
-                  <div key={area} className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-orange-500 flex-shrink-0" />
-                    <span className="text-gray-900 text-lg">{area}</span>
-                  </div>
-                ))}
-              </div>
+      {/* Lafayette Map Section */}
+      <section id="lafayette-map" className="py-16 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <img
+                src="/mapLaf.webp"
+                alt="Map of Lafayette Indiana and surrounding areas served by McCracken Painting"
+                className="w-full rounded-2xl shadow-md"
+                loading="lazy"
+              />
             </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-xl p-8 min-w-[280px]">
-              <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide mb-5">Contact Info:</h3>
-              <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-orange-500 flex-shrink-0" />
-                <a href="tel:+17654302200" className="text-gray-700 hover:text-orange-500 transition font-medium">(765) 430-2200</a>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-orange-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-700">104 Pineview Ln<br />Lafayette, IN 47905</span>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-orange-500 uppercase tracking-wide mb-8 leading-tight">
+                Lafayette's Most Experienced Residential Painting Team
+              </h2>
+              <div className="space-y-6">
+                <p className="text-gray-700 text-lg">Your home project shouldn't be rushed.</p>
+                <p className="text-gray-700 text-lg">Get a free quote.</p>
+                <p className="text-gray-700 text-lg">No commitment.</p>
+                <p className="text-gray-700 text-lg">Choose between your best options.</p>
               </div>
               <button
                 onClick={() => setModalOpen(true)}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 mt-2"
+                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide mt-8"
               >
                 Get a Free Estimate
               </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white pt-16 pb-8">
