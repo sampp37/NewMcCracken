@@ -688,6 +688,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 <p className="text-gray-700 text-lg">Get a free quote.</p>
                 <p className="text-gray-700 text-lg">No commitment.</p>
                 <p className="text-gray-700 text-lg">Choose between your best options.</p>
+                <p className="text-gray-700 text-lg">Serving Lafayette, West Lafayette and all surrounding areas.</p>
               </div>
               <button
                 onClick={() => setModalOpen(true)}
