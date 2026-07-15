@@ -1,4 +1,4 @@
-import { Phone, MapPin, ChevronLeft, ChevronRight, Check, CalendarDays, Palette, PaintRoller, Home } from 'lucide-react';
+import { Phone, MapPin, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ContactForm from './ContactForm';
 
@@ -362,12 +362,8 @@ function FourStepProcess() {
   const steps = [
     {
       title: '1) Estimation',
-      icon: (
-        <div className="relative">
-          <CalendarDays className="w-20 h-20 text-orange-500" strokeWidth={1.6} />
-          <span className="absolute inset-0 flex items-center justify-center pt-3 text-orange-500 font-extrabold text-2xl">1</span>
-        </div>
-      ),
+      img: '/Estimatep.webp',
+      alt: 'Estimation icon',
       body: (
         <>
           <p>
@@ -378,7 +374,8 @@ function FourStepProcess() {
     },
     {
       title: '2) Coordination',
-      icon: <Palette className="w-20 h-20 text-orange-500" strokeWidth={1.6} />,
+      img: '/Coordinationp.webp',
+      alt: 'Coordination icon',
       body: (
         <>
           <p>
@@ -392,7 +389,8 @@ function FourStepProcess() {
     },
     {
       title: '3) Production',
-      icon: <PaintRoller className="w-20 h-20 text-orange-500" strokeWidth={1.6} />,
+      img: '/productionp.webp',
+      alt: 'Production icon',
       body: (
         <>
           <p>
@@ -409,7 +407,8 @@ function FourStepProcess() {
     },
     {
       title: '4) Enjoy',
-      icon: <Home className="w-20 h-20 text-orange-500 fill-orange-500" strokeWidth={1.6} />,
+      img: '/enjoyp.webp',
+      alt: 'Enjoy icon',
       body: (
         <>
           <p>
@@ -428,14 +427,30 @@ function FourStepProcess() {
 
   return (
     <section className="w-full py-20 px-6 bg-white">
+      {/* Section header */}
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-orange-500 tracking-tight mb-5">
+          Our Simple 4-Step Process
+        </h2>
+        {/* Divider: line — roller icon — line */}
+        <div className="flex items-center justify-center gap-4">
+          <span className="flex-1 max-w-[160px] h-px bg-gray-400" />
+          <img src="/productionp.webp" alt="" className="h-8 w-8 object-contain" />
+          <span className="flex-1 max-w-[160px] h-px bg-gray-400" />
+        </div>
+      </div>
+
+      {/* Four columns */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {steps.map((step) => (
           <div key={step.title} className="flex flex-col items-center text-center">
-            <div className="flex items-center justify-center h-24 mb-4">{step.icon}</div>
+            <div className="flex items-center justify-center h-28 mb-4">
+              <img src={step.img} alt={step.alt} className="h-24 w-24 object-contain" />
+            </div>
             <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">
               {step.title}
             </h3>
-            <div className="text-gray-800 text-base leading-relaxed space-y-4 text-left">
+            <div className="text-gray-800 text-lg leading-relaxed space-y-4 text-left">
               {step.body}
             </div>
           </div>
