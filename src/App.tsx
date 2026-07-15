@@ -25,7 +25,7 @@ export default function App() {
             <nav className="hidden md:flex items-center gap-12 lg:gap-16 text-lg lg:text-xl font-semibold text-gray-700">
               <a href="#reviews" className="hover:text-orange-500 transition">Reviews</a>
               <a href="#portfolio" className="hover:text-orange-500 transition">Services</a>
-              <a href="#about" className="hover:text-orange-500 transition">About</a>
+              <a href="#process" className="hover:text-orange-500 transition">About</a>
               <a href="#lafayette-map" className="hover:text-orange-500 transition">Areas</a>
             </nav>
 
@@ -60,7 +60,7 @@ export default function App() {
             <nav className="md:hidden pb-4 flex flex-col gap-3 text-sm font-semibold text-gray-700 border-t border-gray-100 pt-3">
               <a href="#reviews" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Reviews</a>
               <a href="#portfolio" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Services</a>
-              <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">About</a>
+              <a href="#process" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">About</a>
               <a href="#lafayette-map" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Areas</a>
               <a href="tel:+17654302200" className="flex items-center gap-2 hover:text-orange-500 transition">
                 <Phone className="w-4 h-4" />

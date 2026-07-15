@@ -447,7 +447,7 @@ function FourStepProcess() {
   ];
 
   return (
-    <section className="w-full py-20 px-6 bg-white">
+    <section id="process" className="w-full py-20 px-6 bg-white">
       {/* Section header */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold text-orange-500 tracking-tight mb-5">
