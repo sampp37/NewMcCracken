@@ -75,13 +75,13 @@ export default function App() {
       <section className="mt-20 sm:mt-24 lg:mt-28 bg-white">
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
-          <div className="w-full lg:w-[35%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-14 py-14 lg:py-0 order-2 lg:order-1">
+          <div className="w-full lg:w-[40%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-8 py-14 lg:py-0 order-2 lg:order-1">
             <div className="max-w-lg w-full">
-              <h1 className="font-black text-orange-500 uppercase leading-[1.05] tracking-tight mb-3 text-xl sm:text-2xl lg:text-[1.4rem] xl:text-[1.65rem]">
+              <h1 className="font-black text-orange-500 uppercase leading-[1.05] tracking-tight mb-3 text-3xl sm:text-4xl lg:text-[1.9rem] xl:text-[2.15rem]">
                 <span className="block whitespace-nowrap">THIRD GENERATION OF</span>
                 <span className="block whitespace-nowrap">PAINTERS</span>
               </h1>
-              <p className="font-black text-slate-900 leading-[1.1] tracking-tight mb-6 text-xl sm:text-2xl lg:text-[1.4rem] xl:text-[1.65rem]">
+              <p className="font-black text-slate-900 leading-[1.1] tracking-tight mb-6 text-3xl sm:text-4xl lg:text-[1.9rem] xl:text-[2.15rem]">
                 Award Winning Company<br />
                 Serving Lafayette and<br />
                 Surroundings
@@ -89,12 +89,12 @@ export default function App() {
               <div className="flex mb-6">
                 <button
                   onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-sm px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
                 >
                   GET MY FREE ESTIMATE TODAY
                 </button>
               </div>
-              <p className="text-gray-700 text-lg font-bold mb-6">
+              <p className="text-gray-700 text-xl font-bold mb-6">
                 5 Stars Google
                 <span className="mx-2 text-gray-400">&bull;</span>
                 Family Owned

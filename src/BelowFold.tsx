@@ -11,8 +11,8 @@ const allReviews = [
     name: 'Drew Powell',
   },
   {
-    title: 'Always Exceeds Expectations, Every Single Time!',
-    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They always exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
+    title: 'Always Exceeds Expectations!',
+    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They <strong className="text-gray-900">always</strong> exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
     name: 'Caroline Baker',
   },
   {
@@ -41,8 +41,8 @@ const allReviews = [
     name: 'Drew Powell',
   },
   {
-    title: 'Always Exceeds Expectations, Every Single Time!',
-    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They always exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
+    title: 'Always Exceeds Expectations!',
+    body: <>We have used McCracken as a painting vendor for <strong className="text-gray-900">several years</strong> and they always do a <strong className="text-gray-900">great job</strong>. They <strong className="text-gray-900">always</strong> exceed expectations with quality and <strong className="text-gray-900">timeliness</strong>. They're friendly and easy to communicate with!</>,
     name: 'Caroline Baker',
   },
   {
@@ -92,7 +92,7 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
   const next = () => setCurrent(c => (c + 1) % total);
 
   return (
-    <section className="w-full py-16 px-6" style={{ backgroundColor: '#f8f8f8' }}>
+    <section className="w-full py-16 px-6" style={{ backgroundColor: '#fafafa' }}>
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Left — headline + text */}
         <div className="text-center">
@@ -305,7 +305,7 @@ function ReviewsSection() {
   const goTo = (p: number) => setReviewPage(Math.max(0, Math.min(totalPages - 1, p)));
 
   return (
-    <section id="reviews" className="py-16 bg-gray-50 relative">
+    <section id="reviews" className="py-10 bg-[#fafafa] relative">
       {/* Large wall-touching side arrows */}
       <button
         onClick={() => goTo(reviewPage - 1)}
@@ -324,8 +324,8 @@ function ReviewsSection() {
         <ChevronRight className="w-12 h-12 text-gray-700" strokeWidth={2} />
       </button>
 
-      <div className="max-w-7xl mx-auto px-16 lg:px-20">
-        <div className="text-center mb-12">
+      <div className="max-w-7xl mx-auto px-8 lg:px-12">
+        <div className="text-center mb-8">
           <h2 className="text-[2rem] sm:text-[2.5rem] font-bold text-gray-900 tracking-wide">
             See Why These Homeowners Wouldn't Go Anywhere Else
           </h2>
@@ -340,7 +340,7 @@ function ReviewsSection() {
             return (
               <div
                 key={reviewPage * perPage + i}
-                className={`${cardStyles[i % 3]} rounded-2xl p-7 flex flex-col gap-4 shadow-sm transition-transform duration-200 hover:scale-[1.15] cursor-default`}
+                className={`${cardStyles[i % 3]} rounded-2xl p-5 flex flex-col gap-3 shadow-sm transition-transform duration-200 hover:scale-[1.15] cursor-default`}
               >
                 <h3 className="text-gray-900 font-bold text-[21px] leading-snug">{review.title}</h3>
                 <p className="text-gray-600 text-[19px] leading-relaxed flex-1">"{review.body}"</p>
@@ -351,7 +351,7 @@ function ReviewsSection() {
             );
           })}
         </div>
-        <div className="flex items-center justify-center gap-4 mt-10">
+        <div className="flex items-center justify-center gap-4 mt-6">
           <div className="flex items-center gap-2">
             {Array.from({ length: totalPages }, (_, i) => (
               <button
@@ -562,7 +562,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
       </section>
 
       {/* Award Cards */}
-      <section className="bg-gray-100 py-16">
+      <section className="bg-[#fafafa] py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-orange-500 text-center mb-12">
             Award Winning Quality &amp; Customer Service
@@ -622,13 +622,13 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 title: 'Deck Painting',
                 img: '/w-deck.webp',
                 alt: 'Deck painting service Lafayette Indiana',
-                text: <><strong>Prepping</strong> the wood right takes attention, and we don't rush it. Once we've wrapped up, cleanup is just as thorough.</>,
+                text: <>Your deck will look <strong>new again</strong>! Family and friends won't believe <strong>is that old</strong>.</>,
               },
               {
                 title: 'Garage Epoxy Floor',
                 img: '/w-epoxy.webp',
                 alt: 'Garage epoxy floor service Lafayette Indiana',
-                text: <>Your garage floor will match the sample color <strong>exactly</strong>. And since the whole project is built around your schedule, you won't have to lift a finger, we'll even <strong>move those big items for you</strong>.</>,
+                text: <>Your garage floor will match the sample color <strong>exactly</strong>. Piled up heavy boxes? <strong>Let us move those big items for you!</strong></>,
                 objectPosition: 'center 60%',
               },
             ].map(({ title, img, alt, text, objectPosition }) => (
