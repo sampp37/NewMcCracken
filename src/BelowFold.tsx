@@ -1,4 +1,4 @@
-import { Phone, MapPin, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Phone, MapPin, ChevronLeft, ChevronRight, Check, CalendarDays, Palette, PaintRoller, Home } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ContactForm from './ContactForm';
 
@@ -356,6 +356,95 @@ function ReviewsSection() {
   );
 }
 
+// ─── FourStepProcess ──────────────────────────────────────────────────────────
+
+function FourStepProcess() {
+  const steps = [
+    {
+      title: '1) Estimation',
+      icon: (
+        <div className="relative">
+          <CalendarDays className="w-20 h-20 text-orange-500" strokeWidth={1.6} />
+          <span className="absolute inset-0 flex items-center justify-center pt-3 text-orange-500 font-extrabold text-2xl">1</span>
+        </div>
+      ),
+      body: (
+        <>
+          <p>
+            <strong>No cost</strong>, no obligation. We arrive on time, listen, and give you a clear, written estimate for your painting project.
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '2) Coordination',
+      icon: <Palette className="w-20 h-20 text-orange-500" strokeWidth={1.6} />,
+      body: (
+        <>
+          <p>
+            We plan around <strong>your needs</strong> and coordinate <strong>what</strong> will be painted and <strong>when</strong> we start.
+          </p>
+          <p>
+            <strong>Thousands of Colors!!</strong> Our color consultant helps you pick the perfect palette for your home.
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '3) Production',
+      icon: <PaintRoller className="w-20 h-20 text-orange-500" strokeWidth={1.6} />,
+      body: (
+        <>
+          <p>
+            Your furniture and floors are <strong>all protected</strong> before we ever open a can of paint.
+          </p>
+          <p>
+            We keep your home a <strong>safe place</strong> for your family throughout the project.
+          </p>
+          <p>
+            Our uniformed, background-checked crew ensures <strong>everyone stays safe</strong> from start to finish.
+          </p>
+        </>
+      ),
+    },
+    {
+      title: '4) Enjoy',
+      icon: <Home className="w-20 h-20 text-orange-500 fill-orange-500" strokeWidth={1.6} />,
+      body: (
+        <>
+          <p>
+            A final walk-through makes sure every detail meets <strong>your expectations</strong>.
+          </p>
+          <p>
+            Every brushstroke and finish is <strong>matching</strong> the vision you shared with us.
+          </p>
+          <p>
+            Rest easy with our <strong>12 months satisfaction warranty</strong> on every project.
+          </p>
+        </>
+      ),
+    },
+  ];
+
+  return (
+    <section className="w-full py-20 px-6 bg-white">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {steps.map((step) => (
+          <div key={step.title} className="flex flex-col items-center text-center">
+            <div className="flex items-center justify-center h-24 mb-4">{step.icon}</div>
+            <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              {step.title}
+            </h3>
+            <div className="text-gray-800 text-base leading-relaxed space-y-4 text-left">
+              {step.body}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 // ─── BelowFold (default export) ───────────────────────────────────────────────
 
 export default function BelowFold({ openModal }: { openModal: () => void }) {
@@ -538,6 +627,9 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
 
       {/* Section 6 — Lafayette Historic Homes */}
       <HistoricHomesSection />
+
+      {/* 4-Step Process */}
+      <FourStepProcess />
 
       {/* Areas Served */}
       <section id="areasweserve" className="relative py-14 bg-white">
