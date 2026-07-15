@@ -84,7 +84,7 @@ const portfolioSlides = [
   '/w-exterior1 copy.webp',
 ];
 
-function HistoricHomesSection() {
+function HistoricHomesSection({ openModal }: { openModal: () => void }) {
   const [current, setCurrent] = useState(0);
   const total = portfolioSlides.length;
 
@@ -658,7 +658,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
       </section>
 
       {/* Section 6 — Lafayette Historic Homes */}
-      <HistoricHomesSection />
+      <HistoricHomesSection openModal={openModal} />
 
       {/* 4-Step Process */}
       <FourStepProcess />
