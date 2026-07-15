@@ -104,16 +104,31 @@ function HistoricHomesSection() {
           </h2>
 
           <div
-            className="space-y-2"
-            style={{ fontFamily: 'Georgia, serif', fontSize: '18px', color: '#1a1a1a', lineHeight: '1.7' }}
+            className="space-y-3"
+            style={{ fontFamily: 'Georgia, serif', fontSize: '22px', color: '#1a1a1a', lineHeight: '1.7' }}
           >
             <p>Three generations of painting in Lafayette led us to:</p>
             <p>
-              A <strong>4 step</strong>{' '}
-              <strong>process</strong> that keeps every job{' '}
+              A <strong>4 Step Process</strong> that keeps every job{' '}
               <strong>clean, on time and on budget</strong>.
             </p>
-            <p>No more waiting, your schedule stays <strong>yours</strong>.</p>
+            <p>
+              All of your home projects will follow this easy <strong>4 Step Process</strong>.
+            </p>
+          </div>
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={openModal}
+              className="inline-flex items-center gap-3 bg-orange-500 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
+            >
+              Schedule Free Estimate
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </button>
           </div>
         </div>
 
@@ -311,7 +326,6 @@ function ReviewsSection() {
 
       <div className="max-w-7xl mx-auto px-16 lg:px-20">
         <div className="text-center mb-12">
-          <p className="text-orange-500 uppercase tracking-widest font-semibold text-[17px] mb-3">What Our Clients Say</p>
           <h2 className="text-[2rem] sm:text-[2.5rem] font-bold text-gray-900 tracking-wide">
             See Why These Homeowners Wouldn't Go Anywhere Else
           </h2>
@@ -362,12 +376,15 @@ function FourStepProcess() {
   const steps = [
     {
       title: '1) Estimation',
-      img: '/Estimatep.webp',
+      img: '/estimateep.webp',
       alt: 'Estimation icon',
       body: (
         <>
           <p>
-            <strong>No cost</strong>, no obligation. We arrive on time, listen, and give you a clear, written estimate for your painting project.
+            <strong>No cost</strong>, no obligation.
+          </p>
+          <p>
+            We arrive on time, inspect, and give you a clear estimate for your home project.
           </p>
         </>
       ),
@@ -430,7 +447,7 @@ function FourStepProcess() {
       {/* Section header */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold text-orange-500 tracking-tight mb-5">
-          Our Simple 4-Step Process
+          Our 4 Step Process
         </h2>
         {/* Divider: line — roller icon — line */}
         <div className="flex items-center justify-center gap-4">
@@ -500,7 +517,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
             <ServiceCarousel />
             <button
               onClick={openModal}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
             >
               Get My Professional Estimate For Free
             </button>
@@ -535,7 +552,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               </ul>
               <button
                 onClick={openModal}
-                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform hover:scale-105 transform shadow-lg"
+                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
               >
                 Get My Professional Estimate For Free
               </button>
@@ -675,7 +692,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               </div>
               <button
                 onClick={() => setModalOpen(true)}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition mt-2"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 mt-2"
               >
                 Get a Free Estimate
               </button>
