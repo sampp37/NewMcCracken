@@ -6,23 +6,69 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
+const jsonResponse = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json", ...corsHeaders },
+  });
+
+const escapeHtml = (v: string) =>
+  v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
   }
 
   try {
-    const { name, email, phone, message } = await req.json();
+    const payload = await req.json();
+    const name = String(payload?.name ?? "").trim();
+    const email = String(payload?.email ?? "").trim();
+    const phone = String(payload?.phone ?? "").trim();
+    const message = String(payload?.message ?? "").trim();
 
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) {
-      return new Response(
-        JSON.stringify({ error: "RESEND_API_KEY not configured" }),
-        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
-      );
+    if (!name || !phone) {
+      return jsonResponse({ error: "Name and phone are required" }, 400);
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+
+    if (!SUPABASE_URL || !SERVICE_ROLE_KEY) {
+      return jsonResponse({ error: "Supabase env vars missing in edge function" }, 500);
+    }
+
+    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({ name, email, phone, message }),
+    });
+
+    if (!insertRes.ok) {
+      const errBody = await insertRes.text();
+      console.error("Lead insert failed:", insertRes.status, errBody);
+      return jsonResponse({ error: `Lead insert failed: ${errBody}` }, 500);
+    }
+
+    const insertedRows = await insertRes.json();
+    const leadId = Array.isArray(insertedRows) && insertedRows[0]?.id ? insertedRows[0].id : null;
+
+    if (!RESEND_API_KEY) {
+      return jsonResponse({ success: true, leadId, emailSent: false, warning: "RESEND_API_KEY not configured" });
+    }
+
+    const displayMessage = message ? escapeHtml(message) : "No message provided";
+    const displayEmail = email ? escapeHtml(email) : "Not provided";
+    const displayName = escapeHtml(name);
+    const displayPhone = escapeHtml(phone);
+
+    const emailRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,31 +80,24 @@ Deno.serve(async (req: Request) => {
         subject: `New Lead: ${name}`,
         html: `
           <h2>New Lead from McCracken Painting Website</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-          <p><strong>Message:</strong> ${message || "No message"}</p>
+          <p><strong>Name:</strong> ${displayName}</p>
+          <p><strong>Email:</strong> ${displayEmail}</p>
+          <p><strong>Phone:</strong> ${displayPhone}</p>
+          <p><strong>Message:</strong> ${displayMessage}</p>
         `,
       }),
     });
 
-    if (!res.ok) {
-      const error = await res.text();
-      return new Response(
-        JSON.stringify({ error }),
-        { status: res.status, headers: { "Content-Type": "application/json", ...corsHeaders } }
-      );
+    if (!emailRes.ok) {
+      const errBody = await emailRes.text();
+      console.error("Resend email failed:", emailRes.status, errBody);
+      return jsonResponse({ success: true, leadId, emailSent: false, resendError: errBody }, 200);
     }
 
-    const data = await res.json();
-    return new Response(
-      JSON.stringify({ success: true, id: data.id }),
-      { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
-    );
+    const emailData = await emailRes.json();
+    return jsonResponse({ success: true, leadId, emailSent: true, emailId: emailData.id });
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: String(err) }),
-      { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
-    );
+    console.error("Edge function error:", err);
+    return jsonResponse({ error: String(err) }, 500);
   }
 });

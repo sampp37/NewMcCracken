@@ -1,6 +1,5 @@
 import { Phone, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
-import ContactForm from './ContactForm';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -490,9 +489,6 @@ function FourStepProcess() {
 // ─── BelowFold (default export) ───────────────────────────────────────────────
 
 export default function BelowFold({ openModal }: { openModal: () => void }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleClose = () => setModalOpen(false);
-
   return (
     <>
       {/* Reviews */}
@@ -704,7 +700,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 <p className="text-gray-700 text-lg">Serving Lafayette, West Lafayette and all surrounding areas.</p>
               </div>
               <button
-                onClick={() => setModalOpen(true)}
+                onClick={openModal}
                 className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide mt-8"
               >
                 Get a Free Estimate
@@ -749,8 +745,6 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
           </div>
         </div>
       </footer>
-
-      {modalOpen && <ContactForm onClose={handleClose} />}
     </>
   );
 }

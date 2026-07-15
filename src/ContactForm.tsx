@@ -18,13 +18,15 @@ export default function ContactForm({ onClose }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setLoading(true);
     setError(false);
     try {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
       if (!supabaseUrl || !supabaseKey) throw new Error('Missing Supabase config');
-      const res = await fetch(`${supabaseUrl}/rest/v1/leads`, {
+
+      const res = await fetch(`${supabaseUrl}/functions/v1/resend-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,29 +40,11 @@ export default function ContactForm({ onClose }: ContactFormProps) {
           message: formData.message,
         }),
       });
-      if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
 
-      try {
-        const emailRes = await fetch(`${supabaseUrl}/functions/v1/resend-email`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': supabaseKey,
-            'Authorization': `Bearer ${supabaseKey}`,
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: formData.message,
-          }),
-        });
-        if (!emailRes.ok) {
-          const body = await emailRes.text();
-          console.error('Resend email failed:', emailRes.status, body);
-        }
-      } catch (emailErr) {
-        console.error('Resend email request errored:', emailErr);
+      if (!res.ok) {
+        const body = await res.text();
+        console.error('Lead submission failed:', res.status, body);
+        throw new Error(`Submission failed: ${res.status}`);
       }
 
       if (typeof window.gtag === 'function') {
@@ -68,7 +52,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
       }
       setSubmitted(true);
     } catch (err) {
-      console.error('Failed to save lead:', err);
+      console.error('Failed to submit lead:', err);
       setError(true);
     }
     setLoading(false);
