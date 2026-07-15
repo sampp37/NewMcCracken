@@ -264,7 +264,7 @@ function ServiceCarousel() {
             alt="McCracken Painting client"
             loading="lazy"
             draggable={false}
-            className="w-full flex-shrink-0 object-cover"
+            className="w-full flex-shrink-0 object-cover transition-transform duration-500 ease-out hover:scale-[1.06]"
             style={{ aspectRatio: '4/3', objectPosition: slide.position }}
           />
         ))}
@@ -404,7 +404,7 @@ function FourStepProcess() {
             We plan around <strong>your needs</strong> and coordinate <strong>what</strong> will be painted and <strong>when</strong> we start.
           </p>
           <p>
-            <strong>Thousands of Colors!!</strong> Our color consultant helps you pick the perfect palette for your home.
+            <strong>Thousands of Colors!!</strong> Free Color consultation to dissipate the stress.
           </p>
         </>
       ),
@@ -419,10 +419,7 @@ function FourStepProcess() {
             Your furniture and floors are <strong>all protected</strong> before we ever open a can of paint.
           </p>
           <p>
-            We keep your home a <strong>safe place</strong> for your family throughout the project.
-          </p>
-          <p>
-            Our uniformed, background-checked crew ensures <strong>everyone stays safe</strong> from start to finish.
+            Your home stays <strong>safe</strong> for kids, pets and everyone else.
           </p>
         </>
       ),
@@ -437,10 +434,7 @@ function FourStepProcess() {
             A final walk-through makes sure every detail meets <strong>your expectations</strong>.
           </p>
           <p>
-            Every brushstroke and finish is <strong>matching</strong> the vision you shared with us.
-          </p>
-          <p>
-            Rest easy with our <strong>12 months satisfaction warranty</strong> on every project.
+            Rest easy with our <strong>12 months satisfaction warranty</strong>.
           </p>
         </>
       ),

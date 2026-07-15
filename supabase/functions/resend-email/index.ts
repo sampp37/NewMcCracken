@@ -1,13 +1,15 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
+const BUILD_STAMP = "v-2026-07-15-fix-leads-fields";
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
 };
 
-const jsonResponse = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), {
+const jsonResponse = (body: Record<string, unknown>, status = 200) =>
+  new Response(JSON.stringify({ buildStamp: BUILD_STAMP, ...body }), {
     status,
     headers: { "Content-Type": "application/json", ...corsHeaders },
   });
@@ -22,6 +24,8 @@ Deno.serve(async (req: Request) => {
 
   try {
     const payload = await req.json();
+    console.log("resend-email payload received:", { keys: Object.keys(payload ?? {}), buildStamp: BUILD_STAMP });
+
     const name = String(payload?.name ?? "").trim();
     const email = String(payload?.email ?? "").trim();
     const phone = String(payload?.phone ?? "").trim();
@@ -39,6 +43,15 @@ Deno.serve(async (req: Request) => {
       return jsonResponse({ error: "Supabase env vars missing in edge function" }, 500);
     }
 
+    const insertBody = {
+      name,
+      phone,
+      email,
+      message,
+      details: message,
+    };
+    console.log("resend-email insert body:", insertBody);
+
     const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
       method: "POST",
       headers: {
@@ -47,17 +60,23 @@ Deno.serve(async (req: Request) => {
         Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
         Prefer: "return=representation",
       },
-      body: JSON.stringify({ name, email, phone, message }),
+      body: JSON.stringify(insertBody),
     });
 
+    const insertText = await insertRes.text();
+    console.log("resend-email insert response:", { status: insertRes.status, body: insertText });
+
     if (!insertRes.ok) {
-      const errBody = await insertRes.text();
-      console.error("Lead insert failed:", insertRes.status, errBody);
-      return jsonResponse({ error: `Lead insert failed: ${errBody}` }, 500);
+      return jsonResponse({ error: "Lead insert failed", status: insertRes.status, body: insertText }, 500);
     }
 
-    const insertedRows = await insertRes.json();
-    const leadId = Array.isArray(insertedRows) && insertedRows[0]?.id ? insertedRows[0].id : null;
+    let leadId: string | null = null;
+    try {
+      const parsed = JSON.parse(insertText);
+      if (Array.isArray(parsed) && parsed[0]?.id) leadId = parsed[0].id;
+    } catch (_) {
+      // ignore parse issues; insert was OK by status
+    }
 
     if (!RESEND_API_KEY) {
       return jsonResponse({ success: true, leadId, emailSent: false, warning: "RESEND_API_KEY not configured" });
@@ -91,13 +110,13 @@ Deno.serve(async (req: Request) => {
     if (!emailRes.ok) {
       const errBody = await emailRes.text();
       console.error("Resend email failed:", emailRes.status, errBody);
-      return jsonResponse({ success: true, leadId, emailSent: false, resendError: errBody }, 200);
+      return jsonResponse({ success: true, leadId, emailSent: false, resendError: errBody });
     }
 
     const emailData = await emailRes.json();
     return jsonResponse({ success: true, leadId, emailSent: true, emailId: emailData.id });
   } catch (err) {
-    console.error("Edge function error:", err);
+    console.error("resend-email fatal:", err);
     return jsonResponse({ error: String(err) }, 500);
   }
 });

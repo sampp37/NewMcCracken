@@ -41,9 +41,13 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         }),
       });
 
+      const responseText = await res.text();
+      let responseBody: unknown = null;
+      try { responseBody = JSON.parse(responseText); } catch { responseBody = responseText; }
+      console.log('resend-email response:', { status: res.status, body: responseBody });
+
       if (!res.ok) {
-        const body = await res.text();
-        console.error('Lead submission failed:', res.status, body);
+        console.error('Lead submission failed:', res.status, responseBody);
         throw new Error(`Submission failed: ${res.status}`);
       }
 
