@@ -39,6 +39,30 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         }),
       });
       if (!res.ok) throw new Error(`Supabase responded ${res.status}`);
+
+      try {
+        const emailRes = await fetch(`${supabaseUrl}/functions/v1/resend-email`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': supabaseKey,
+            'Authorization': `Bearer ${supabaseKey}`,
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+          }),
+        });
+        if (!emailRes.ok) {
+          const body = await emailRes.text();
+          console.error('Resend email failed:', emailRes.status, body);
+        }
+      } catch (emailErr) {
+        console.error('Resend email request errored:', emailErr);
+      }
+
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'conversion', { send_to: 'AW-17160454175/I_OqCJ-RpM0cEJ-A3_Y_' });
       }

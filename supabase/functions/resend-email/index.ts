@@ -29,7 +29,7 @@ Deno.serve(async (req: Request) => {
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "McCracken Painting <leads@mccrackenpainting.com>",
+        from: "McCracken Painting <leads@palai.biz>",
         to: ["info@mccrackenpainting.com"],
         subject: `New Lead: ${name}`,
         html: `
