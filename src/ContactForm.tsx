@@ -51,9 +51,9 @@ export default function ContactForm({ onClose }: ContactFormProps) {
         throw new Error(`Submission failed: ${res.status}`);
       }
 
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'conversion', { send_to: 'AW-17160454175/I_OqCJ-RpM0cEJ-A3_Y_' });
-      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'lead_form_success' });
+
       setSubmitted(true);
     } catch (err) {
       console.error('Failed to submit lead:', err);
