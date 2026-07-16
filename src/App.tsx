@@ -3,6 +3,16 @@ import { Phone } from 'lucide-react';
 import BelowFold from './BelowFold';
 import ContactForm from './ContactForm';
 
+function gtagReportConversion() {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-17160454175/cEAlCKXboNEcEJ-A3_Y_',
+      value: 1.0,
+      currency: 'USD',
+    });
+  }
+}
+
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,14 +42,15 @@ export default function App() {
             <div className="flex items-center gap-4 lg:gap-6 ml-6 lg:ml-10">
               <a
                 href="tel:+17654302200"
-                className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-orange-500 transition font-semibold text-sm"
+                onClick={() => gtagReportConversion()}
+                className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-orange-500 transition font-semibold text-lg"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-5 h-5" />
                 (765) 430-2200
               </a>
               <button
                 onClick={() => setModalOpen(true)}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-5 py-2.5 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-6 py-3 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
               >
                 Get a Free Estimate Today
               </button>
@@ -62,8 +73,8 @@ export default function App() {
               <a href="#portfolio" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Services</a>
               <a href="#process" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">About</a>
               <a href="#lafayette-map" onClick={() => setMenuOpen(false)} className="hover:text-orange-500 transition">Areas</a>
-              <a href="tel:+17654302200" className="flex items-center gap-2 hover:text-orange-500 transition">
-                <Phone className="w-4 h-4" />
+              <a href="tel:+17654302200" onClick={() => gtagReportConversion()} className="flex items-center gap-2 hover:text-orange-500 transition text-lg">
+                <Phone className="w-5 h-5" />
                 (765) 430-2200
               </a>
             </nav>
@@ -89,7 +100,7 @@ export default function App() {
               <div className="flex mb-6">
                 <button
                   onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-lg px-7 py-3.5 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
                 >
                   GET MY FREE ESTIMATE TODAY
                 </button>
