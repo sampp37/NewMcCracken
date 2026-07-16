@@ -52,7 +52,7 @@ export default function App() {
                 onClick={() => setModalOpen(true)}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-6 py-3 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
               >
-                Get a Free Estimate Today
+                GET MY FREE ONLINE/IN-PERSON QUOTE
               </button>
               <button
                 className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
@@ -102,7 +102,7 @@ export default function App() {
                   onClick={() => setModalOpen(true)}
                   className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-lg px-7 py-3.5 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
                 >
-                  GET MY FREE ESTIMATE TODAY
+                  GET MY FREE ONLINE/IN-PERSON QUOTE
                 </button>
               </div>
               <p className="text-gray-700 text-xl font-bold mb-6">
