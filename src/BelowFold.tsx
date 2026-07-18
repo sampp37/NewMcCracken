@@ -496,9 +496,6 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               <h2 className="text-2xl font-extrabold text-orange-500 leading-tight mb-1">
                 Lafayette Neighbors are Quietly Experiencing
               </h2>
-              <p className="text-gray-700 font-semibold text-base mb-5">
-                Award Winning Company. Local Family Painting for 3 Generations
-              </p>
               <ul className="space-y-3">
                 {[
                   'Your Final Bill Matches Your Original Quote',
@@ -532,9 +529,6 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 <h2 className="text-3xl xl:text-4xl font-extrabold text-orange-500 leading-tight mb-2">
                   Lafayette Neighbors are Quietly Experiencing
                 </h2>
-                <p className="text-gray-700 font-semibold text-lg">
-                  Award Winning Company. Local Family Painting for 3 Generations
-                </p>
               </div>
               <ul className="space-y-4">
                 {[
