@@ -124,7 +124,7 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
               onClick={openModal}
               className="inline-flex items-center gap-3 bg-orange-500 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
             >
-              GET MY FREE ONLINE/IN-PERSON QUOTE
+              GET MY FREE QUOTE
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />
@@ -519,7 +519,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               onClick={openModal}
               className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
             >
-              GET MY FREE ONLINE/IN-PERSON QUOTE
+              GET MY FREE QUOTE
             </button>
           </div>
 
@@ -554,7 +554,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 onClick={openModal}
                 className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
               >
-                GET MY FREE ONLINE/IN-PERSON QUOTE
+                GET MY FREE QUOTE
               </button>
             </div>
           </div>
@@ -697,7 +697,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 onClick={openModal}
                 className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide mt-8"
               >
-                GET MY FREE ONLINE/IN-PERSON QUOTE
+                GET MY FREE QUOTE
               </button>
             </div>
           </div>

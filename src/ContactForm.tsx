@@ -142,7 +142,7 @@ export default function ContactForm({ onClose }: ContactFormProps) {
                 disabled={loading}
                 className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-bold py-3 rounded-xl transition text-base"
               >
-                {loading ? 'Sending...' : 'GET MY FREE ONLINE/IN-PERSON QUOTE'}
+                {loading ? 'Sending...' : 'GET MY FREE QUOTE'}
               </button>
               {error && (
                 <p className="text-red-500 text-sm text-center">
