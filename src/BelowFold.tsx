@@ -76,15 +76,13 @@ const serviceSlides = [
 
 const portfolioSlides = [
   '/exterior0p.webp',
-  '/exterior1p.webp',
-  '/exterior2p.webp',
-  '/exterior3p.webp',
-  '/exterior4p.webp',
-  '/w-exterior1 copy.webp',
   '/home11p.webp',
+  '/exterior1p.webp',
+  '/home2.webp',
+  '/exterior3p.webp',
+  '/w-exterior1 copy.webp',
   '/home7.webp',
   '/home4.webp',
-  '/home2.webp',
 ];
 
 function HistoricHomesSection({ openModal }: { openModal: () => void }) {
@@ -446,7 +444,7 @@ function FourStepProcess() {
       {/* Section header */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold text-orange-500 tracking-tight mb-5">
-          Our 4 Step Process
+          How You Can Avoid Painting Nightmares<br />With Our Step Process
         </h2>
         {/* Divider: line — roller icon — line */}
         <div className="flex items-center justify-center gap-4">
