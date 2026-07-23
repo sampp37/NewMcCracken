@@ -1,4 +1,4 @@
-import { Phone, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -110,17 +110,17 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
           >
             <p>Three generations of painting in Lafayette led us to:</p>
             <p>
-              A <strong>4 Step Process</strong> that keeps every job{' '}
+              A <strong>3 Step Process</strong> that keeps every job{' '}
               <strong>clean, on time and on budget</strong>.
             </p>
             <p>
-              All of your home projects will follow this easy <strong>4 Step Process</strong>.
+              All of your home projects will follow this easy <strong>3 Step Process</strong>.
             </p>
           </div>
           <div className="mt-8 flex justify-center">
             <button
               onClick={openModal}
-              className="inline-flex items-center gap-3 bg-orange-500 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-md transition-transform duration-300 ease-in-out hover:scale-105"
+              className="inline-flex items-center gap-3 bg-orange-500 text-white font-bold text-lg px-8 py-4 rounded-xl shadow-md transition-transform duration-300 ease-in-out hover:scale-110"
             >
               GET MY FREE QUOTE
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -133,20 +133,26 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
           </div>
         </div>
 
-        {/* Right — carousel */}
-        <div className="relative mx-auto w-full transition-transform duration-500 ease-out hover:scale-110" style={{ maxWidth: '420px' }}>
+        {/* Right — carousel (clickable CTA) */}
+        <div className="relative mx-auto w-full" style={{ maxWidth: '420px' }}>
+          <button
+            onClick={openModal}
+            className="group block w-full rounded-xl overflow-hidden shadow-lg transition-transform duration-500 ease-out hover:scale-115 cursor-pointer"
+            aria-label="View portfolio — get a free quote"
+          >
+            <img
+              src={portfolioSlides[current]}
+              alt="Portfolio project"
+              className="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              style={{ aspectRatio: '4/3', objectPosition: current === 2 ? 'left center' : 'center' }}
+            />
+          </button>
           <button
             onClick={prev}
             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
           >
             <ChevronLeft size={22} />
           </button>
-          <img
-            src={portfolioSlides[current]}
-            alt="Portfolio project"
-            className="w-full rounded-xl shadow-lg object-cover"
-            style={{ aspectRatio: '4/3', objectPosition: current === 2 ? 'left center' : 'center' }}
-          />
           <button
             onClick={next}
             className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1 shadow"
@@ -177,7 +183,7 @@ function HistoricHomesSection({ openModal }: { openModal: () => void }) {
 
 // ─── ServiceCarousel ──────────────────────────────────────────────────────────
 
-function ServiceCarousel() {
+function ServiceCarousel({ openModal }: { openModal: () => void }) {
   const total = serviceSlides.length;
   const extSlides = [serviceSlides[total - 1], ...serviceSlides, serviceSlides[0]];
   const [current, setCurrent] = useState(1);
@@ -239,7 +245,7 @@ function ServiceCarousel() {
 
   return (
     <div
-      className="relative overflow-hidden rounded-2xl shadow-xl select-none"
+      className="relative overflow-hidden rounded-2xl shadow-xl select-none transition-transform duration-500 ease-out hover:scale-105"
       style={{ cursor: dragging ? 'grabbing' : 'grab' }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -247,6 +253,11 @@ function ServiceCarousel() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      <button
+        onClick={openModal}
+        aria-label="View client work — get a free quote"
+        className="group block w-full"
+      >
       <div
         className="flex"
         style={{
@@ -262,22 +273,23 @@ function ServiceCarousel() {
             alt="McCracken Painting client"
             loading="lazy"
             draggable={false}
-            className="w-full flex-shrink-0 object-cover transition-transform duration-500 ease-out hover:scale-[1.06]"
+            className="w-full flex-shrink-0 object-cover transition-transform duration-500 group-hover:scale-110"
             style={{ aspectRatio: '4/3', objectPosition: slide.position }}
           />
         ))}
       </div>
+      </button>
       <button
         onClick={(e) => { e.stopPropagation(); prev(); resetTimer(); }}
         aria-label="Previous photo"
-        className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
       >
         <ChevronLeft className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
       </button>
       <button
         onClick={(e) => { e.stopPropagation(); next(); resetTimer(); }}
         aria-label="Next photo"
-        className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center rounded-full transition-all duration-200 bg-white/30 hover:bg-white/60 p-2 hover:scale-125"
       >
         <ChevronRight className="w-7 h-7 text-white drop-shadow" strokeWidth={2.5} />
       </button>
@@ -375,7 +387,7 @@ function ReviewsSection({ openModal }: { openModal: () => void }) {
 
 // ─── FourStepProcess ──────────────────────────────────────────────────────────
 
-function FourStepProcess() {
+function ThreeStepProcess({ openModal }: { openModal: () => void }) {
   const steps = [
     {
       title: '1) Estimation',
@@ -384,55 +396,40 @@ function FourStepProcess() {
       body: (
         <>
           <p>
-            <strong>No cost</strong>, no obligation.
+            No cost, <strong>no obligation</strong>. In person or Online
           </p>
           <p>
-            We arrive on time, inspect, and give you a clear estimate for your home project.
+            We arrive when we said we will and give you a thorough quote for your home project.
           </p>
         </>
       ),
     },
     {
-      title: '2) Coordination',
-      img: '/Coordinationp.webp',
-      alt: 'Coordination icon',
-      body: (
-        <>
-          <p>
-            We plan around <strong>your needs</strong> and coordinate <strong>what</strong> will be painted and <strong>when</strong> we start.
-          </p>
-          <p>
-            <strong>Thousands of Colors!!</strong> Free Color consultation to dissipate the stress.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: '3) Production',
+      title: '2) Production',
       img: '/productionp.webp',
       alt: 'Production icon',
       body: (
         <>
           <p>
-            Your furniture and floors are <strong>all protected</strong> before we ever open a can of paint.
+            <strong>Your schedule</strong> tells us when to work. Your home stays safe for kids, pets and everyone else.
           </p>
           <p>
-            Your home stays <strong>safe</strong> for kids, pets and everyone else.
+            <strong>Thousands of Colors!!</strong> Free Color consultation to avoid the stress.
           </p>
         </>
       ),
     },
     {
-      title: '4) Enjoy',
+      title: '3) Enjoy',
       img: '/enjoyp.webp',
       alt: 'Enjoy icon',
       body: (
         <>
           <p>
-            A final walk-through makes sure every detail meets <strong>your expectations</strong>.
+            A final walk through makes sure everything meets <strong>your expectations</strong>
           </p>
           <p>
-            Rest easy with our <strong>12 months satisfaction warranty</strong>.
+            Peace of mind with our <strong>12 months satisfaction warranty.</strong>
           </p>
         </>
       ),
@@ -444,7 +441,7 @@ function FourStepProcess() {
       {/* Section header */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-extrabold text-orange-500 tracking-tight mb-5">
-          How You Can Avoid Painting Nightmares<br />With Our Step Process
+          Avoid Painting Nightmares<br />With Our 3 Step Process
         </h2>
         {/* Divider: line — roller icon — line */}
         <div className="flex items-center justify-center gap-4">
@@ -454,16 +451,22 @@ function FourStepProcess() {
         </div>
       </div>
 
-      {/* Four columns */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {/* Three columns */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {steps.map((step) => (
           <div key={step.title} className="flex flex-col items-center text-center">
             <div className="flex items-center justify-center h-28 mb-4 overflow-visible">
-              <img
-                src={step.img}
-                alt={step.alt}
-                className="h-24 w-24 object-contain transition-transform duration-300 ease-out hover:scale-150"
-              />
+              <button
+                onClick={openModal}
+                aria-label={`${step.title} — get a free quote`}
+                className="cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-full"
+              >
+                <img
+                  src={step.img}
+                  alt={step.alt}
+                  className="h-24 w-24 object-contain transition-transform duration-300 ease-out hover:scale-150"
+                />
+              </button>
             </div>
             <h3 className="text-xl md:text-2xl font-extrabold text-gray-900 mb-4 tracking-tight">
               {step.title}
@@ -509,10 +512,10 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
                 ))}
               </ul>
             </div>
-            <ServiceCarousel />
+            <ServiceCarousel openModal={openModal} />
             <button
               onClick={openModal}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-110 shadow-lg"
             >
               GET MY FREE QUOTE
             </button>
@@ -520,7 +523,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
 
           <div className="hidden lg:flex items-center gap-14">
             <div className="w-[55%] flex-shrink-0">
-              <ServiceCarousel />
+              <ServiceCarousel openModal={openModal} />
             </div>
             <div className="flex-1 flex flex-col gap-6">
               <div>
@@ -544,7 +547,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               </ul>
               <button
                 onClick={openModal}
-                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg"
+                className="self-start bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-base lg:text-lg px-8 py-4 rounded-xl transition-transform duration-300 ease-in-out hover:scale-110 shadow-lg"
               >
                 GET MY FREE QUOTE
               </button>
@@ -657,22 +660,26 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
       {/* Section 6 — Lafayette Historic Homes */}
       <HistoricHomesSection openModal={openModal} />
 
-      {/* 4-Step Process */}
-      <FourStepProcess />
+      {/* 3-Step Process */}
+      <ThreeStepProcess openModal={openModal} />
 
       {/* Lafayette Map Section */}
       <section id="lafayette-map" className="py-16 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <div className="overflow-hidden rounded-2xl shadow-md">
+              <button
+                onClick={openModal}
+                aria-label="View service area — get a free quote"
+                className="group block w-full overflow-hidden rounded-2xl shadow-md transition-transform duration-500 ease-out hover:scale-115 cursor-pointer"
+              >
                 <img
                   src="/mapLaf.webp"
                   alt="Map of Lafayette Indiana and surrounding areas served by McCracken Painting"
-                  className="w-full block transition-transform duration-500 ease-out hover:scale-110"
+                  className="w-full block transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
-              </div>
+              </button>
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-orange-500 uppercase tracking-wide mb-8 leading-tight">
@@ -687,7 +694,7 @@ export default function BelowFold({ openModal }: { openModal: () => void }) {
               </div>
               <button
                 onClick={openModal}
-                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide mt-8"
+                className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-base px-6 py-3 rounded-md transition-transform duration-300 ease-in-out hover:scale-110 shadow-sm uppercase tracking-wide mt-8"
               >
                 GET MY FREE QUOTE
               </button>

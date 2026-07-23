@@ -50,7 +50,7 @@ export default function App() {
               </a>
               <button
                 onClick={() => setModalOpen(true)}
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-6 py-3 rounded-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg px-6 py-3 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
               >
                 GET MY FREE QUOTE
               </button>
@@ -87,7 +87,7 @@ export default function App() {
         <div className="flex flex-col lg:flex-row min-h-[82vh]">
           {/* Left: Text */}
           <div className="w-full lg:w-[40%] flex items-center justify-center px-6 sm:px-10 lg:px-10 xl:px-8 py-14 lg:py-0 order-2 lg:order-1">
-            <div className="max-w-lg w-full">
+            <div className="max-w-lg w-full text-center">
               <h1 className="font-black text-orange-500 uppercase leading-[1.05] tracking-tight mb-3 text-3xl sm:text-4xl lg:text-[1.9rem] xl:text-[2.15rem]">
                 <span className="block whitespace-nowrap">THIRD GENERATION OF</span>
                 <span className="block whitespace-nowrap">PAINTERS</span>
@@ -97,20 +97,16 @@ export default function App() {
                 Serving Lafayette and<br />
                 Surroundings
               </p>
-              <div className="flex mb-6">
+              <div className="flex justify-center mb-6">
                 <button
                   onClick={() => setModalOpen(true)}
-                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-lg px-7 py-3.5 rounded-md transition-transform duration-300 ease-in-out hover:scale-105 shadow-sm uppercase tracking-wide"
+                  className="inline-flex items-center bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold text-lg px-7 py-3.5 rounded-md transition-transform duration-300 ease-in-out hover:scale-110 shadow-sm uppercase tracking-wide"
                 >
                   GET MY FREE QUOTE
                 </button>
               </div>
               <p className="text-gray-700 text-xl font-bold mb-6">
-                5 Stars Google
-                <span className="mx-2 text-gray-400">&bull;</span>
-                Family Owned
-                <span className="mx-2 text-gray-400">&bull;</span>
-                Over 1000 Projects
+                12 Months Satisfaction Warranty
               </p>
               <div className="flex items-center justify-between gap-6 sm:gap-8 w-full">
                 <div className="flex-1 flex justify-center">
